@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module DtlApi
   class Application < Rails::Application
+    config.hosts << ENV['ALLOW_DOMAIN']
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.before_configuration do
