@@ -44,7 +44,6 @@ group :development do
   gem "capistrano", "~> 3.10", require: false
   gem "capistrano-rails", "~> 1.3", require: false
   gem 'capistrano-passenger'
-  gem 'capistrano-rvm' 
 end
 
 group :test do
@@ -57,3 +56,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'capistrano-rvm' 
