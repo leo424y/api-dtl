@@ -1,4 +1,4 @@
-server ENV['ALLOW_DOMAIN'], user: 'deploy', roles: %w{app db web}, my_property: :my_value
+server ENV['ALLOW_DOMAIN'], user: 'fly', roles: %w{app db web}, my_property: :my_value
 
 # server-based syntax
 # ======================
