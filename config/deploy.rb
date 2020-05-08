@@ -9,7 +9,7 @@ set :repo_url, "git@github.com:leo424y/api-dtl.git"
 set :deploy_to, '/home/fly/api-dtl'
 set :keep_releases, 5
 
-append :linked_files, 'config/database.yml', 'config/secrets.yml', 'config/local_env.yml',
+append :linked_files, 'config/database.yml', 'config/secrets.yml', 'config/local_env.yml'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
 
 set :passenger_restart_with_touch, true
