@@ -6,7 +6,7 @@ lock "~> 3.14.0"
 set :application, "api-dtl"
 set :repo_url, "git@github.com:leo424y/api-dtl.git"
 
-set :deploy_to, 'home/fly/api-dtl'
+set :deploy_to, '/home/fly/api-dtl'
 set :keep_releases, 5
 
 append :linked_files, 'config/database.yml', 'config/secrets.yml'
