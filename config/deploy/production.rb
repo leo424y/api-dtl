@@ -1,4 +1,4 @@
-server ENV['ALLOW_DOMAIN'], user: 'fly', roles: %w{app db web}, my_property: :my_value
+server 'api.doublethinklab.org', user: 'fly', roles: %w{app db web}, my_property: :my_value
 
 # server-based syntax
 # ======================

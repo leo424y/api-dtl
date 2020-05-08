@@ -43,6 +43,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "capistrano", "~> 3.10", require: false
   gem "capistrano-rails", "~> 1.3", require: false
+  gem 'capistrano-passenger'
 end
 
 group :test do
