@@ -3,7 +3,7 @@ development:
   encoding: unicode
   database: dtl_development
   pool: 5
-  host: 34.80.225.95
+  host: <%= ENV['DBHOST'] %>
   username: dtl-api-rails
   password: <%= ENV['DBPWD'] %>
 test:
@@ -11,6 +11,14 @@ test:
   encoding: unicode
   database: dtl_test
   pool: 5
-  host: 34.80.225.95
+  host: <%= ENV['DBHOST'] %>
+  username: dtl-api-rails
+  password: <%= ENV['DBPWD'] %>
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: dtl_production
+  pool: 5
+  host: <%= ENV['DBHOST'] %>
   username: dtl-api-rails
   password: <%= ENV['DBPWD'] %>
