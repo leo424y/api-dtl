@@ -1,5 +1,4 @@
-server '35.194.165.9', user: 'deploy', roles: %w{app db web}
-server '104.199.184.119', user: 'deploy', roles: %w{app db web}
+server ENV['SERVER'], user: 'deploy', roles: %w{app db web}
 
 # server-based syntax
 # ======================
