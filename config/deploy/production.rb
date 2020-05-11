@@ -1,4 +1,4 @@
-server '34.73.251.82', user: 'fly', roles: %w{app db web}, my_property: :my_value
+server '35.194.165.9', user: 'deploy', roles: %w{app db web}
 
 # server-based syntax
 # ======================
