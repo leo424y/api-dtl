@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_035622) do
+ActiveRecord::Schema.define(version: 2020_05_14_195622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,11 @@ ActiveRecord::Schema.define(version: 2020_05_14_035622) do
     t.decimal "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "list"
     t.index ["date"], name: "index_fblinks_on_date"
     t.index ["link"], name: "index_fblinks_on_link"
     t.index ["link_domain"], name: "index_fblinks_on_link_domain"
+    t.index ["list"], name: "index_fblinks_on_list"
     t.index ["score"], name: "index_fblinks_on_score"
     t.index ["updated"], name: "index_fblinks_on_updated"
     t.index ["url"], name: "index_fblinks_on_url"

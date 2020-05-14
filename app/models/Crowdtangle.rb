@@ -28,7 +28,8 @@ class Crowdtangle < ApplicationRecord
                 link_domain: URI(row_hash['link']).host,
                 date: row_hash['date'],
                 updated: row_hash['updated'],
-                score: row_hash['score']
+                score: row_hash['score'],
+                list: list_id
             }) if (row_hash['type'] == 'link')
         end
     end
