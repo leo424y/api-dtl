@@ -19,7 +19,7 @@ class Crowdtangle < ApplicationRecord
     list_ids.each do |list_id|
         uri = URI("https://api.crowdtangle.com/#{endpoints}?token=#{token}&listIds=#{list_id}&startDate=#{Date.today.strftime("%Y-%m-%d")}&sortBy=#{sort_by}&count=#{count}")
         request = Net::HTTP.get_response(uri)
-        rows_hash = JSON.parse(request.body)['result']['posts'] if request.is_a?(Net::HTTPSuccess)
+        rows_hash = JSON.parse(request.body)['result']['posts']
         rows_hash.each do |row_hash|
             Fblink.create({
                 url: row_hash['postUrl'], 
@@ -32,7 +32,7 @@ class Crowdtangle < ApplicationRecord
                 list: list_id,
                 platform_id: row_hash['account']['platformId'],
                 platform_name: [row_hash['account']['name'], row_hash['account']['handle']].join(' '),
-            }) if (row_hash['type'] == 'link') && (row_hash['youtube'] == 'link') && (row_hash['platform'] == 'Facebook')
+            }) if (row_hash['type'] == 'link') || (row_hash['type'] == 'youtube') && (row_hash['platform'] == 'Facebook')
         end
     end
   end

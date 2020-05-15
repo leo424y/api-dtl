@@ -7,7 +7,7 @@ require 'rufus-scheduler'
 #
 s = Rufus::Scheduler.singleton
 
-s.every '3m' do
+s.every '1m' do
   begin
     Crowdtangle.ct_api_import
   rescue => error
