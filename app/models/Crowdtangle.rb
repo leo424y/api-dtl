@@ -33,7 +33,7 @@ class Crowdtangle < ApplicationRecord
             list: list_id,
             platform_id: row_hash['account']['platformId'],
             platform_name: [row_hash['account']['name'], row_hash['account']['handle']].join(' '),
-          }) if (row_hash['type'] == 'link') || (row_hash['type'] == 'youtube') && (row_hash['platform'] == 'Facebook')
+          }) if ((row_hash['type'] == 'link') || (row_hash['type'] == 'youtube')) && (row_hash['platform'] == 'Facebook')
         end
     end
   end
