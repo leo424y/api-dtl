@@ -26,7 +26,7 @@ class Crowdtangle < ApplicationRecord
             url: row_hash['postUrl'], 
             title: [row_hash['title'], row_hash['description'], row_hash['message'], row_hash['title']].join(' '),
             link: extlink, 
-            link_domain: URI(extlink).host,
+            link_domain: row_hash['caption'] || URI(extlink).host,
             date: row_hash['date'],
             updated: row_hash['updated'],
             score: row_hash['score'],
