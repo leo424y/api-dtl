@@ -3,7 +3,12 @@
 class FblinksController < ApplicationController
   include Response
   def index 
-    @fblinks = Fblink.where("to_date(updated, 'YY-MM-DD') BETWEEN ? AND ?", Date.today.beginning_of_day, Date.today.end_of_day).group(:link_domain).count.sort_by {|k,v| v}.reverse
+    the_date = params[:date] ? params[:date].to_date : Date.today
+    @fblinks = Fblink.where("to_date(updated, 'YY-MM-DD') BETWEEN ? AND ?", the_date.beginning_of_day, the_date.end_of_day)
+    @fblinks = @fblinks.where("title LIKE ?", "%#{params[:content]}%") if params[:content]
+    @fblinks = @fblinks.where("link_domain LIKE ?", "%#{params[:domain]}%") if params[:domain]
+
+    @fblinks= @fblinks.group(:link_domain).count.sort_by {|k,v| v}.reverse
     json_response(@fblinks)
   end
 end
