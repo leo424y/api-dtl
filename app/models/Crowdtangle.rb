@@ -23,14 +23,16 @@ class Crowdtangle < ApplicationRecord
         rows_hash.each do |row_hash|
             Fblink.create({
                 url: row_hash['postUrl'], 
-                title: [row_hash['title'], row_hash['description'], row_hash['account']['handle'], row_hash['message'], row_hash['title']].join(' '),
+                title: [row_hash['title'], row_hash['description'], row_hash['message'], row_hash['title']].join(' '),
                 link: row_hash['link'], 
                 link_domain: URI(row_hash['link']).host,
                 date: row_hash['date'],
                 updated: row_hash['updated'],
                 score: row_hash['score'],
-                list: list_id
-            }) if (row_hash['type'] == 'link')
+                list: list_id,
+                platform_id: row_hash['account']['platformId'],
+                platform_name: [row_hash['account']['name'], row_hash['account']['handle']].join(' '),
+            }) if (row_hash['type'] == 'link') && (row_hash['platform'] == 'Facebook')
         end
     end
   end
