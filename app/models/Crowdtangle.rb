@@ -16,6 +16,7 @@ class Crowdtangle < ApplicationRecord
     require 'net/https'
     token = ENV['CT_TOCKEN']
     list_ids = Ctlist.pluck(:listid)
+    p list_ids
     list_ids.each do |list_id|
         p list_id
         uri = URI("https://api.crowdtangle.com/#{endpoints}?token=#{token}&listIds=#{list_id}&startDate=#{Date.today.strftime("%Y-%m-%d")}&sortBy=#{sort_by}&count=#{count}")
