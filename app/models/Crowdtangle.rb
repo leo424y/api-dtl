@@ -16,20 +16,17 @@ class Crowdtangle < ApplicationRecord
     require 'net/https'
     token = ENV['CT_TOCKEN']
     list_ids = Ctlist.pluck(:listid)
-    p list_ids
     list_ids.each do |list_id|
-        p list_id
         uri = URI("https://api.crowdtangle.com/#{endpoints}?token=#{token}&listIds=#{list_id}&startDate=#{Date.today.strftime("%Y-%m-%d")}&sortBy=#{sort_by}&count=#{count}")
-        p uri
         request = Net::HTTP.get_response(uri)
-        rows_hash = JSON.parse(request.body)['result']['posts']
-        rows_hash.each do |row_hash|
-          link = row_hash['expandedLinks'] ? row_hash['expandedLinks']['expanded'] : row_hash['link']
+        rows_hashs = JSON.parse(request.body)['result']['posts']
+        rows_hashs.each do |row_hash|
+          extlink = (row_hash['expandedLinks'].present? ? row_hash['expandedLinks'][0]['expanded'] : row_hash['link'])
           Fblink.create({
             url: row_hash['postUrl'], 
             title: [row_hash['title'], row_hash['description'], row_hash['message'], row_hash['title']].join(' '),
-            link: link, 
-            link_domain: URI(link).host,
+            link: extlink, 
+            link_domain: URI(extlink).host,
             date: row_hash['date'],
             updated: row_hash['updated'],
             score: row_hash['score'],
