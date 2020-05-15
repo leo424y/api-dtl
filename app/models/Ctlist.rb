@@ -1,0 +1,2 @@
+class Ctlist < ApplicationRecord
+end

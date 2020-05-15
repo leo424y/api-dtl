@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_195622) do
+ActiveRecord::Schema.define(version: 2020_05_15_205622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2020_05_15_195622) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_bydays_on_name"
+  end
+
+  create_table "ctlists", force: :cascade do |t|
+    t.string "listid"
+    t.string "creator"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator"], name: "index_ctlists_on_creator"
+    t.index ["listid"], name: "index_ctlists_on_listid"
   end
 
   create_table "fblinks", force: :cascade do |t|
