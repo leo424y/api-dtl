@@ -17,7 +17,6 @@ class Crowdtangle < ApplicationRecord
     token = ENV['CT_TOCKEN']
     list_id = Ctlist.all[(((Time.now.strftime('%M').to_i % Ctlist.count) + 1))].listid
     uri = URI("https://api.crowdtangle.com/#{endpoints}?token=#{token}&listIds=#{list_id}&startDate=#{Date.today.strftime("%Y-%m-%d")}&sortBy=#{sort_by}&count=#{count}")
-    p uri
     request = Net::HTTP.get_response(uri)
     rows_hashs = JSON.parse(request.body)['result']['posts']
     rows_hashs.each do |row_hash|
