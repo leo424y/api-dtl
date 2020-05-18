@@ -4,9 +4,7 @@ class FblinksController < ApplicationController
   include Response
   def record_count 
     log_search
-    @fblinks = set_filter Fblink.all
-
-    @result = {params: params, count: @fblinks.count}
-    json_response(@result)
+    fblinks = set_filter Fblink.all
+    json_response(count_record fblinks)
   end
 end
