@@ -15,7 +15,7 @@ class Crowdtangle < ApplicationRecord
   def self.ct_api_import_by(endpoints, sort_by, count)
     require 'net/https'
     token = ENV['CT_TOCKEN']
-    list_id = Ctlist.all[(((Time.now.strftime('%M').to_i % Ctlist.count) + 1))].listid
+    list_id = Ctlist.all[Time.now.strftime('%M').to_i % Ctlist.count].listid
     uri = URI("https://api.crowdtangle.com/#{endpoints}?token=#{token}&listIds=#{list_id}&startDate=#{Date.today.strftime("%Y-%m-%d")}&sortBy=#{sort_by}&count=#{count}")
     request = Net::HTTP.get_response(uri)
     rows_hashs = JSON.parse(request.body)['result']['posts']
