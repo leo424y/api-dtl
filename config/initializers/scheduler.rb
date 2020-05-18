@@ -7,6 +7,6 @@ require 'rufus-scheduler'
 #
 s = Rufus::Scheduler.singleton
 
-s.every '13m' do
+s.every '1m' do
   Crowdtangle.ct_api_import
 end 
