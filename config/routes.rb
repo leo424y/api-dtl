@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   defaults format: :json do
     resources :bydays
-    resources :fblinks
+    resources :fblinks do 
+      collection { get :record_count }
+    end
   end  
 end
