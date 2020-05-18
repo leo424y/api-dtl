@@ -1,0 +1,2 @@
+class Searchword < ApplicationRecord
+end

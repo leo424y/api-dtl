@@ -3,6 +3,8 @@
 class FblinksController < ApplicationController
   include Response
   def index 
+    Searchword.create(word: params[:content]) if params[:content] 
+
     start_date = params[:start_date] ? params[:start_date].to_date : Date.today
     end_date = params[:end_date] ? params[:end_date].to_date : Date.today
     @fblinks = Fblink.where("to_date(updated, 'YY-MM-DD') BETWEEN ? AND ?", start_date.beginning_of_day, end_date.end_of_day)
