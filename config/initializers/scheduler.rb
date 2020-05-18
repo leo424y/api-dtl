@@ -8,5 +8,9 @@ require 'rufus-scheduler'
 s = Rufus::Scheduler.singleton
 
 s.every '1m' do
-  Crowdtangle.ct_api_import
+  begin
+    Crowdtangle.ct_api_import 
+  rescue => exception
+    p exception
+  end
 end 

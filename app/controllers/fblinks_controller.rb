@@ -8,8 +8,9 @@ class FblinksController < ApplicationController
     @fblinks = @fblinks.where("title LIKE ?", "%#{params[:content]}%") if params[:content]
     @fblinks = @fblinks.where("link_domain LIKE ?", "%#{params[:domain]}%") if params[:domain]
     if params[:listid]
-      listid = Ctlist.find_by(creator: params[:listid]).listid || params[:listid]
-      @fblinks = @fblinks.where("list LIKE ?", "%#{listid}%")
+      list =  Ctlist.find_by(creator: params[:listid]) 
+      listid = list ? list.listid : params[:listid]
+      @fblinks = @fblinks.where("list LIKE ?", "#{listid}")
     end
 
     @fblinks= @fblinks.group(:link_domain).count.sort_by {|k,v| v}.reverse

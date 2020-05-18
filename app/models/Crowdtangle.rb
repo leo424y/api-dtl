@@ -15,11 +15,13 @@ class Crowdtangle < ApplicationRecord
   def self.ct_api_import_by(endpoints, sort_by, count)
     require 'net/https'
     token = ENV['CT_TOCKEN']
-    list_id = Ctlist.find(((60 % Ctlist.count) + 1)).listid
+    list_id = Ctlist.all[(((Time.now.strftime('%M').to_i % Ctlist.count) + 1))].listid
     uri = URI("https://api.crowdtangle.com/#{endpoints}?token=#{token}&listIds=#{list_id}&startDate=#{Date.today.strftime("%Y-%m-%d")}&sortBy=#{sort_by}&count=#{count}")
+    p uri
     request = Net::HTTP.get_response(uri)
     rows_hashs = JSON.parse(request.body)['result']['posts']
     rows_hashs.each do |row_hash|
+      begin 
       extlink = (row_hash['expandedLinks'].present? ? row_hash['expandedLinks'][0]['expanded'] : row_hash['link'])
       Fblink.create({
         url: row_hash['postUrl'], 
@@ -33,6 +35,9 @@ class Crowdtangle < ApplicationRecord
         platform_id: row_hash['account']['platformId'],
         platform_name: [row_hash['account']['name'], row_hash['account']['handle']].join(' '),
       }) if ((row_hash['type'] == 'link') || (row_hash['type'] == 'youtube')) && (row_hash['platform'] == 'Facebook')
+      rescue => error
+        p error
+      end
     end
   end
 end
