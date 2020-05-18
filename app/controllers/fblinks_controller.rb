@@ -3,7 +3,7 @@
 class FblinksController < ApplicationController
   include Response
   def index 
-    Searchword.create(word: params[:content]) if params[:content] 
+    Searchword.create(word: params[:content], start_date: params[:start_date], end_date: params[:end_date]) if params[:content] 
 
     start_date = params[:start_date] ? params[:start_date].to_date : Date.today
     end_date = params[:end_date] ? params[:end_date].to_date : Date.today
