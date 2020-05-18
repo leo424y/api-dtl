@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_205622) do
+ActiveRecord::Schema.define(version: 2020_05_18_225622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,10 @@ ActiveRecord::Schema.define(version: 2020_05_18_205622) do
     t.string "word"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "start_date"
+    t.string "end_date"
+    t.index ["end_date"], name: "index_searchwords_on_end_date"
+    t.index ["start_date"], name: "index_searchwords_on_start_date"
     t.index ["word"], name: "index_searchwords_on_word"
   end
 
