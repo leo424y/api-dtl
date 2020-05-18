@@ -3,8 +3,9 @@
 class FblinksController < ApplicationController
   include Response
   def index 
-    the_date = params[:date] ? params[:date].to_date : Date.today
-    @fblinks = Fblink.where("to_date(updated, 'YY-MM-DD') BETWEEN ? AND ?", the_date.beginning_of_day, the_date.end_of_day)
+    start_date = params[:start_date] ? params[:start_date].to_date : Date.today
+    end_date = params[:end_date] ? params[:end_date].to_date : Date.today
+    @fblinks = Fblink.where("to_date(updated, 'YY-MM-DD') BETWEEN ? AND ?", start_date.beginning_of_day, end_date.end_of_day)
     @fblinks = @fblinks.where("title LIKE ?", "%#{params[:content]}%") if params[:content]
     if params[:listid]
       list =  Ctlist.find_by(creator: params[:listid]) 
