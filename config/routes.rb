@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :bydays
     resources :fblinks do 
       collection { get :record_count }
+      collection { get :record_csv }
     end
   end  
 end

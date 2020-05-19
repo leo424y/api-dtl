@@ -13,4 +13,17 @@ class ApplicationRecord < ActiveRecord::Base
     where("list LIKE ?", "#{listid}")
   }
   scope :filter_by_link, ->(params){ where("link LIKE ?", "%#{params[:link]}%") }
+
+
+  def self.to_csv(header)
+    attributes = header.split(" ")
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |result|
+        csv << attributes.map{ |attr| result.send(attr) }
+      end
+    end
+  end
 end
