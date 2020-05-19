@@ -12,4 +12,5 @@ class ApplicationRecord < ActiveRecord::Base
     listid = list ? list.listid : params[:list]
     where("list LIKE ?", "#{listid}")
   }
+  scope :filter_by_link, ->(params){ where("link LIKE ?", "%#{params[:link]}%") }
 end

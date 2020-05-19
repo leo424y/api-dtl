@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     recored = recored.filter_by_list params if params[:list]
     recored = recored.filter_by_domain params if params[:domain]
     recored = recored.filter_by_q params if params[:q]
+    recored = recored.filter_by_link params if params[:link]
     recored
   end
 end
