@@ -34,7 +34,7 @@ class Pablo < ApplicationRecord
   end
 
   def self.pablo_uri params
-    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(params[:q])}&position=1&emotion=1&startTime=#{params[:start_date]}&endTime=#{params[:end_date]}&pageIndex=1&pageRows=50")    
+    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(params[:q])}&position=1&emotion=1&startTime=#{params[:start_date]}&endTime=#{params[:end_date]}&pageIndex=1&pageRows=9999")    
   end
 
   def self.pablo_uri_date q, date
