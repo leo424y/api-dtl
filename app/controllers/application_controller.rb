@@ -17,4 +17,16 @@ class ApplicationController < ActionController::Base
     recored = recored.filter_by_link params if params[:link]
     recored
   end
+
+  def a_to_csv(array, header)
+    attributes = header.split(" ")
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      array.each do |result|
+        csv << attributes.map{ |attr| result[attr] }
+      end
+    end
+  end
 end
