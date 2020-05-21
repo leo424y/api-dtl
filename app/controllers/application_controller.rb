@@ -29,4 +29,12 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+  def api_result params, rows_hash
+    {
+      params: params,
+      count: rows_hash.is_a?(Array) ? rows_hash.count : rows_hash, 
+      posts: rows_hash,
+    }
+  end
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   defaults format: :json do
     resources :hub
     resources :pablo
+    resources :crowdtangle
     resources :bydays
     resources :fblinks do 
       collection { get :record_count }
