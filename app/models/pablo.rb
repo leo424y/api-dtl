@@ -4,10 +4,7 @@ class Pablo < ApplicationRecord
       rows = []
       count_daily = count_daily(params)
       count_daily.each do |x|
-        p x[:page_count] 
-        p x[:date]
         (1..(x[:page_count].to_i)).each do |c|
-          p c
           response = Timeout::timeout(30) { Net::HTTP.get_response(pablo_date_page params[:q], x[:date], c)}
           body = JSON.parse(response.body)['body']
           rows += body['list']  
@@ -27,12 +24,13 @@ class Pablo < ApplicationRecord
     body = JSON.parse(response.body)['body']
     counts = body['totalRows']
     page_count = body['pageCount']
-    {
+    result = {
       status: 'ok',
       params: params,
       counts: counts,
-      count_daily: count_daily(params),
     }
+    result = result.merge({count_daily: count_daily(params)}) if (params[:view] == 'all')
+    result
     rescue => error
     {
       status: error,
