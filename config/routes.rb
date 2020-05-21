@@ -6,9 +6,6 @@ Rails.application.routes.draw do
     resources :pablo
     resources :crowdtangle
     resources :bydays
-    resources :fblinks do 
-      collection { get :record_count }
-      collection { get :record_csv }
-    end
+    resources :fblinks
   end  
 end
