@@ -5,7 +5,12 @@ class FblinksController < ApplicationController
   def record_count
     log_search
     @fblinks = set_filter Fblink.all
-    json_response(count_record @fblinks)
+    result = if params[:group_by]
+      @fblinks.group(params[:group_by].to_sym).count.sort_by {|k,v| v}.reverse
+    else
+      count_record @fblinks
+    end
+    json_response(result)
   end
 
   def index 
