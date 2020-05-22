@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :pablo
     resources :crowdtangle
     resources :cofact
+    resources :hub
     resources :bydays
     resources :fblinks
   end  
