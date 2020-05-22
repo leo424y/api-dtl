@@ -110,7 +110,7 @@ module Rumors
               ListArticles(
                 filter: { moreLikeThis: { like: $text } }
                 orderBy: [{ _score: DESC }]
-                first: 250
+                first: 200
               ) {
                 edges {
                   node {
