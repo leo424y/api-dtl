@@ -14,7 +14,12 @@ class FblinksController < ApplicationController
 
     respond_to do |format|
       format.json { render json: result}
-      format.csv { send_data @fblinks.to_csv('id url link link_domain title date updated score created_at updated_at list platform_id platform_name'), filename: "fblinks-#{Date.today}-params-#{params.inspect}.csv" }
+      format.csv { 
+        send_data(
+          @fblinks.to_csv('id url link link_domain title date updated score created_at updated_at list platform_id platform_name'), 
+          filename: name_file(controller_name, params) 
+        )
+      }
     end
   end
 end

@@ -7,7 +7,12 @@ class PabloController < ApplicationController
     log_search
     respond_to do |format|
       format.json { render json: Pablo.count_result(params) }
-      format.csv { send_data a_to_csv(Pablo.result(params), 'content creator domain pubTime siteName title url'), filename: "pablo-#{Date.today}-#{params[:q]}-from-#{params[:start_date]}-to-#{params[:end_date]}.csv" }
+      format.csv { 
+        send_data(
+          a_to_csv(Pablo.result(params), 'content creator domain pubTime siteName title url'),
+          filename: name_file(controller_name, params) 
+        )
+      }
     end  
   end
 end

@@ -37,4 +37,8 @@ class ApplicationController < ActionController::Base
       posts: rows_hash,
     }
   end
+
+  def name_file model, params
+    "#{model}-#{Date.today}-#{params[:q]}-#{params[:start_date]}-#{params[:end_date]}.csv"
+  end
 end
