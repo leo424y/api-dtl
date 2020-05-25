@@ -57,14 +57,18 @@ class Pablo < ApplicationRecord
   end
 
   def self.pablo_uri(params)
-    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(params[:q])}&position=1&emotion=1&startTime=#{params[:start_date]}&endTime=#{params[:end_date]}&pageIndex=1&pageRows=100")
+    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(tradsim params[:q])}&position=1&emotion=1&startTime=#{params[:start_date]}&endTime=#{params[:end_date]}&pageIndex=1&pageRows=100")
   end
 
   def self.pablo_uri_date(q, date)
-    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(q)}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=1&pageRows=100")
+    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(tradsim q)}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=1&pageRows=100")
   end
 
   def self.pablo_date_page(q, date, page)
-    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(q)}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=#{page}&pageRows=100")
+    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(tradsim q)}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=#{page}&pageRows=100")
+  end
+
+  def self.tradsim(q)
+    Tradsim::to_sim(q) + '|' + q
   end
 end
