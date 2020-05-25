@@ -21,12 +21,12 @@ class Pablo < ApplicationRecord
   def self.count_result(params)
     response = Timeout.timeout(30) { Net::HTTP.get_response(pablo_uri(params)) }
     body = JSON.parse(response.body)['body']
-    counts = body['totalRows']
+    count = body['totalRows']
     page_count = body['pageCount']
     result = {
       status: 'ok',
       params: params,
-      counts: counts
+      count: count
     }
     if params[:view] == 'all'
       result = result.merge({ count_daily: count_daily(params) })

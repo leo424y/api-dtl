@@ -2,11 +2,17 @@
 
 class Hub < ApplicationRecord
   def self.result(params)
-    cofact_search= URI.parse "https://api.doublethinklab.org/cofact?q=#{URI.escape params[:q]}"
+    param = ''
+    params.each {|k,v| param += "&#{k}=#{v}" if ( %w(format controller action).exclude? k)}
+
+    cofact_search= URI.parse "https://api.doublethinklab.org/cofact?#{URI.escape param}"
     cofact_count = JSON.parse(Timeout.timeout(30) { Net::HTTP.get_response(cofact_search) }.body)['count']
 
-    ct_search= URI.parse "https://api.doublethinklab.org/fblinks?q=#{URI.escape params[:q]}"
+    ct_search = URI.parse "https://api.doublethinklab.org/fblinks?#{URI.escape param}"
     ct_count = JSON.parse(Timeout.timeout(30) { Net::HTTP.get_response(ct_search) }.body)['count']
+
+    pb_search = URI.parse "https://api.doublethinklab.org/pablo?#{URI.escape param}"
+    pb_count = JSON.parse(Timeout.timeout(30) { Net::HTTP.get_response(pb_search) }.body)['count']
 
     result = []
     if params[:q]
@@ -20,25 +26,26 @@ class Hub < ApplicationRecord
         },
         {
           platform: 'fblinks',
-          url: "https://api.doublethinklab.org/fblinks?q=#{params[:q]}",
-          download: "https://api.doublethinklab.org/fblinks.csv?q=#{params[:q]}",
+          url: "https://api.doublethinklab.org/fblinks?#{param}",
+          download: "https://api.doublethinklab.org/fblinks.csv?#{param}",
           document: 'https://github.com/doublethinklab/API/wiki/fblinks',
           count: ct_count
         }
       ]
     end
-    if params[:start_date] && params[:end_date]
+    if params[:start_date].present? && params[:end_date].present?
       result += [
         {
           platform: 'pablo',
-          url: "https://api.doublethinklab.org/pablo?q=#{params[:q]}&start_date=#{params[:start_date]}&end_date=#{params[:end_date]}",
-          download: "https://api.doublethinklab.org/pablo.csv?q=#{params[:q]}&start_date=#{params[:start_date]}&end_date=#{params[:end_date]}",
-          document: 'https://github.com/doublethinklab/API/wiki/pablo'
+          url: "https://api.doublethinklab.org/pablo?#{param}",
+          download: "https://api.doublethinklab.org/pablo.csv?#{param}",
+          document: 'https://github.com/doublethinklab/API/wiki/pablo',
+          count: pb_count
         },
         {
           platform: 'crowdtangle',
-          url: "https://api.doublethinklab.org/crowdtangle?q=#{params[:q]}&start_date=#{params[:start_date]}&end_date=#{params[:end_date]}",
-          download: "https://api.doublethinklab.org/crowdtangle.csv?q=#{params[:q]}&start_date=#{params[:start_date]}&end_date=#{params[:end_date]}",
+          url: "https://api.doublethinklab.org/crowdtangle?#{param}",
+          download: "https://api.doublethinklab.org/crowdtangle.csv?#{param}",
           document: 'https://github.com/doublethinklab/API/wiki/crowdtangle'
         }
       ]
