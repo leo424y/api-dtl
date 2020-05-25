@@ -5,14 +5,8 @@ class Hub < ApplicationRecord
     param = ''
     params.each {|k,v| param += "&#{k}=#{v}" if ( %w(format controller action).exclude? k)}
 
-    cofact_search= URI.parse "https://api.doublethinklab.org/cofact?#{URI.escape param}"
-    cofact_count = JSON.parse(Timeout.timeout(30) { Net::HTTP.get_response(cofact_search) }.body)['count']
-
     ct_search = URI.parse "https://api.doublethinklab.org/fblinks?#{URI.escape param}"
     ct_count = JSON.parse(Timeout.timeout(30) { Net::HTTP.get_response(ct_search) }.body)['count']
-
-    pb_search = URI.parse "https://api.doublethinklab.org/pablo?#{URI.escape param}"
-    pb_count = JSON.parse(Timeout.timeout(30) { Net::HTTP.get_response(pb_search) }.body)['count']
 
     result = []
     if params[:q]
@@ -22,7 +16,8 @@ class Hub < ApplicationRecord
           url: "https://api.doublethinklab.org/cofact?q=#{params[:q]}",
           download: "https://api.doublethinklab.org/cofact.csv?q=#{params[:q]}",
           document: 'https://github.com/doublethinklab/API/wiki/cofact',
-          count_max_200: cofact_count
+          count: api_count('cofact', param),
+          note: 'The maximum of count is 200. The result is a full history search.'
         },
         {
           platform: 'fblinks',
@@ -40,16 +35,28 @@ class Hub < ApplicationRecord
           url: "https://api.doublethinklab.org/pablo?#{param}",
           download: "https://api.doublethinklab.org/pablo.csv?#{param}",
           document: 'https://github.com/doublethinklab/API/wiki/pablo',
-          count: pb_count
+          count: api_count('pablo', param),
+          note: 'The results are matched in Chinese Traditional or Chinese Simplify'
         },
         {
           platform: 'crowdtangle',
           url: "https://api.doublethinklab.org/crowdtangle?#{param}",
           download: "https://api.doublethinklab.org/crowdtangle.csv?#{param}",
-          document: 'https://github.com/doublethinklab/API/wiki/crowdtangle'
+          document: 'https://github.com/doublethinklab/API/wiki/crowdtangle',
+          count: api_count('crowdtangle', param), 
+          note: 'the maximum of count is 100'
         }
       ]
     end
     result
+  end
+
+  def self.api_count end_point, param
+    begin
+      url= URI.parse "https://api.doublethinklab.org/#{end_point}?#{URI.escape param}"
+      JSON.parse(Timeout.timeout(30) { Net::HTTP.get_response(url) }.body)['count']        
+    rescue => exception
+      'timeout'
+    end
   end
 end
