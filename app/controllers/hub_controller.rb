@@ -3,10 +3,10 @@
 class HubController < ApplicationController
   include Response
 
-  def index 
+  def index
     result = Hub.result params
     respond_to do |format|
       format.json { render json: result }
-    end  
+    end
   end
 end
