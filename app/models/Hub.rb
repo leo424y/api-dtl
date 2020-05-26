@@ -25,7 +25,7 @@ class Hub < ApplicationRecord
           download: "https://api.doublethinklab.org/fblinks.csv?#{param}",
           document: 'https://github.com/doublethinklab/API/wiki/fblinks',
           count: ct_count, 
-          note: 'Show links shared on Facebook which traced by DoubleThink Lab.'
+          note: 'Show links shared on Facebook which was traced by DoubleThink Lab.'
         }
       ]
     end
