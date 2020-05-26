@@ -24,7 +24,8 @@ class Hub < ApplicationRecord
           url: "https://api.doublethinklab.org/fblinks?#{param}",
           download: "https://api.doublethinklab.org/fblinks.csv?#{param}",
           document: 'https://github.com/doublethinklab/API/wiki/fblinks',
-          count: ct_count
+          count: ct_count, 
+          note: 'Show links shared on Facebook which traced by DoubleThink Lab.'
         }
       ]
     end
@@ -44,7 +45,7 @@ class Hub < ApplicationRecord
           download: "https://api.doublethinklab.org/crowdtangle.csv?#{param}",
           document: 'https://github.com/doublethinklab/API/wiki/crowdtangle',
           count: api_count('crowdtangle', param), 
-          note: 'the maximum of count is 100'
+          note: 'The maximum of the count is 100. Sorting in interaction_rate'
         }
       ]
     end
