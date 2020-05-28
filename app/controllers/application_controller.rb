@@ -2,7 +2,10 @@ class ApplicationController < ActionController::Base
   private 
 
   def count_record recored 
-    {params: params, count: recored.count}
+    {
+      params: params, 
+      count: recored.count,
+    }
   end
 
   def log_search

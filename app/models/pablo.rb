@@ -26,7 +26,7 @@ class Pablo < ApplicationRecord
     result = {
       status: 'ok',
       params: params,
-      count: count
+      count: count,
     }
     if params[:view] == 'all'
       result = result.merge({ count_daily: count_daily(params) })

@@ -13,7 +13,7 @@ class FblinksController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: result }
+      format.json { render json: download_link.merge(result) }
       format.csv do
         send_data(
           @fblinks.to_csv('id url link link_domain title date updated score created_at updated_at list platform_id platform_name'),
