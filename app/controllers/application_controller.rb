@@ -34,11 +34,16 @@ class ApplicationController < ActionController::Base
   end
   
   def api_result params, rows_hash
-    {
+    count = rows_hash.is_a?(Array) ? rows_hash.count : rows_hash
+    result = {
       params: params,
-      count: rows_hash.is_a?(Array) ? rows_hash.count : rows_hash, 
-      posts: rows_hash,
+      count: (count==100 ? 'over 100' : count), 
     }
+    if count < 100  
+      result = result.merge(posts_by_date: rows_hash.sort_by { |h| h['date'] }) 
+    end
+
+    result
   end
 
   def name_file model, params
