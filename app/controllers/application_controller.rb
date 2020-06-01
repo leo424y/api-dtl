@@ -2,10 +2,14 @@ class ApplicationController < ActionController::Base
   private 
 
   def count_record recored 
-    {
+    result = {
       params: params, 
       count: recored.count,
-    }
+    } 
+    if recored.count < 100
+      result = result.merge({posts_by_date: recored.sort_by { |h| h['date'] }})
+    end
+    result
   end
 
   def log_search
