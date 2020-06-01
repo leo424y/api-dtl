@@ -28,6 +28,9 @@ class Pablo < ApplicationRecord
       params: params,
       count: count,
     }
+    if count.to_i < 101
+      result = result.merge({ early_post: body['list'].last(10).sort_by { |h| p h['pubTime'];  h['pubTime'] } })
+    end
     if params[:view] == 'all'
       result = result.merge({ count_daily: count_daily(params) })
       end
