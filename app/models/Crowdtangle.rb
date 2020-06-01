@@ -5,7 +5,7 @@ class Crowdtangle < ApplicationRecord
     require 'net/https'
     token = ENV['CT_TOCKEN']
     # listids = Ctlist.pluck(:listid).join(',')
-    uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%Y-%m-%d')}&sortBy=date&count=100&minSubscriberCount=10000")
+    uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%Y-%m-%d')}&sortBy=date&count=100&minSubscriberCount=1000")
     request = Net::HTTP.get_response(uri)
     rows_hash = JSON.parse(request.body)['message'] || JSON.parse(request.body)['result']['posts']
     rows_hash
