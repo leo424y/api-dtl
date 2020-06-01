@@ -8,7 +8,7 @@ class CrowdtangleController < ApplicationController
     result = Crowdtangle.search(params)
     respond_to do |format|
       format.json { 
-        render json: download_link.merge(api_result(params, result)) 
+        render json: download_link.merge(api_result(params, result,'crowdtangle')) 
       }
       format.csv do
         send_data(
