@@ -14,3 +14,11 @@ s.every '1m' do
     p exception
   end
 end 
+
+s.every '30m' do
+  begin
+    Gene.news_api_import 
+  rescue => exception
+    p exception
+  end
+end 

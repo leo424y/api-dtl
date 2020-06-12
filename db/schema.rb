@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_225622) do
+ActiveRecord::Schema.define(version: 2020_06_12_035612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,22 @@ ActiveRecord::Schema.define(version: 2020_05_18_225622) do
     t.index ["score"], name: "index_fblinks_on_score"
     t.index ["updated"], name: "index_fblinks_on_updated"
     t.index ["url"], name: "index_fblinks_on_url"
+  end
+
+  create_table "genes", force: :cascade do |t|
+    t.string "media"
+    t.string "url"
+    t.string "title"
+    t.string "image"
+    t.string "tags"
+    t.string "create_time"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["create_time"], name: "index_genes_on_create_time"
+    t.index ["media"], name: "index_genes_on_media"
+    t.index ["title"], name: "index_genes_on_title"
+    t.index ["url"], name: "index_genes_on_url"
   end
 
   create_table "searchwords", force: :cascade do |t|
