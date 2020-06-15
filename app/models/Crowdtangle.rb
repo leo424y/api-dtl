@@ -38,6 +38,8 @@ class Crowdtangle < ApplicationRecord
                         platform_name: [row_hash['account']['name'], row_hash['account']['handle']].join(' ')
                       })
       end
+      %x(cd '/Volumes/GoogleDrive/My Drive/_Movies/dtl/_facebook_watch'; youtube-dl --default-search "ytsearch" --write-info-json --all-subs --download-archive "archive.txt" -o "%(uploader)s/%(id)s_%(title)s.%(ext)s" #{extlink}}) if ((extlink =~ /facebook/) && (extlink =~ /videos/) && Rails.env == 'development')
+      %x(cd '/Volumes/GoogleDrive/My Drive/_Movies/dtl/_youtube_watch'; youtube-dl --default-search "ytsearch" --write-info-json --all-subs --download-archive "archive.txt" -o "%(uploader)s/%(id)s_%(title)s.%(ext)s" #{extlink}) if ((extlink =~ /youtube.com|youtu.be/) && Rails.env == 'development') 
     rescue StandardError => e
       p e
     end
