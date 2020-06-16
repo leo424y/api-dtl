@@ -1,11 +1,12 @@
-development:
+default: &default
+  username: postgres
   adapter: postgresql
-  encoding: unicode
-  database: dtl_development
-  pool: 5
-  host: <%= ENV['DBHOST'] %>
-  username: dtl-api-rails
-  password: <%= ENV['DBPWD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 25 } %>
+  timeout: 30000
+
+development:
+  <<: *default
+  database: api-dtl_development
 test:
   adapter: postgresql
   encoding: unicode
