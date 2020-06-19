@@ -3,9 +3,11 @@
 class Crowdtangle < ApplicationRecord
   def self.search(params)
     require 'net/https'
+    params[:start_date] ||= (Date.today-7.day).strftime("%F")
+    params[:end_date] ||= Date.today.strftime("%F")
     token = ENV['CT_TOCKEN']
     # listids = Ctlist.pluck(:listid).join(',')
-    uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%Y-%m-%d')}&sortBy=date&count=100&minSubscriberCount=1000")
+    uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%Y-%m-%d')}&sortBy=date&count=100&minSubscriberCount=100000")
     request = Net::HTTP.get_response(uri)
     rows_hash = JSON.parse(request.body)['message'] || JSON.parse(request.body)['result']['posts']
     rows_hash

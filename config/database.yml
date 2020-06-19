@@ -7,14 +7,6 @@ default: &default
 development:
   <<: *default
   database: api-dtl_development
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: dtl_test
-  pool: 5
-  host: <%= ENV['DBHOST'] %>
-  username: dtl-api-rails
-  password: <%= ENV['DBPWD'] %>
 production:
   adapter: postgresql
   encoding: unicode
