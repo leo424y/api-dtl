@@ -2,14 +2,25 @@
 
 class Crowdtangle < ApplicationRecord
   def self.search(params)
-    require 'net/https'
-    params[:start_date] ||= (Date.today-7.day).strftime("%F")
+    params[:start_date] ||= (Date.today-30.day).strftime("%F")
     params[:end_date] ||= Date.today.strftime("%F")
     token = ENV['CT_TOCKEN']
     # listids = Ctlist.pluck(:listid).join(',')
     uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%Y-%m-%d')}&sortBy=date&count=100&minSubscriberCount=100000")
-    request = Net::HTTP.get_response(uri)
-    rows_hash = JSON.parse(request.body)['message'] || JSON.parse(request.body)['result']['posts']
+    request = JSON.parse(Net::HTTP.get_response(uri).body)
+    i = 0
+    if request['result'] && request['result']['posts'] && (request['result']['posts'].count == 0 )
+      while (i < 3 )
+        params[:start_date] = (params[:start_date].to_date - (60*i).day).strftime("%F")  
+        params[:end_date] = (params[:end_date].to_date - (60*i).day).strftime("%F")  
+        uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%Y-%m-%d')}&sortBy=date&count=100&minSubscriberCount=100000")
+        request = JSON.parse(Net::HTTP.get_response(uri).body)  
+        i=i+1
+        p i
+        break if request['result'] && (request['result']['posts'].count > 0)
+      end
+      rows_hash = request['message'] || request['result']['posts'] 
+    end
     rows_hash
   end
 

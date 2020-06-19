@@ -45,12 +45,16 @@ class ApplicationController < ActionController::Base
       'date'
     end
     count = rows_hash.is_a?(Array) ? rows_hash.count : rows_hash
-    result = {
-      params: params,
-      count: (count==100 ? 'over 100' : count), 
-    }
-    if count < 100  
-      result = result.merge(posts_by_date: rows_hash.sort_by { |h| h[sort_by_param] }) 
+    result = if count.is_a?(Integer) && (count < 100)
+      {
+        params: params,
+        count: count, 
+      }.merge(posts_by_date: rows_hash.sort_by { |h| h[sort_by_param] }) 
+    else 
+      {
+        params: params,
+        message: count
+      }
     end
 
     result
