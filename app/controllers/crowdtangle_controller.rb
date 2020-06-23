@@ -4,6 +4,7 @@ class CrowdtangleController < ApplicationController
   include Response
 
   def index
+    default_date
     log_search
     result = Crowdtangle.search(params)
     respond_to do |format|

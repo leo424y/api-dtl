@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   private 
 
+  def default_date 
+    params[:start_date] ||= (Date.today - 60.day).strftime("%F")
+    params[:end_date] ||= Date.today.strftime("%F")
+  end
+
   def count_record recored 
     result = {
       params: params, 

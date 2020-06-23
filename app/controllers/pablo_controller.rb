@@ -4,6 +4,7 @@ class PabloController < ApplicationController
   include Response
 
   def index
+    default_date
     log_search
     respond_to do |format|
       format.json { render json: download_link.merge(Pablo.count_result(params)) }
