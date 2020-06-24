@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :hub
     resources :bydays
     resources :fblinks
+    resources :claim
   end  
 end
