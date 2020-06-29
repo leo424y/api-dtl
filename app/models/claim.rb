@@ -10,7 +10,7 @@ class Claim < ApplicationRecord
       status: 'ok',
       params: params,
       count: count,
-      result: claims,
+      result: claims.sort_by { |h| h['claimReview'][0]['reviewDate'] },
     }
     result
   rescue StandardError => e
