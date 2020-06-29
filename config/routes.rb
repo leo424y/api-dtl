@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :bydays
     resources :fblinks
     resources :claim
+    resources :wikipedia
   end  
 end
