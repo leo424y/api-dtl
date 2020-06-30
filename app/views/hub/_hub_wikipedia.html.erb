@@ -1,0 +1,7 @@
+<div class="col-md-6">
+  <% @hub_wikipedia[:result].each do |r|  %>
+  <%= r['timestamp'] %>
+  <%= r['title'] %>
+  <br>
+  <% end %>
+</div>
