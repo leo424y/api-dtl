@@ -1,6 +1,6 @@
 <%= form_tag("/hub", method: "get") do %>
   <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
+  <%= text_field_tag(:q, params[:q]) %>
   <%= submit_tag("Search") %>
 <% end %>
 <%= render_async_cache hub_wikipedia_path(params.to_enum.to_h) do %>Wikipedia...<% end %>
