@@ -2,7 +2,6 @@
 
 class HubController < ApplicationController
   include Response
-
   def index
     # result = Hub.result params 
     respond_to do |format|
