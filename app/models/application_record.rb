@@ -27,4 +27,27 @@ class ApplicationRecord < ActiveRecord::Base
       end
     end
   end
+
+  def self.api_result params, rows_hash, platform 
+    sort_by_param = case platform 
+    when 'cofacts'
+      'createdAt'
+    when 'crowdtangle'
+      'date'
+    end
+    count = rows_hash.is_a?(Array) ? rows_hash.count : rows_hash
+    result = if count.is_a?(Integer) && (count < 100)
+      {
+        params: params,
+        count: count, 
+      }.merge(posts_by_date: rows_hash.sort_by { |h| h[sort_by_param] }) 
+    else 
+      {
+        params: params,
+        message: count
+      }
+    end
+
+    result
+  end
 end

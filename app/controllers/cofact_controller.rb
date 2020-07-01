@@ -4,13 +4,13 @@ class CofactController < ApplicationController
   include Response
 
   def index
-    log_search
-    result = (Rumors::Api::Client.search params[:q])
+    log_search 
+    result = Cofact.count_result params
     respond_to do |format|
-      format.json { render json: api_result(params, result, 'cofacts') }
+      format.json { render json: result}
       format.csv do
         send_data(
-          a_to_csv(result, 'id text createdAt updatedAt hyperlinks articleReplies'),
+          a_to_csv(Rumors::Api::Client.search params[:q], 'id text createdAt updatedAt hyperlinks articleReplies'),
           filename: name_file(controller_name, params)
         )
       end
