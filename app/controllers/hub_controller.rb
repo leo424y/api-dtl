@@ -38,7 +38,7 @@ class HubController < ApplicationController
   end
 
   def hub_fblink
-    @hub_fblink = set_filter Fblink.all
+    @hub_fblink = count_record set_filter(Fblink.all)
     render partial: "hub_fblink" if (@hub_fblink.count < 100 && @hub_fblink.count > 0)
   end  
 end
