@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Crowdtangle < ApplicationRecord
+  def self.count_result(params)
+    api_result(params, search(params), 'crowdtangle')
+  end
+
   def self.search(params)
     token = ENV['CT_TOCKEN']
     # listids = Ctlist.pluck(:listid).join(',')
