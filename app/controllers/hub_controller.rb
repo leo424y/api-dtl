@@ -24,6 +24,12 @@ class HubController < ApplicationController
     @hub_cofact = Cofact.count_result(params)
     render partial: "hub_cofact" if (@hub_cofact.count > 0)
   end
+
+  def hub_crowdtangle
+    default_date
+    @hub_crowdtangle = Crowdtangle.count_result(params)
+    render partial: "hub_crowdtangle" if (@hub_crowdtangle.count < 100 && @hub_crowdtangle.count > 0)
+  end
 end
 
 

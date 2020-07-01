@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get :hub_wikipedia, controller: :hub
   get :hub_claim, controller: :hub
   get :hub_cofact, controller: :hub
+  get :hub_crowdtangle, controller: :hub
 end

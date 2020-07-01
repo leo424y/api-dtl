@@ -1,0 +1,11 @@
+
+  <% @hub_crowdtangle[:posts_by_date].each do |r|  %>
+  <tr>
+    <td>
+    <%= r['date'].to_date.strftime('%Y-%m-%d') %>
+    </td>
+    <td>
+    <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank', title: r['description'] %>
+    </td>
+  </tr>
+  <% end %>
