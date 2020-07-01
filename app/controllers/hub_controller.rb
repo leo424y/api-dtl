@@ -30,6 +30,12 @@ class HubController < ApplicationController
     @hub_crowdtangle = Crowdtangle.count_result(params)
     render partial: "hub_crowdtangle" if (@hub_crowdtangle.count < 100 && @hub_crowdtangle.count > 0)
   end
+
+  def hub_pablo
+    default_date
+    @hub_pablo = Pablo.count_result(params)
+    render partial: "hub_pablo" if (@hub_pablo.count < 100 && @hub_pablo.count > 0)
+  end
 end
 
 

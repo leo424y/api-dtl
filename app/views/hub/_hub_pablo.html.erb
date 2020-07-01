@@ -1,0 +1,8 @@
+<div class="col-md-6">
+
+  <% @hub_pablo[:posts_by_date].each do |r|  %>
+    <%= r['pubTime'].to_date.strftime('%Y-%m-%d') %>
+    <%= link_to "#{r['title']}", r['url'], target: '_blank', title: r['content'] %>
+    <br>
+  <% end %>
+</div>
