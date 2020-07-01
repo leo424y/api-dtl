@@ -1,6 +1,6 @@
 <div class="col-md-6">
   <% @hub_wikipedia[:result].each do |r|  %>
-  <%= r['timestamp'] %>
+  <%= r['timestamp'].to_date.strftime('%Y-%m-%d') %>
   <%= r['title'] %>
   <br>
   <% end %>
