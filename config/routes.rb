@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   end  
   resources :hub
   get :hub_wikipedia, controller: :hub
+  get :hub_claim, controller: :hub
+  get :hub_cofact, controller: :hub
 end
