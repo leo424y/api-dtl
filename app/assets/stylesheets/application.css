@@ -14,3 +14,9 @@
  *= require_tree .
  *= require_self
  */
+
+@media (max-width: 899px) {
+  body {
+      font-size: 300%;
+  }
+}
