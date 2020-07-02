@@ -1,7 +1,8 @@
 <%= form_tag("/hub", method: "get") do %>
-  <%= label_tag(:q, "Search for:") %>
+  <%= label_tag(:q, "") %>
   <%= text_field_tag(:q, params[:q]) %>
   <%= submit_tag("Search") %>
+  <%= link_to '🔖Doublethink', "javascript:location.href='https://api.doublethinklab.org/hub?q='+encodeURIComponent(document.title)", title: 'Drag this to your bookmark bar' %>
 <% end %>
 <%= render_async_cache hub_wikipedia_path(params.to_enum.to_h) do %>Wikipedia...<% end %>
 <%= render_async_cache hub_claim_path(params.to_enum.to_h) do %>Google Factcheck...<% end %>
