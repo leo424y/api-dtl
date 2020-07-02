@@ -2,7 +2,7 @@
 
   <% @hub_pablo[:posts_by_date].each do |r|  %>
     <%= r['pubTime'].to_date.strftime('%Y-%m-%d') %>
-    <%= link_to "#{r['title']}", r['url'], target: '_blank', title: r['content'] %>
+    <%= link_to "#{r['siteName']} #{r['creator']}", r['url'], target: '_blank', title: "#{r['title']} #{r['content']}" %>
     <br>
   <% end %>
 </div>
