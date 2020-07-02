@@ -1,7 +1,8 @@
 <div class="col-md-6">
   <% @hub_claim[:result].each do |r|  %>
+  🟧
   <%= r['claimReview'][0]['reviewDate'].to_date.strftime('%Y-%m-%d') %>
-  <%= link_to "[#{r['claimReview'][0]['textualRating']}] #{r['text']}", r['claimReview'][0]['url'], target: '_blank' %>
+  <%= link_to "[#{r['claimReview'][0]['textualRating']}] #{r['claimReview'][0]['publisher']['name']}", r['claimReview'][0]['url'], target: '_blank', title: r['text'] %>
   <br>
   <% end %>
 </div>

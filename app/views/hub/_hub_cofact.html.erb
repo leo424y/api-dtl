@@ -1,5 +1,6 @@
 <div class="col-md-6">
   <% @hub_cofact[:posts_by_date].each do |r|  %>
+  🟨
   <%= r['createdAt'].to_date.strftime('%Y-%m-%d') %>
   <%= link_to r['text'].truncate(20), "https://cofacts.g0v.tw/article/#{r['id']}", target: '_blank', title: r['articleReplies'] %>
   <br>
