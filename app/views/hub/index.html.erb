@@ -7,17 +7,7 @@
 <%= render_async_cache hub_fblink_path(params.to_enum.to_h) do %>Fblink...<% end %>
 </ul>
 
-<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-  <a class="navbar-brand" href="https://doublethinklab.org">DTL</a>
-    <form class="form-inline">
-      <%= form_tag("/hub", method: "get") do %>
-        <%= label_tag(:q, "") %>
-        <%= text_field_tag(:q, params[:q], class: "form-control mr-sm-2") %>
-        <%= submit_tag("Search", class: 'btn btn-light') %>
-      <% end %>    
-  </form>
-<li>
-        <%= link_to '🔖Doublethink', "javascript:location.href='https://api.doublethinklab.org/hub?q='+encodeURIComponent(document.title)", title: 'Drag this to your bookmark bar' %>
-</li>
-</nav>
-
+<form class="form-inline searchbar">
+  <input type="search" id="search" placeholder="關鍵字詞組" name="q" style="width: 100%">
+  <%# <button type="submit" class="btn btn-primary mb-2">🔍</button> %>
+</form>

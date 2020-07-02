@@ -1,8 +1,10 @@
   <% @hub_fblink[:posts_by_date].each do |r|  %>
   <li class="list-group-item">
+<span class="d-inline-block text-truncate" style="max-width: 100%;">
 
     <%= link_to '🟪', "https://api.doublethinklab.org/hub?q=#{r['link']}" %>
     <%= r['date'].to_date.strftime('%Y-%m-%d') %>
     <%= link_to "#{r['link_domain']}", r['url'], target: '_blank', title: r['title'] %>
+</span>
   </li>
   <% end %>
