@@ -1,12 +1,23 @@
-<%= form_tag("/hub", method: "get") do %>
-  <%= label_tag(:q, "") %>
-  <%= text_field_tag(:q, params[:q]) %>
-  <%= submit_tag("Search") %>
-  <%= link_to '🔖Doublethink', "javascript:location.href='https://api.doublethinklab.org/hub?q='+encodeURIComponent(document.title)", title: 'Drag this to your bookmark bar' %>
-<% end %>
+<ul class="list-group">
 <%= render_async_cache hub_wikipedia_path(params.to_enum.to_h) do %>Wikipedia...<% end %>
 <%= render_async_cache hub_claim_path(params.to_enum.to_h) do %>Google Factcheck...<% end %>
 <%= render_async_cache hub_cofact_path(params.to_enum.to_h) do %>Cofacts...<% end %>
 <%= render_async_cache hub_crowdtangle_path(params.to_enum.to_h) do %>CrowdTangle...<% end %>
 <%= render_async_cache hub_pablo_path(params.to_enum.to_h) do %>Pablo...<% end %>
 <%= render_async_cache hub_fblink_path(params.to_enum.to_h) do %>Fblink...<% end %>
+</ul>
+
+<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="https://doublethinklab.org">DTL</a>
+    <form class="form-inline">
+      <%= form_tag("/hub", method: "get") do %>
+        <%= label_tag(:q, "") %>
+        <%= text_field_tag(:q, params[:q], class: "form-control mr-sm-2") %>
+        <%= submit_tag("Search", class: 'btn btn-light') %>
+      <% end %>    
+  </form>
+<li>
+        <%= link_to '🔖Doublethink', "javascript:location.href='https://api.doublethinklab.org/hub?q='+encodeURIComponent(document.title)", title: 'Drag this to your bookmark bar' %>
+</li>
+</nav>
+
