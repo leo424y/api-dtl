@@ -18,7 +18,6 @@ class Crowdtangle < ApplicationRecord
         uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%Y-%m-%d')}&sortBy=date&count=100&minSubscriberCount=50000")
         request = JSON.parse(Net::HTTP.get_response(uri).body)  
         i=i+1
-        p i
         break if request['result'] && (request['result']['posts'].count > 0)
       end
     end

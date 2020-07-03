@@ -2,8 +2,11 @@ class ApplicationController < ActionController::Base
   private 
 
   def default_date 
-    params[:start_date] ||= (Date.today - 60.day).strftime("%F")
+    params[:start_date] ||= '2020-01-01'
     params[:end_date] ||= Date.today.strftime("%F")
+
+    # params[:start_date] ||= (Date.today - 60.day).strftime("%F")
+    # params[:end_date] ||= Date.today.strftime("%F")
   end
 
   def count_record recored 
@@ -49,20 +52,11 @@ class ApplicationController < ActionController::Base
     when 'crowdtangle'
       'date'
     end
-    count = rows_hash.is_a?(Array) ? rows_hash.count : rows_hash
-    result = if count.is_a?(Integer) && (count < 100)
+    
       {
         params: params,
-        count: count, 
+        count: (rows_hash.is_a?(Array) ? rows_hash.count : rows_hash)
       }.merge(posts_by_date: rows_hash.sort_by { |h| h[sort_by_param] }) 
-    else 
-      {
-        params: params,
-        message: count
-      }
-    end
-
-    result
   end
 
   def name_file model, params

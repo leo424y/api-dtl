@@ -4,7 +4,6 @@ class GenesController < ApplicationController
   include Response
 
   def index
-    log_search
     @genes = set_filter Gene.all
     result = if params[:group_by]
                @genes.group(params[:group_by].to_sym).count.sort_by { |_k, v| v }.reverse

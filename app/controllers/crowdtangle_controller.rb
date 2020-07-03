@@ -5,7 +5,6 @@ class CrowdtangleController < ApplicationController
 
   def index
     default_date
-    log_search
     result = Crowdtangle.search(params)
     respond_to do |format|
       format.json { 

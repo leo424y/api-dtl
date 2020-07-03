@@ -4,7 +4,6 @@ class CofactController < ApplicationController
   include Response
 
   def index
-    log_search 
     result = Cofact.count_result params
     respond_to do |format|
       format.json { render json: result}

@@ -4,7 +4,6 @@ class FblinksController < ApplicationController
   include Response
 
   def index
-    log_search
     @fblinks = set_filter Fblink.all
     result = if params[:group_by]
                @fblinks.group(params[:group_by].to_sym).count.sort_by { |_k, v| v }.reverse
