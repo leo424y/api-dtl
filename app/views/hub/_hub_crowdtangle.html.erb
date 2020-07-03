@@ -1,10 +1,9 @@
-<% @hub_crowdtangle[:posts_by_date].each do |r|  %>
+<% @hub_crowdtangle[:posts_by_date][0..2].each do |r|  %>
 <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
-
-  <%= link_to '🟦', "/hub?q=#{r['description']}" %>
+  <%= link_to '🟦', "/hub?q=#{r['description']}", title: 'Crowdtangle' %>
   <%= r['date'].to_date.strftime('%y%m%d') %>
-  <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank' %><%= r['message'] %><%= " #{r['description']}" %>
+  <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank' %><%= " #{r['message']}" %><%= " #{r['description']}" %>
 </span>
 </li>
 <% end %>

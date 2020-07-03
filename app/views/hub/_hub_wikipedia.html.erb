@@ -1,12 +1,10 @@
-<% @hub_wikipedia[:result].each_with_index do |r,i|  %>
-<% if i < 5 %>
 <li class="list-group-item">
+<% @hub_wikipedia[:result][0..4].each_with_index do |r,i|  %>
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
-  <%= link_to '⬛', "/hub?q=#{r['title']}" %>
-  <%= r['timestamp'].to_date.strftime('%y%m%d') %>
+  <%= link_to '⬛', "/hub?q=#{r['title']}", title: 'Wikipedia' %>
+  <%# r['timestamp'].to_date.strftime('%y%m%d') %>
   <%= link_to "#{r['title']}" , "https://zh.wikipedia.org/wiki/#{r['title']}", target: '_blank' %>
-  <%= " #{(ActionView::Base.full_sanitizer.sanitize r['snippet'])}" %>
+  <%# " #{(ActionView::Base.full_sanitizer.sanitize r['snippet'])}" %>
 </span>
+<% end %>
 </li>
-<% end %>
-<% end %>
