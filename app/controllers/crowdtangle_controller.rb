@@ -5,7 +5,6 @@ class CrowdtangleController < ApplicationController
 
   def index
     default_date
-    result = Crowdtangle.search(params)
     respond_to do |format|
       format.json { 
         render json: download_link.merge(Crowdtangle.count_result(params)) 
