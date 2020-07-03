@@ -19,8 +19,9 @@
     <%# javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body>  
     <%= content_for :render_async %>
+    <%= render 'layouts/messenger' %>
     <%= yield %>
   </body>
 </html>

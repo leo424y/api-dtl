@@ -3,7 +3,7 @@
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '🟧', "/hub?q=#{r['text']}" %>
     <%= r['claimReview'][0]['reviewDate'].to_date.strftime('%y%m%d') %>
-    <%= link_to "[#{r['claimReview'][0]['textualRating']}] #{r['text']}", r['claimReview'][0]['url'], target: '_blank' %><%= r['text'] %>
+    <%= link_to "[#{r['claimReview'][0]['textualRating']}] #{r['text']}", r['claimReview'][0]['url'], target: '_blank' %><%= " #{r['text']}" %>
 </span>
   </li>
   <% end %>

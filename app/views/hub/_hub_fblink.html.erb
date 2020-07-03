@@ -4,7 +4,7 @@
 
     <%= link_to '🟪', "/hub?q=#{r['link']}" %>
     <%= r['date'].to_date.strftime('%y%m%d') %>
-    <%= link_to "#{r['link_domain']}", r['url'], target: '_blank' %><%= r['title'] %>
+    <%= link_to "#{r['link_domain']}", r['url'], target: '_blank' %> <%= " #{r['title']}" %>
 </span>
   </li>
   <% end %>

@@ -5,7 +5,7 @@
   <%= link_to '⬛', "/hub?q=#{r['title']}" %>
   <%= r['timestamp'].to_date.strftime('%y%m%d') %>
   <%= link_to "#{r['title']}" , "https://zh.wikipedia.org/wiki/#{r['title']}", target: '_blank' %>
-  <%= "#{(ActionView::Base.full_sanitizer.sanitize r['snippet'])}" %>
+  <%= " #{(ActionView::Base.full_sanitizer.sanitize r['snippet'])}" %>
 </span>
 </li>
 <% end %>

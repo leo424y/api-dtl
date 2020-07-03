@@ -4,7 +4,7 @@
 
   <%= link_to '🟦', "/hub?q=#{r['description']}" %>
   <%= r['date'].to_date.strftime('%y%m%d') %>
-  <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank' %><%= r['message'] %><%= r['description'] %>
+  <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank' %><%= r['message'] %><%= " #{r['description']}" %>
 </span>
 </li>
 <% end %>

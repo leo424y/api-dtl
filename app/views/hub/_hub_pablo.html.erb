@@ -4,7 +4,7 @@
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '🟫', "/hub?q=#{r['title']}" %>
     <%= r['pubTime'].to_date.strftime('%y%m%d') %>
-    <%= link_to "#{r['siteName']} #{r['creator']}", r['url'], target: '_blank' %><%= "#{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['content']}" %>
+    <%= link_to "#{r['siteName']} #{r['creator']}", r['url'], target: '_blank' %><%= " #{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['content']}" %>
 </span>
     </li>
   <% end %>

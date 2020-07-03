@@ -4,7 +4,7 @@
 
     <%= link_to '🟨', "/hub?q=#{r['text']}" %>
     <%= r['createdAt'].to_date.strftime('%y%m%d') %>
-    <%= link_to "#{r['text']} #{r['articleReplies']}", "https://cofacts.g0v.tw/article/#{r['id']}", target: '_blank' %> <%= r['articleReplies'] %>
+    <%= link_to "#{r['text']} #{r['articleReplies']}", "https://cofacts.g0v.tw/article/#{r['id']}", target: '_blank' %> <%= " #{r['articleReplies']}" %>
 </span>
   </li>
   <% end %>
