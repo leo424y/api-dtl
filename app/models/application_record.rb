@@ -36,7 +36,7 @@ class ApplicationRecord < ActiveRecord::Base
       'date'
     end
     count = rows_hash.is_a?(Array) ? rows_hash.count : rows_hash
-    result = if count.is_a?(Integer) && (count < 100)
+    if count.is_a?(Integer)
       {
         params: params,
         count: count, 
@@ -47,7 +47,5 @@ class ApplicationRecord < ActiveRecord::Base
         message: count
       }
     end
-
-    result
   end
 end
