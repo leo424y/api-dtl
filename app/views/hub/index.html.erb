@@ -6,8 +6,9 @@
 <%= render_async_cache hub_pablo_path(params.to_enum.to_h) do %>Pablo...<% end %>
 <%= render_async_cache hub_fblink_path(params.to_enum.to_h) do %>Fblink...<% end %>
 </ul>
+<br>
 
 <form class="form-inline searchbar">
-  <input type="search" id="search" placeholder="關鍵字詞組" name="q" style="width: 100%">
+  <input type="search" id="search" placeholder="關鍵字詞組" name="q" style="width: 100%" value="<%= params[:q] %>">
   <%# <button type="submit" class="btn btn-primary mb-2">🔍</button> %>
 </form>

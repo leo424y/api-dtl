@@ -1,9 +1,12 @@
-<% @hub_wikipedia[:result].each do |r|  %>
+<% @hub_wikipedia[:result].each_with_index do |r,i|  %>
+<% if i < 5 %>
 <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
-  <%= link_to '⬛', "https://api.doublethinklab.org/hub?q=#{r['title']}" %>
-  <%= r['timestamp'].to_date.strftime('%Y-%m-%d') %>
-  <%= link_to r['title'], "https://zh.wikipedia.org/wiki/#{r['title']}", target: '_blank', title: (ActionView::Base.full_sanitizer.sanitize r['snippet']) %>
+  <%= link_to '⬛', "/hub?q=#{r['title']}" %>
+  <%= r['timestamp'].to_date.strftime('%y%m%d') %>
+  <%= link_to "#{r['title']}" , "https://zh.wikipedia.org/wiki/#{r['title']}", target: '_blank' %>
+  <%= "#{(ActionView::Base.full_sanitizer.sanitize r['snippet'])}" %>
 </span>
 </li>
+<% end %>
 <% end %>

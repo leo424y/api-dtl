@@ -2,9 +2,9 @@
 <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
 
-  <%= link_to '🟦', "https://api.doublethinklab.org/hub?q=#{r['description']}" %>
-  <%= r['date'].to_date.strftime('%Y-%m-%d') %>
-  <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank', title: r['description'] %>
+  <%= link_to '🟦', "/hub?q=#{r['description']}" %>
+  <%= r['date'].to_date.strftime('%y%m%d') %>
+  <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank' %><%= r['message'] %><%= r['description'] %>
 </span>
 </li>
 <% end %>
