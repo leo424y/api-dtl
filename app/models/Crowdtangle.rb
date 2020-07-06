@@ -8,15 +8,15 @@ class Crowdtangle < ApplicationRecord
   def self.search(params)
     begin
       token = ENV['CT_TOCKEN']
-      uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%F')}&sortBy=date&count=100&minSubscriberCount=100000")
+      uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%F')}&sortBy=date&count=100&minSubscriberCount=50000")
       request = JSON.parse(Net::HTTP.get_response(uri).body)
       count_a = request['result']['posts'].count 
-      for i in 1..3
-      if ((count_a == 0) || (count_a > 99))
-        uri2 = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{(params[:start_date].to_date - (60*i).days).strftime('%F')}&endDate=#{(params[:end_date].to_date - (60*i).days + 1.day).strftime('%F')}&sortBy=date&count=100&minSubscriberCount=100000")
-        request = JSON.parse(Net::HTTP.get_response(uri2).body)  
-      end
-    end
+      # for i in 1..3
+      #   if ((count_a == 0) || (count_a > 99))
+      #     uri2 = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{(params[:start_date].to_date - (60*i).days).strftime('%F')}&endDate=#{(params[:end_date].to_date - (60*i).days + 1.day).strftime('%F')}&sortBy=date&count=100&minSubscriberCount=50000")
+      #     request = JSON.parse(Net::HTTP.get_response(uri2).body)  
+      #   end
+      # end
       request['result']['posts'] 
     rescue => e  
       e
