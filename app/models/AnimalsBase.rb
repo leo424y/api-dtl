@@ -1,5 +1,4 @@
 
-class AnimalsBase < ApplicationRecord
-  self.abstract_class = true
-  connects_to database: {writing: :animals, reading: :animals }
+class AnimalsBase < ActiveRecord::Base
+  establish_connection(:animals)
 end
