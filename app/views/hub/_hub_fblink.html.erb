@@ -1,8 +1,8 @@
   <% @hub_fblink[:posts_by_date][0..2].each do |r|  %>
   <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '📗', "/hub?q=#{r['link']}", title: 'DTL Crowdtangle' %>
-    <%= r['date'].to_date.strftime('%y%m%d') %>
+    <%= link_to '📗FB', "/hub?q=#{r['link']}", title: 'DTL Crowdtangle' %>
+    <%= r['date'].to_date.strftime('%F') %>
     <%= link_to "#{r['platform_name']}", r['url'], target: '_blank' %> <%= " #{r['title']}" %>
 </span>
   </li>

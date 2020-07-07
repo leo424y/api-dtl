@@ -1,8 +1,8 @@
   <% @hub_cofact[:posts_by_date][0..2].each do |r|  %>
   <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '📙', "/hub?q=#{r['text']}", title: 'Cofacts' %>
-    <%= r['createdAt'].to_date.strftime('%y%m%d') %>
+    <%= link_to '📙CF', "/hub?q=#{r['text']}", title: 'Cofacts' %>
+    <%= r['createdAt'].to_date.strftime('%F') %>
     <%= link_to "#{r['text']}", "https://cofacts.g0v.tw/article/#{r['id']}", target: '_blank' %> <%= " #{r['articleReplies'][0]['reply']['text']}" %>
 </span>
   </li>

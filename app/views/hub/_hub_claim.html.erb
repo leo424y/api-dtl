@@ -1,8 +1,8 @@
   <% @hub_claim[:result][0..2].each do |r|  %>
   <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '📒', "/hub?q=#{r['text']}", title: 'Google Factcheck' %>
-    <%= r['claimReview'][0]['reviewDate'].to_date.strftime('%y%m%d') %>
+    <%= link_to '📒GF', "/hub?q=#{r['text']}", title: 'Google Factcheck' %>
+    <%= r['claimReview'][0]['reviewDate'].to_date.strftime('%F') %>
     <%= link_to "[#{r['claimReview'][0]['textualRating']}]", r['claimReview'][0]['url'], target: '_blank' %><%= " #{r['text']}" %>
 </span>
   </li>
