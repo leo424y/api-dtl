@@ -8,10 +8,18 @@ development:
   <<: *default
   database: api-dtl_development
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: dtl_production
-  pool: 5
-  host: <%= ENV['DBHOST'] %>
-  username: dtl-api-rails
-  password: <%= ENV['DBPWD'] %>
+  primary:
+    adapter: postgresql
+    encoding: unicode
+    database: dtl_production
+    pool: 5
+    host: <%= ENV['DBHOST'] %>
+    username: dtl-api-rails
+    password: <%= ENV['DBPWD'] %>
+  animals:
+    adapter: mysql2
+    pool: 5
+    host: <%= ENV['PHOST'] %>
+    database: <%= ENV['PDB'] %>
+    username: <%= ENV['PU'] %>
+    password: <%= ENV['PPW'] %>
