@@ -18,6 +18,7 @@ production:
     password: <%= ENV['DBPWD'] %>
   animals:
     adapter: mysql2
+    socket: /var/run/mysqld/mysqld.sock
     pool: 5
     host: <%= ENV['PHOST'] %>
     database: <%= ENV['PDB'] %>
