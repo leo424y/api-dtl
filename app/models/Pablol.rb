@@ -5,8 +5,8 @@ class Pablol < AnimalsBase
 
   def self.count_result(params)
     begin
-      q=params[:q].split(' ')
-      result = self.where("(title RLIKE :q) OR (summary RLIKE :q)", q: q.join('+')).sort_by { |h| h['pub_time'] }
+      q = params[:q].split(' ').join('+')
+      result = self.where("(title RLIKE :q) OR (summary RLIKE :q)", q: q).sort_by { |h| h['pub_time'] }
       count = result.count
       {
         status: 'ok',
