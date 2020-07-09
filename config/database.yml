@@ -25,3 +25,11 @@ animals:
   database: <%= ENV['PDB'] %>
   username: <%= ENV['PU'] %>
   password: <%= ENV['PPW'] %>
+medias:
+  adapter: postgresql
+  encoding: unicode
+  database: dtl_production
+  pool: 5
+  host: <%= ENV['MEDIAHOST'] %>
+  username: <%= ENV['MEDIAUSER'] %>
+  password: <%= ENV['MEDIAPWD'] %>

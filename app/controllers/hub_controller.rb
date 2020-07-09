@@ -42,6 +42,11 @@ class HubController < ApplicationController
     render partial: "hub_pablol"
   end
 
+  def hub_media
+    @hub = Media.count_result(params).as_json['result']
+    render partial: "hub_media"
+  end
+
   def hub_fblink
     @hub_fblink = count_record set_filter(Fblink.all)
     render partial: "hub_fblink" if (@hub_fblink.count > 0)

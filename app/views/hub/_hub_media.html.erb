@@ -1,0 +1,9 @@
+<% @hub[0..2].each do |r|  %>
+  <li class="list-group-item">
+    <span class="d-inline-block text-truncate" style="max-width: 100%;">
+        <%= link_to '📰DM', "/hub?q=#{r['title']}", title: 'Doublethink Media' %>
+        <%= r['updated'].to_date.strftime('%F') %>
+        <%= link_to "↗️ #{URI(r['url']).host}", r['url'], target: '_blank' %><%= " #{r['title']}"%>
+    </span>
+  </li>
+  <% end %>

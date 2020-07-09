@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :fblinks
     resources :claim
     resources :wikipedia
+    resources :media
   end  
   resources :hub
   get :hub_wikipedia, controller: :hub
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
   get :hub_crowdtangle, controller: :hub
   get :hub_pablo, controller: :hub
   get :hub_pablol, controller: :hub
+  get :hub_media, controller: :hub
   get :hub_fblink, controller: :hub
 end
