@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
       params: params, 
       count: recored.count,
     } 
-    if recored.count < 100
-      result = result.merge({posts_by_date: recored.sort_by { |h| h['date'] }})
-    end
+    # if recored.count < 100
+    result = result.merge({posts_by_date: recored.sort_by { |h| h['date'] }})
+    # end
     result
   end
 
