@@ -47,6 +47,11 @@ class HubController < ApplicationController
     render partial: "hub_media"
   end
 
+  def hub_domain
+    @hub_domain = Domain.count_result(params).as_json['result']
+    render partial: "hub_domain"
+  end
+
   def hub_fblink
     @hub_fblink = count_record set_filter(Fblink.all)
     render partial: "hub_fblink" if (@hub_fblink.count > 0)

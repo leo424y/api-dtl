@@ -33,3 +33,12 @@ medias:
   host: <%= ENV['MEDIAHOST'] %>
   username: <%= ENV['MEDIAUSER'] %>
   password: <%= ENV['MEDIAPWD'] %>
+domains:
+  adapter: mysql2
+  encoding: utf8
+  socket: /var/run/mysqld/mysqld.sock
+  pool: 5
+  host: <%= ENV['DOMAINHOST'] %>
+  database: <%= ENV['DOMAINDB'] %>
+  username: <%= ENV['DOMAINUSER'] %>
+  password: <%= ENV['DOMAINPWD'] %>  
