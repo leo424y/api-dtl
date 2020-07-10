@@ -3,7 +3,8 @@
     <span class="d-inline-block text-truncate" style="max-width: 100%;">
         <%= link_to '📔DA', "/hub?q=#{r['title']}", title: 'Doublethink Archive' %>
         <%= r['pub_time'].to_date.strftime('%F') %>
-        <%= link_to "↗️ #{r['channel_name']} #{r['creator']}", r['url'], target: '_blank' %><%= " #{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['summary']}" %>
+        <%= icon_url(r['url']) %>
+        <%= link_to "#{r['channel_name']} #{r['creator']}", r['url'], target: '_blank' %><%= " #{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['summary']}" %>
     </span>
   </li>
   <% end %>
