@@ -3,6 +3,7 @@
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
   <%= link_to '📘CT', "/hub?q=#{r['description']}", title: 'Crowdtangle' %>
   <%= r['date'].to_date.strftime('%F') %>
+  <%= link_to(icon_url(r['link']), r['link']) if r['link']  %>
   <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank' %><%= " #{r['message']}" %><%= " #{r['description']}" %>
 </span>
 </li>
