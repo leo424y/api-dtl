@@ -21,7 +21,7 @@ class HubController < ApplicationController
   end
 
   def hub_cofact
-    @hub_cofact = Cofact.count_result(params)
+    @hub_cofact = Cofact.count_result(params).as_json['posts_by_date']
     render partial: "hub_cofact" if (@hub_cofact.count > 0)
   end
 
@@ -43,7 +43,7 @@ class HubController < ApplicationController
   end
 
   def hub_media
-    @hub = Media.count_result(params).as_json['result']
+    @hub_media = Media.count_result(params).as_json['result']
     render partial: "hub_media"
   end
 
