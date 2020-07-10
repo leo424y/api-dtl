@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   get :hub_pablol, controller: :hub
   get :hub_media, controller: :hub
   get :hub_fblink, controller: :hub
+
+  root 'hub#index'
 end
