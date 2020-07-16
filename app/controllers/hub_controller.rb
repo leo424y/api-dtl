@@ -26,8 +26,15 @@ class HubController < ApplicationController
   end
 
   def hub_crowdtangle
+    @hub_crowdtangle_captions = []
     default_date
-    @hub_crowdtangle = Crowdtangle.count_result(params)
+    @hub_crowdtangle = Crowdtangle.count_result(params).as_json['posts_by_date']
+    @hub_crowdtangle = @hub_crowdtangle.map do |x| 
+      unless @hub_crowdtangle_captions.include? x['caption']
+        @hub_crowdtangle_captions <<  x['caption']
+        x
+      end
+    end.compact
     render partial: "hub_crowdtangle" if (@hub_crowdtangle.count < 101 && @hub_crowdtangle.count > 0)
   end
 
