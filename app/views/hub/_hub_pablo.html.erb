@@ -2,7 +2,7 @@
   <% @hub_pablo[:posts_by_date][0..2].each do |r|  %>
   <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '📕DT', "/hub?q=#{r['title']}", title: 'Doublethink' %>
+    <%= link_to('📕DT', "/hub?q=#{r['title']}", title: 'Doublethink') if r['title'] %>
     <%= r['pubTime'].to_date.strftime('%F') %>
     <%= icon_url(URI.escape r['url']) %>
     <%= link_to "#{r['siteName']} #{r['creator']}", r['url'], target: '_blank' %><%= " #{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['content']}" %>
