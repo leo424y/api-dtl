@@ -1,4 +1,4 @@
-  <% @hub_fblink[:posts_by_date][0..2].each do |r|  %>
+  <% @hub_fblink[0..2].each do |r|  %>
   <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '📗FB', "/hub?q=#{r['link']}", title: 'DTL Crowdtangle' %>

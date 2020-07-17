@@ -17,52 +17,78 @@ class HubController < ApplicationController
 
   def hub_claim
     @hub_claim = Claim.count_result(params)
+    $gf_count = @hub_claim.count 
+    # $gf_dl = download_link_of 'claim'
     render partial: "hub_claim" if @hub_claim.count > 0
   end
 
   def hub_cofact
     @hub_cofact = Cofact.count_result(params).as_json['posts_by_date']
+    $cf_count = @hub_cofact.count
+    # $cf_dl = download_link_of 'cofact'
     render partial: "hub_cofact" if (@hub_cofact.count > 0)
   end
 
   def hub_crowdtangle
     @hub_crowdtangle_captions = []
     default_date
-    @hub_crowdtangle = Crowdtangle.count_result(params).as_json['posts_by_date']
+    crowdtangle = Crowdtangle.count_result(params).as_json
+    @hub_crowdtangle = crowdtangle['posts_by_date']
     @hub_crowdtangle = @hub_crowdtangle.map do |x| 
       unless @hub_crowdtangle_captions.include? x['caption']
         @hub_crowdtangle_captions <<  x['caption']
         x
       end
     end.compact
+    $ct_count = crowdtangle['count']
+    $ct_dl = download_link_of 'crowdtangle'
     render partial: "hub_crowdtangle" if (@hub_crowdtangle.count < 101 && @hub_crowdtangle.count > 0)
   end
 
   def hub_pablo
     default_date
     @hub_pablo = Pablo.count_result(params)
+    $dt_count = @hub_pablo.count
+    $dt_dl = download_link_of 'pablo'
     render partial: "hub_pablo" if (@hub_pablo.count < 101 && @hub_pablo.count > 0)
   end
 
   def hub_pablol
-    @hub_pablol = Pablol.count_result(params).as_json['result']
+    pablo = Pablol.count_result(params).as_json
+    @hub_pablol = pablo['result']
+    $da_count = pablo['count']
+    # $dt_da = download_link_of 'pablol'
+
     render partial: "hub_pablol"
   end
 
   def hub_media
-    @hub_media = Media.count_result(params).as_json['result']
+    media = Media.count_result(params).as_json
+    @hub_media = media['result']
+    $dm_count = media['count']
+    # $dm_dl = download_link_of 'media'
     render partial: "hub_media"
   end
 
   def hub_domain
-    @hub_domain = Domain.count_result(params).as_json['result']
+    ds = Domain.count_result(params).as_json
+    @hub_domain = ds['result']
+    $ds_count = ds['count']
+    # $ds_dl = download_link_of 'domain'
     render partial: "hub_domain"
   end
 
-  def hub_fblink
-    @hub_fblink = count_record set_filter(Fblink.all)
-    render partial: "hub_fblink" if (@hub_fblink.count > 0)
+  def hub_fblinks
+    fblink = count_record(set_filter(Fblink.all))
+    $fb_count = fblink['count']
+    $fb_dl = download_link_of 'fblinks'
+    @hub_fblink = fblink[:posts_by_date].as_json
+    render partial: "hub_fblinks" if (@hub_fblink.count > 0)
   end  
+
+  def hub_datacount 
+    render partial: "hub_datacount"
+  end    
 end
 
 
