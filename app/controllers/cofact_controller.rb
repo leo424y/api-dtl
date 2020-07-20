@@ -9,7 +9,7 @@ class CofactController < ApplicationController
       format.json { render json: download_link.merge(result) }
       format.csv do
         send_data(
-          a_to_csv(Rumors::Api::Client.search params[:q], 'id text createdAt updatedAt hyperlinks articleReplies'),
+          a_to_csv(Rumors::Api::Client.search(params[:q]), 'id text createdAt updatedAt hyperlinks articleReplies'),
           filename: name_file(controller_name, params)
         )
       end
