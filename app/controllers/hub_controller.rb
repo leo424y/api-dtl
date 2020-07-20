@@ -17,7 +17,7 @@ class HubController < ApplicationController
   end
 
   def hub_claim
-    @hub_claim = Claim.count_result(params)
+    @hub_claim = Claim.count_result(params).as_json['result']
     $gf_count = @hub_claim.count 
     $gf_dl = download_link_of 'claim'
     render partial: "hub_claim" if @hub_claim.count > 0
@@ -48,7 +48,7 @@ class HubController < ApplicationController
 
   def hub_pablo
     default_date
-    @hub_pablo = Pablo.count_result(params)
+    @hub_pablo = Pablo.count_result(params).as_json['posts_by_date']
     $dt_count = @hub_pablo.count
     $dt_dl = download_link_of 'pablo'
     render partial: "hub_pablo" if (@hub_pablo.count < 101 && @hub_pablo.count > 0)
