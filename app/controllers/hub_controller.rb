@@ -18,14 +18,14 @@ class HubController < ApplicationController
   def hub_claim
     @hub_claim = Claim.count_result(params)
     $gf_count = @hub_claim.count 
-    # $gf_dl = download_link_of 'claim'
+    $gf_dl = download_link_of 'claim'
     render partial: "hub_claim" if @hub_claim.count > 0
   end
 
   def hub_cofact
     @hub_cofact = Cofact.count_result(params).as_json['posts_by_date']
     $cf_count = @hub_cofact.count
-    # $cf_dl = download_link_of 'cofact'
+    $cf_dl = download_link_of 'cofact'
     render partial: "hub_cofact" if (@hub_cofact.count > 0)
   end
 
@@ -57,7 +57,7 @@ class HubController < ApplicationController
     pablo = Pablol.count_result(params).as_json
     @hub_pablol = pablo['result']
     $da_count = pablo['count']
-    # $dt_da = download_link_of 'pablol'
+    $dt_da = download_link_of 'pablol'
 
     render partial: "hub_pablol"
   end
@@ -66,7 +66,7 @@ class HubController < ApplicationController
     media = Media.count_result(params).as_json
     @hub_media = media['result']
     $dm_count = media['count']
-    # $dm_dl = download_link_of 'media'
+    $dm_dl = download_link_of 'media'
     render partial: "hub_media"
   end
 
@@ -74,7 +74,7 @@ class HubController < ApplicationController
     ds = Domain.count_result(params).as_json
     @hub_domain = ds['result']
     $ds_count = ds['count']
-    # $ds_dl = download_link_of 'domain'
+    $ds_dl = download_link_of 'domain'
     render partial: "hub_domain"
   end
 
