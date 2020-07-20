@@ -1,5 +1,10 @@
 <ul class="list-group">
-<%= render_async hub_datacount_path, interval: 5000  %>
+<%= button_tag '↕️', onclick: "Array.prototype.slice.call(document.querySelectorAll('.list-group-item')).sort(function(a, b) {
+  return a.getAttribute('date').localeCompare(b.getAttribute('date'));
+}).forEach(function(currValue) {
+  currValue.parentNode.appendChild(currValue);
+});", class: 'btn btn-default' %>
+<%# render_async hub_datacount_path, interval: 5000  %>
 <%= render_async_cache hub_claim_path(params.to_enum.to_h) do %><li class="list-group-item">Google Factcheck...</li><% end %>
 <%= render_async_cache hub_cofact_path(params.to_enum.to_h) do %><li class="list-group-item">Cofacts...</li><% end %>
 <%= render_async_cache hub_crowdtangle_path(params.to_enum.to_h) do %><li class="list-group-item">CrowdTangle...</li><% end %>

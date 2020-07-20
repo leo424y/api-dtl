@@ -7,9 +7,4 @@
   <%= link_to "📰DM #{$dm_count || 0}", $dm_dl, title: 'Doublethink Media', target: '_blank' %>
   <%= link_to("📕DT #{$dt_count || 0}", $dt_dl, title: 'Doublethink Database', target: '_blank') %>
   <%= link_to("📔DA #{$da_count || 0}", $da_dl, title: 'Doublethink Archive', target: '_blank') %>
-  <%= button_tag '↕️', onclick: "Array.prototype.slice.call(document.querySelectorAll('.list-group-item')).sort(function(a, b) {
-    return a.getAttribute('date').localeCompare(b.getAttribute('date'));
-  }).forEach(function(currValue) {
-    currValue.parentNode.appendChild(currValue);
-  });", class: 'btn btn-default' %>
 </li>

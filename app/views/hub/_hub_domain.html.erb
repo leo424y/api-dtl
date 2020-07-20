@@ -1,5 +1,8 @@
+<li class="list-group-item" date="1999-01-01" >  <%= link_to "📚DS #{@ds_count || 0}", @ds_dl, title: 'Doublethink Site Archive', target: '_blank' %></li>
+
   <% @hub_domain.each do |r|  %>
       <% date = r['ctime'].to_date.strftime('%F') %>
+
   <li class="list-group-item" date=<%= date %> >
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '📚DS', "/hub?q=#{r['url']}", title: 'DTL Site' %>
