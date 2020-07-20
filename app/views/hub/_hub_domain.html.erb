@@ -1,8 +1,9 @@
   <% @hub_domain.each do |r|  %>
-  <li class="list-group-item">
+      <% date = r['ctime'].to_date.strftime('%F') %>
+  <li class="list-group-item" date=<%= date %> >
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '📚DS', "/hub?q=#{r['url']}", title: 'DTL Site' %>
-    <%= r['ctime'].to_date.strftime('%F') %>
+    <%= date %>
     <%= link_to icon_url(URI.escape r['url']), r['url'], target: '_blank' %>
     <%= "#{r['title']} #{r['description']}" %>
 </span>

@@ -1,4 +1,4 @@
-<li class="list-group-item">
+<li class="list-group-item" date='2099-12-31'>
 <% @hub_wikipedia[:result].each_with_index do |r,i|  %>
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
   <%= link_to '📓', "/hub?q=#{r['title']}", title: 'Wikipedia' %>

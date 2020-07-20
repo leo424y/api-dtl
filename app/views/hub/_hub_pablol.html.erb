@@ -1,8 +1,9 @@
 <% @hub_pablol.each do |r|  %>
-  <li class="list-group-item">
+  <% date = r['pub_time'].to_date.strftime('%F') %>
+  <li class="list-group-item" date=<%= date %>>
     <span class="d-inline-block text-truncate" style="max-width: 100%;">
         <%= link_to('📔DA', "/hub?q=#{r['title']}", title: 'Doublethink Archive') if r['title'] %>
-        <%= r['pub_time'].to_date.strftime('%F') %>
+        <%= date %>
         <%= icon_url(URI.escape r['url']) %>
         <%= link_to "#{r['channel_name']} > #{r['creator']}", r['url'], target: '_blank' %><%= " #{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['summary']}" %>
     </span>

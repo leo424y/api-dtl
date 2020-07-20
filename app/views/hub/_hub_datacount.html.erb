@@ -1,4 +1,4 @@
-<li class="list-group-item">
+<li class="list-group-item" date='1987-04-24'>
   <%= link_to "📒GF #{$gf_count || 0}", $gf_dl, title: 'Google Factcheck', target: '_blank' %>
   <%= link_to "📙CF #{$cf_count || 0} ", $cf_dl, title: 'Cofacts', target: '_blank' %>
   <%= link_to "📘CT #{$ct_count || 0}", $ct_dl, title: 'CrowdTangle', target: '_blank' %>
@@ -7,4 +7,9 @@
   <%= link_to "📰DM #{$dm_count || 0}", $dm_dl, title: 'Doublethink Media', target: '_blank' %>
   <%= link_to("📕DT #{$dt_count || 0}", $dt_dl, title: 'Doublethink Database', target: '_blank') %>
   <%= link_to("📔DA #{$da_count || 0}", $da_dl, title: 'Doublethink Archive', target: '_blank') %>
+  <%= button_tag '↕️', onclick: "Array.prototype.slice.call(document.querySelectorAll('.list-group-item')).sort(function(a, b) {
+    return a.getAttribute('date').localeCompare(b.getAttribute('date'));
+  }).forEach(function(currValue) {
+    currValue.parentNode.appendChild(currValue);
+  });", class: 'btn btn-default' %>
 </li>
