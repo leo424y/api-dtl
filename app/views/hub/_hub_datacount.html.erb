@@ -1,10 +1,10 @@
 <li class="list-group-item">
-  <%= link_to "📒GF #{$gf_count}", $gf_dl, title: 'Google Factcheck', target: '_blank' %>
-  <%= link_to "📙CF #{$cf_count} ", $cf_dl, title: 'Cofacts', target: '_blank' %>
-  <%= link_to "📘CT #{$ct_count}", $ct_dl, title: 'CrowdTangle', target: '_blank' %>
-  <%= link_to "📚DS #{$ds_count}", $ds_dl, title: 'Doublethink Site Archive', target: '_blank' %>
-  <%= link_to "📗FB #{$fb_count}", $fb_dl, title: 'Doublethink Crowdtangle Archive', target: '_blank' %>
-  <%= link_to "📰DM #{$dm_count}", $dm_dl, title: 'Doublethink Media', target: '_blank' %>
-  <%= link_to("📕DT #{$dt_count}", $dt_dl, title: 'Doublethink Database', target: '_blank') %>
-  <%= link_to("📔DA #{$da_count}", $da_dl, title: 'Doublethink Archive', target: '_blank') %>
+  <%= link_to "📒GF #{$gf_count || 0}", $gf_dl, title: 'Google Factcheck', target: '_blank' %>
+  <%= link_to "📙CF #{$cf_count || 0} ", $cf_dl, title: 'Cofacts', target: '_blank' %>
+  <%= link_to "📘CT #{$ct_count || 0}", $ct_dl, title: 'CrowdTangle', target: '_blank' %>
+  <%= link_to "📚DS #{$ds_count || 0}", $ds_dl, title: 'Doublethink Site Archive', target: '_blank' %>
+  <%= link_to "📗FB #{$fb_count || 0}", $fb_dl, title: 'Doublethink Crowdtangle Archive', target: '_blank' %>
+  <%= link_to "📰DM #{$dm_count || 0}", $dm_dl, title: 'Doublethink Media', target: '_blank' %>
+  <%= link_to("📕DT #{$dt_count || 0}", $dt_dl, title: 'Doublethink Database', target: '_blank') %>
+  <%= link_to("📔DA #{$da_count || 0}", $da_dl, title: 'Doublethink Archive', target: '_blank') %>
 </li>
