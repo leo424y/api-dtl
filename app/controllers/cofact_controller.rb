@@ -6,7 +6,7 @@ class CofactController < ApplicationController
   def index
     result = Cofact.count_result params
     respond_to do |format|
-      format.json { render json: result}
+      format.json { render json: download_link.merge(result) }
       format.csv do
         send_data(
           a_to_csv(Rumors::Api::Client.search params[:q], 'id text createdAt updatedAt hyperlinks articleReplies'),
