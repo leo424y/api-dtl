@@ -1,9 +1,10 @@
-  <% @hub_fblink[0..2].each do |r|  %>
+  <% @hub_fblink.each do |r|  %>
   <li class="list-group-item">
 <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '📗FB', "/hub?q=#{r['link']}", title: 'DTL Crowdtangle' %>
     <%= r['date'].to_date.strftime('%F') %>
-    <%= link_to icon_url(URI.escape r['url']), r['url'], target: '_blank' %> <%= "#{r['platform_name']} #{r['title']}" %>
+    <%= link_to icon_url(URI.escape r['link']), r['link'], target: '_blank' %>
+    <%= link_to "#{r['platform_name']}", r['url'], target: '_blank' %> <%= "#{r['title']}" %>
 </span>
   </li>
   <% end %>

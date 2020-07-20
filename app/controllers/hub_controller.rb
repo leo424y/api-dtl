@@ -53,7 +53,7 @@ class HubController < ApplicationController
 
   def hub_pablol
     pablo = Pablol.count_result(params).as_json
-    @hub_pablol = pablo['result']
+    @hub_pablol = data_compact pablo['result'], 'site_name'
     $da_count = pablo['count']
     $da_dl = download_link_of 'pablol'
 
@@ -62,7 +62,7 @@ class HubController < ApplicationController
 
   def hub_media
     media = Media.count_result(params).as_json
-    @hub_media = media['result']
+    @hub_media = data_compact_host media['result'], 'url'
     $dm_count = media['count']
     $dm_dl = download_link_of 'media'
     render partial: "hub_media"
@@ -70,7 +70,7 @@ class HubController < ApplicationController
 
   def hub_domain
     ds = Domain.count_result(params).as_json
-    @hub_domain = ds['result']
+    @hub_domain = data_compact_host ds['result'], 'url'
     $ds_count = ds['count']
     $ds_dl = download_link_of 'domain'
     render partial: "hub_domain"
@@ -78,9 +78,10 @@ class HubController < ApplicationController
 
   def hub_fblinks
     fblink = count_record(set_filter(Fblink.all))
+    @hub_fblink = fblink[:posts_by_date].as_json
+    @hub_fblink = data_compact @hub_fblink, 'link_domain'
     $fb_count = fblink['count']
     $fb_dl = download_link_of 'fblinks'
-    @hub_fblink = fblink[:posts_by_date].as_json
     render partial: "hub_fblinks" if (@hub_fblink.count > 0)
   end  
 
@@ -89,11 +90,22 @@ class HubController < ApplicationController
   end   
   
   private 
+  def data_compact_host data, field
+    items = []
+    data.map do |x| 
+      uri = URI(URI.escape(x[field])).host
+      unless items.include? uri
+        items << uri
+        x
+      end
+    end.compact
+  end
+
   def data_compact data, field
     items = []
     data.map do |x| 
       unless items.include? x[field]
-        items <<  x[field]
+        items << x[field]
         x
       end
     end.compact
