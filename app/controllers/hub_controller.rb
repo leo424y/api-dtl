@@ -58,7 +58,7 @@ class HubController < ApplicationController
     pablo = Pablol.count_result(params).as_json
     @hub_pablol = pablo['result']
     $da_count = pablo['count']
-    $dt_dl = download_link_of 'pablol'
+    $da_dl = download_link_of 'pablol'
 
     render partial: "hub_pablol"
   end
