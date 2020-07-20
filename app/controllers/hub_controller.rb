@@ -31,16 +31,11 @@ class HubController < ApplicationController
   end
 
   def hub_crowdtangle
-    @hub_crowdtangle_captions = []
     default_date
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle = crowdtangle['posts_by_date']
-    @hub_crowdtangle = @hub_crowdtangle.map do |x| 
-      unless @hub_crowdtangle_captions.include? x['caption']
-        @hub_crowdtangle_captions <<  x['caption']
-        x
-      end
-    end.compact
+    @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
+
     $ct_count = crowdtangle['count']
     $ct_dl = download_link_of 'crowdtangle'
     render partial: "hub_crowdtangle" if (@hub_crowdtangle.count < 101 && @hub_crowdtangle.count > 0)
@@ -48,7 +43,9 @@ class HubController < ApplicationController
 
   def hub_pablo
     default_date
-    @hub_pablo = Pablo.count_result(params).as_json['posts_by_date']
+    @hub_pablo = Pablo.count_result(params).as_json['posts_by_date'] 
+    @hub_pablo = data_compact @hub_pablo, 'siteName'
+
     $dt_count = @hub_pablo.count
     $dt_dl = download_link_of 'pablo'
     render partial: "hub_pablo" if (@hub_pablo.count < 101 && @hub_pablo.count > 0)
@@ -89,7 +86,18 @@ class HubController < ApplicationController
 
   def hub_datacount 
     render partial: "hub_datacount"
-  end    
+  end   
+  
+  private 
+  def data_compact data, field
+    items = []
+    data.map do |x| 
+      unless items.include? x[field]
+        items <<  x[field]
+        x
+      end
+    end.compact
+  end
 end
 
 
