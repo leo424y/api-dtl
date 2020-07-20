@@ -3,6 +3,7 @@
 class HubController < ApplicationController
   include Response
   def index
+    $gf_count = $cf_count = $ct_count = $dt_count = $dm_count = $da_count = $ds_count = $fb_count = 0
     log_search
     respond_to do |format|
       format.html
@@ -57,7 +58,7 @@ class HubController < ApplicationController
     pablo = Pablol.count_result(params).as_json
     @hub_pablol = pablo['result']
     $da_count = pablo['count']
-    $dt_da = download_link_of 'pablol'
+    $dt_dl = download_link_of 'pablol'
 
     render partial: "hub_pablol"
   end
