@@ -1,14 +1,15 @@
-<li class="list-group-item" date="1999-01-01" >  <%= link_to "📗FB #{@fb_count || 0}", @fb_dl, title: 'Doublethink Crowdtangle Archive', target: '_blank' %></li>
+<li class="list-group-item" date="1999-01-01">
+  <%= link_to "📗FB #{@fb_count || 0}", @fb_dl, title: 'Doublethink Crowdtangle Archive', target: '_blank' %></li>
 
-  <% @hub_fblink.each do |r|  %>
-      <% date = r['date'].to_date.strftime('%F') %>
+<% @hub_fblink.each do |r|  %>
+<% date = r['date'].to_date.strftime('%F') %>
 
-  <li class="list-group-item" date=<%= date %> >
-<span class="d-inline-block text-truncate" style="max-width: 100%;">
+<li class="list-group-item" date=<%= date %>>
+  <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '📗FB', "/hub?q=#{r['link']}", title: 'DTL Crowdtangle' %>
     <%= date %>
     <%= link_to icon_url(URI.escape r['link']), r['link'], target: '_blank' %>
     <%= link_to "#{r['platform_name']}", r['url'], target: '_blank' %> <%= "#{r['title']}" %>
-</span>
-  </li>
-  <% end %>
+  </span>
+</li>
+<% end %>

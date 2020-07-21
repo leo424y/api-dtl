@@ -1,19 +1,26 @@
 <ul class="list-group">
-<%= button_tag '↕️', onclick: "Array.prototype.slice.call(document.querySelectorAll('.list-group-item')).sort(function(a, b) {
+  <%= button_tag '↕️', onclick: "Array.prototype.slice.call(document.querySelectorAll('.list-group-item')).sort(function(a, b) {
   return a.getAttribute('date').localeCompare(b.getAttribute('date'));
 }).forEach(function(currValue) {
   currValue.parentNode.appendChild(currValue);
 });", class: 'btn btn-default' %>
-<%# render_async hub_datacount_path, interval: 5000  %>
-<%= render_async_cache hub_claim_path(params.to_enum.to_h) do %><li class="list-group-item">Google Factcheck...</li><% end %>
-<%= render_async_cache hub_cofact_path(params.to_enum.to_h) do %><li class="list-group-item">Cofacts...</li><% end %>
-<%= render_async_cache hub_crowdtangle_path(params.to_enum.to_h) do %><li class="list-group-item">CrowdTangle...</li><% end %>
-<%= render_async_cache hub_fblinks_path(params.to_enum.to_h) do %><li class="list-group-item">FB...</li><% end %>
-<%= render_async_cache hub_domain_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink Site...</li><% end %>
-<%= render_async_cache hub_media_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink Media...</li><% end %>
-<%= render_async_cache hub_pablol_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink Archive...</li><% end %>
-<%= render_async_cache hub_pablo_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink...</li><% end %>
-<%= render_async_cache hub_wikipedia_path(params.to_enum.to_h) do %><li class="list-group-item">Wikipedia...</li><% end %>
+  <%# render_async hub_datacount_path, interval: 5000  %>
+  <%= render_async_cache hub_claim_path(params.to_enum.to_h) do %><li class="list-group-item">Google Factcheck...</li>
+  <% end %>
+  <%= render_async_cache hub_cofact_path(params.to_enum.to_h) do %><li class="list-group-item">Cofacts...</li><% end %>
+  <%= render_async_cache hub_crowdtangle_path(params.to_enum.to_h) do %><li class="list-group-item">CrowdTangle...</li>
+  <% end %>
+  <%= render_async_cache hub_fblinks_path(params.to_enum.to_h) do %><li class="list-group-item">FB...</li><% end %>
+  <%= render_async_cache hub_domain_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink Site...</li>
+  <% end %>
+  <%= render_async_cache hub_media_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink Media...</li>
+  <% end %>
+  <%= render_async_cache hub_pablol_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink Archive...
+  </li><% end %>
+  <%= render_async_cache hub_pablo_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink...</li>
+  <% end %>
+  <%= render_async_cache hub_wikipedia_path(params.to_enum.to_h) do %><li class="list-group-item">Wikipedia...</li>
+  <% end %>
 </ul>
 <br>
 <br>
