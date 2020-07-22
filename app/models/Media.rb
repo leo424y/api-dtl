@@ -8,7 +8,9 @@ class Media < MediasBase
   def self.count_result(params)
     begin
       q = params[:q].split(' ').map {|val| "%#{val}%"}
-      result = self.where("title ILIKE ALL (array[?]) AND source = 'news'", q).sort_by{ |h| h['updated'] }
+      s = params[:start_date].to_date
+      e = params[:end_date].to_date
+      result = self.where(date: s..e).where("title ILIKE ALL (array[?]) AND source = 'news'", q).sort_by{ |h| h['updated'] }
       count = result.count
       {
         status: 'ok',
