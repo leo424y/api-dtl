@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to("📔DA #{@da_count || 0}", @da_dl, title: 'Doublethink Archive', target: '_blank') %></li>
+  <%= link_to("📔Doublethink Archive #{@da_count || 0}", @da_dl, title: 'Doublethink Archive', target: '_blank') %></li>
 <% @hub_pablol.each do |r|  %>
 <% date = r['pub_time'].to_date.strftime('%F') %>
 

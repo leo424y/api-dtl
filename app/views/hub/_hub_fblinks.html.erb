@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "📗FB #{@fb_count || 0}", @fb_dl, title: 'Doublethink Crowdtangle Archive', target: '_blank' %></li>
+  <%= link_to "📗Doublethink Facebook Archive #{@fb_count || 0}", @fb_dl, title: 'Doublethink Crowdtangle Archive', target: '_blank' %></li>
 
 <% @hub_fblink.each do |r|  %>
 <% date = r['date'].to_date.strftime('%F') %>

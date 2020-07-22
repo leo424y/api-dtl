@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "📰DM #{@dm_count || 0}", @dm_dl, title: 'Doublethink Media', target: '_blank' %></li>
+  <%= link_to "📰Doublethink Taiwan Main Media #{@dm_count || 0}", @dm_dl, title: 'Doublethink Media', target: '_blank' %></li>
 
 <% @hub_media.each do |r|  %>
 <% date = r['updated'].to_date.strftime('%F') %>

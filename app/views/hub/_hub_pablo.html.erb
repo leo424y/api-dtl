@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to("📕DT #{@dt_count || 0}", @dt_dl, title: 'Doublethink Database', target: '_blank') %></li>
+  <%= link_to("📕Doublethink Search #{@dt_count || 0}", @dt_dl, title: 'Doublethink Database', target: '_blank') %></li>
 
 <% @hub_pablo.each do |r|  %>
 <% date = r['pubTime'].to_date.strftime('%F') %>

@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "📒GF #{@gf_count || 0}", @gf_dl, title: 'Google Factcheck', target: '_blank' %></li>
+  <%= link_to "📒Google Fact Check Tool #{@gf_count || 0}", @gf_dl, title: 'Google Factcheck', target: '_blank' %></li>
 <% @hub_claim[0..2].each do |r|  %>
 <% date = r['claimReview'][0]['reviewDate'].to_date.strftime('%F') %>
 <li class="list-group-item" date=<%= date %>>
