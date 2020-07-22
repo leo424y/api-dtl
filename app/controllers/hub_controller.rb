@@ -3,6 +3,7 @@
 class HubController < ApplicationController
   include Response
   def index
+    default_date
     log_search
     respond_to do |format|
       format.html
@@ -30,7 +31,6 @@ class HubController < ApplicationController
   end
 
   def hub_crowdtangle
-    default_date
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle = crowdtangle['posts_by_date']
     @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
@@ -41,7 +41,6 @@ class HubController < ApplicationController
   end
 
   def hub_pablo
-    default_date
     @hub_pablo = Pablo.count_result(params).as_json['posts_by_date'] 
     @hub_pablo = data_compact @hub_pablo, 'siteName'
 
