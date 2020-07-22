@@ -20,14 +20,14 @@ class HubController < ApplicationController
     @hub_claim = Claim.count_result(params).as_json['result']
     @gf_count = @hub_claim.count 
     @gf_dl = download_link_of 'claim'
-    render partial: "hub_claim" if @hub_claim.count > 0
+    render partial: "hub_claim" 
   end
 
   def hub_cofact
     @hub_cofact = Cofact.count_result(params).as_json['posts_by_date']
     @cf_count = @hub_cofact.count
     @cf_dl = download_link_of 'cofact'
-    render partial: "hub_cofact" if (@hub_cofact.count > 0)
+    render partial: "hub_cofact" 
   end
 
   def hub_crowdtangle
@@ -37,7 +37,7 @@ class HubController < ApplicationController
 
     @ct_count = crowdtangle['count']
     @ct_dl = download_link_of 'crowdtangle'
-    render partial: "hub_crowdtangle" if (@hub_crowdtangle.count < 101 && @hub_crowdtangle.count > 0)
+    render partial: "hub_crowdtangle" 
   end
 
   def hub_pablo
@@ -46,7 +46,7 @@ class HubController < ApplicationController
 
     @dt_count = @hub_pablo.count
     @dt_dl = download_link_of 'pablo'
-    render partial: "hub_pablo" if (@hub_pablo.count < 101 && @hub_pablo.count > 0)
+    render partial: "hub_pablo" 
   end
 
   def hub_pablol
@@ -80,7 +80,7 @@ class HubController < ApplicationController
     @hub_fblink = data_compact @hub_fblink, 'link_domain'
     @fb_count = fblink['count']
     @fb_dl = download_link_of 'fblinks'
-    render partial: "hub_fblinks" if (@hub_fblink.count > 0)
+    render partial: "hub_fblinks"
   end  
 
   def hub_datacount 
