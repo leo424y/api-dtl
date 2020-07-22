@@ -75,8 +75,8 @@ class HubController < ApplicationController
   end
 
   def hub_fblinks
-    fblink = count_record(set_filter(Fblink.all))
-    @hub_fblink = fblink[:posts_by_date].as_json
+    fblink = count_record(set_filter(Fblink.all)).as_json
+    @hub_fblink = fblink['posts_by_date']
     @hub_fblink = data_compact @hub_fblink, 'link_domain'
     @fb_count = fblink['count']
     @fb_dl = download_link_of 'fblinks'
