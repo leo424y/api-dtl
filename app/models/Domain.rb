@@ -9,7 +9,9 @@ class Domain < DomainsBase
     begin
       iparams = params[:q].split(' ')
       q = "(#{(iparams).join('+')})|(#{iparams.map{|x| Tradsim::to_sim(x)}.join('+')})"
-      result = self.where("(title RLIKE :q) OR (description RLIKE :q)", q: q).sort_by { |h| h['ctime'] }
+      s = params[:start_date].to_date
+      e = params[:end_date].to_date
+      result = self.where(ctime: s..e).where("(title RLIKE :q) OR (description RLIKE :q)", q: q).sort_by { |h| h['ctime'] }
       count = result.count
       {
         status: 'ok',
