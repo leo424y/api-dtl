@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "📚Doublethink Google Search Engin Result #{@ds_count || 0}", @ds_dl, title: 'Doublethink Site Archive', target: '_blank' %></li>
+  <%= link_to "📚Doublethink Google Search Engine Result #{@ds_count || 0}", @ds_dl, title: 'Doublethink Site Archive', target: '_blank' %></li>
 
 <% @hub_domain.each do |r|  %>
 <% date = r['ctime'].to_date.strftime('%F') %>
