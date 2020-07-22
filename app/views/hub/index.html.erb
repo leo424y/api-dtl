@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <%= "'#{params[:q]}' from #{params[:start_date]} to #{params[:end_date]} (📙CF, 📒GF show all time results)"%>
+  <%= "'#{params[:q]}' from #{params[:start_date]} to #{params[:end_date]} (📙CF, 📒GF show full history)"%>
   <%= button_tag '↕️', onclick: "Array.prototype.slice.call(document.querySelectorAll('.list-group-item')).sort(function(a, b) {
   return a.getAttribute('date').localeCompare(b.getAttribute('date'));
 }).forEach(function(currValue) {
