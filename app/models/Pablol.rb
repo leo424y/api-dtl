@@ -7,7 +7,9 @@ class Pablol < AnimalsBase
     begin
       iparams = params[:q].split(' ')
       q = "(#{(iparams).join('+')})|(#{iparams.map{|x| Tradsim::to_sim(x)}.join('+')})"
-      result = self.where("(title RLIKE :q) OR (summary RLIKE :q)", q: q).sort_by { |h| h['pub_time'] }
+      s = params[:start_date].to_date
+      e = params[:end_date].to_date      
+      result = self.where(pub_time: s..e).where("(title RLIKE :q) OR (summary RLIKE :q)", q: q).sort_by { |h| h['pub_time'] }
       count = result.count
       {
         status: 'ok',

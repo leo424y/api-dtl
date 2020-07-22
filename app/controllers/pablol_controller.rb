@@ -4,6 +4,7 @@ class PablolController < ApplicationController
   include Response
 
   def index
+    default_date
     respond_to do |format|
       format.json { render json: download_link.merge(Pablol.count_result(params)) }
       format.csv do
