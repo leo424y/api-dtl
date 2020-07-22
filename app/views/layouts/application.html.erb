@@ -10,14 +10,15 @@
 
       gtag('config', 'UA-167234637-1');
     </script>
+    <title><%= content_for?(:title) ? "DTLHUB_#{content_for(:title)}" : "DTLHUB" %></title>
 
-    <title>DtlApi</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%# javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+
 
   <body>  
     <%= content_for :render_async %>
