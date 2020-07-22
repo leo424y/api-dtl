@@ -7,7 +7,7 @@
 
 <li class="list-group-item" date=<%= date %>>
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '📘CT', controller: 'hub', params: (params.to_enum.to_h.except(:q)).merge({q: r['description']}), title: 'Crowdtangle' %>
+    <%= link_to '📘CT', "/hub?q=#{r['description']}", title: 'Crowdtangle' %>
     <%= date %>
     <%= link_to(icon_url(URI.escape r['link']), r['link'], target: '_blank') if r['link']  %>
     <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank' %><%= " #{r['message']}" %><%= " #{r['description']}" %>
