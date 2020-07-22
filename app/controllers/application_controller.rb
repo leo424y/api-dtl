@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   private 
 
   def default_date 
-    params[:start_date] ||= (Date.today - 120.day).strftime("%F")
+    params[:start_date] ||= (Date.today - 14.day).strftime("%F")
     params[:end_date] ||= Date.today.strftime("%F")
   end
 
