@@ -29,36 +29,54 @@
 <form class="form-inline searchbar">
   <input type="search" id="search" placeholder="關鍵字詞組" name="q" style="width: 100%" value="<%= params[:q] %>">
   <%# <button type="submit" class="btn btn-primary mb-2">🔍</button> %>
-<% if params[:start_date] || params[:end_date] %>
-<%= date_field_tag :start_date, params[:start_date] %> ~
-<%= date_field_tag :end_date, params[:end_date] %>
-<% else %>
-<%= date_field_tag :start_date, params[:start_date], value: Date.today %> ~
-<%= date_field_tag :end_date, params[:end_date], value: Date.today %>
-<% end %>
-<%= submit_tag "Search", :name => nil %>
-<% if params[:q].present? %>
 <div>
-<%= button_tag(type: 'submit', :name => "start_date", value: params[:end_date].to_date-3.days) do %>
-  3 days
+<%= button_tag(type: 'submit', name: "start_date", value: params[:start_date].to_date - (params[:end_date].to_date - params[:start_date].to_date) ) do %>
+  --
 <% end %>
-
-<%= button_tag(type: 'submit', :name => "start_date", value: params[:end_date].to_date-7.days) do %>
-  7 days
+<%= button_tag(type: 'submit', name: "start_date", value: params[:start_date].to_date-1.days) do %>
+  -90
 <% end %>
-
-<%= button_tag(type: 'submit', :name => "start_date", value: params[:end_date].to_date-30.days) do %>
-  30 days
+<%= button_tag(type: 'submit', name: "start_date", value: params[:start_date].to_date-3.days) do %>
+  -30
 <% end %>
-
-<%= button_tag(type: 'submit', :name => "start_date", value: params[:end_date].to_date-90.days) do %>
-  90 days
+<%= button_tag(type: 'submit', name: "start_date", value: params[:start_date].to_date-7.days) do %>
+  -7
 <% end %>
-
-<%= button_tag(type: 'submit', :name => "start_date", value: params[:end_date].to_date-1.year) do %>
-  1 year
+<%= button_tag(type: 'submit', name: "start_date", value: params[:start_date].to_date-30.days) do %>
+  -3
+<% end %>
+<%= button_tag(type: 'submit', name: "start_date", value: params[:start_date].to_date-90.days) do %>
+  -1
 <% end %>
 </div>
+<% if params[:start_date] || params[:end_date] %>
+<%= date_field_tag :start_date, params[:start_date] %>
+<%= submit_tag "🔍" %>
+<%= date_field_tag :end_date, params[:end_date] %>
+<% else %>
+<%= date_field_tag :start_date, params[:start_date], value: Date.today %>
+<%= submit_tag "🔍" %>
+<%= date_field_tag :end_date, params[:end_date], value: Date.today %>
 <% end %>
+<div>
+<%= button_tag(type: 'submit', name: "end_date", value: params[:end_date].to_date+1.days) do %>
+  +1
+<% end %>
+<%= button_tag(type: 'submit', name: "end_date", value: params[:end_date].to_date+3.days) do %>
+  +3
+<% end %>
+<%= button_tag(type: 'submit', name: "end_date", value: params[:end_date].to_date+7.days) do %>
+  +7
+<% end %>
+<%= button_tag(type: 'submit', name: "end_date", value: params[:end_date].to_date+30.days) do %>
+  +30
+<% end %>
+<%= button_tag(type: 'submit', name: "end_date", value: params[:end_date].to_date+90.days) do %>
+  +90
+<% end %>
+<%= button_tag(type: 'submit', name: "end_date", value: params[:end_date].to_date+(params[:end_date].to_date - params[:start_date].to_date) ) do %>
+  ++
+<% end %>
+</div>
 </form>
 
