@@ -74,6 +74,13 @@ class HubController < ApplicationController
     render partial: "hub_domain"
   end
 
+  def hub_twint
+    @hub_twint = Twint.count_result(params).as_json['result']
+    @tt_dl = download_link_of 'twint'
+    @tt_count = @hub_twint.count
+    render partial: "hub_twint"
+  end
+
   def hub_fblinks
     fblink = count_record(set_filter(Fblink.all)).as_json
     @hub_fblink = fblink['posts_by_date']
