@@ -2,7 +2,7 @@
 
 class Twint < ApplicationRecord
   def self.count_result(params)
-    Timeout.timeout(30) { system(`twint -es #{ENV['ES']} -s #{params[:q]} --since "#{params[:start_date]} 00:00:00" --limit 10`) }
+    Timeout.timeout(30) { system(`/home/deploy/.local/bin/twint -es #{ENV['ES']} -s #{params[:q]} --since "#{params[:start_date]} 00:00:00" --limit 10`) }
     # data = Timeout.timeout(30) { %x(twint -s #{params[:q]} --since "#{params[:start_date]} 00:00:00" --limit 100) }
     result = data.split("\n").map do |x|
       row = x.split(' ')
