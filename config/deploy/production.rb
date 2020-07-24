@@ -1,11 +1,5 @@
 server ENV['SERVER'], user: 'deploy', roles: %w{app db web}
 
-task :execute_on_server do
-  on ENV['SERVER'] do
-    execute 'twint -s star --since "2020-07-24 00:00:00" --limit 10 -es localhost:9200'
-  end
-end
-
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
