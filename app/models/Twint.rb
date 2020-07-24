@@ -7,7 +7,7 @@ class Twint < ApplicationRecord
       uri = URI("http://#{ENV['SERVERIP']}:8080/?#{p}")
       Net::HTTP.get_response(uri)
     }
-    sleep(5)
+    sleep(15)
     result = Timeout.timeout(30) { 
       uri = URI("http://#{ENV['SERVERIP']}:9200/_search")
       req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
