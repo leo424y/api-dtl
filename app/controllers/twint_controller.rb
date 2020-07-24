@@ -10,7 +10,7 @@ class TwintController < ApplicationController
       format.json { render json: download_link.merge(result) }
       format.csv do
         send_data(
-          a_to_csv(result['result'], 'date twitter_id text url'),
+          a_to_csv(result['result'], 'date timezone place tweet hashtags cashtags username name link reply_to mentions quote_url'),
           filename: name_file(controller_name, params)
         )
       end
