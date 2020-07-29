@@ -40,6 +40,39 @@ class HubController < ApplicationController
     render partial: "hub_crowdtangle" 
   end
 
+  def hub_crowdtangle_page
+    params[:account_types] = 'facebook_page'
+    crowdtangle = Crowdtangle.count_result(params).as_json
+    @hub_crowdtangle = crowdtangle['posts_by_date']
+    @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
+
+    @ct_count = crowdtangle['count']
+    @ct_dl = download_link_of 'crowdtangle'
+    render partial: "hub_crowdtangle_page" 
+  end
+
+  def hub_crowdtangle_group
+    params[:account_types] = 'facebook_group'
+    crowdtangle = Crowdtangle.count_result(params).as_json
+    @hub_crowdtangle = crowdtangle['posts_by_date']
+    @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
+
+    @ct_count = crowdtangle['count']
+    @ct_dl = download_link_of 'crowdtangle'
+    render partial: "hub_crowdtangle_group" 
+  end
+
+  def hub_crowdtangle_profile
+    params[:account_types] = 'facebook_profile'
+    crowdtangle = Crowdtangle.count_result(params).as_json
+    @hub_crowdtangle = crowdtangle['posts_by_date']
+    @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
+
+    @ct_count = crowdtangle['count']
+    @ct_dl = download_link_of 'crowdtangle'
+    render partial: "hub_crowdtangle_profile" 
+  end
+
   def hub_pablo
     @hub_pablo = Pablo.count_result(params).as_json['posts_by_date'] 
     @hub_pablo = data_compact @hub_pablo, 'siteName'

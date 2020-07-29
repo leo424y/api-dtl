@@ -9,6 +9,7 @@ class Crowdtangle < ApplicationRecord
     begin
       token = ENV['CT_TOCKEN']
       uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%F')}&sortBy=date&count=100&minSubscriberCount=50000")
+      # uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&searchTerm=#{URI.escape params[:q]}&accountTypes=#{params[:account_types]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%F')}&sortBy=date&count=100&minSubscriberCount=50000")
       request = JSON.parse(Net::HTTP.get_response(uri).body)
       count_a = request['result']['posts'].count 
       # for i in 1..3
