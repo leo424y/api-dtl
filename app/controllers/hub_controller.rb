@@ -33,7 +33,7 @@ class HubController < ApplicationController
   def hub_crowdtangle
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle = crowdtangle['posts_by_date']
-    @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
+    # @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
 
     @ct_count = crowdtangle['count']
     @ct_dl = download_link_of 'crowdtangle'
