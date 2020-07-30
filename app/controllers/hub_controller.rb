@@ -41,19 +41,7 @@ class HubController < ApplicationController
   end
 
   ################ page, group, profile should be delay 60s each, in case it hit the API limit 
-  def hub_crowdtangle_profile
-    params[:account_types] = 'facebook_profile'
-    crowdtangle = Crowdtangle.count_result(params).as_json
-    @hub_crowdtangle_profile = crowdtangle['posts_by_date']
-    @hub_crowdtangle_profile = data_compact @hub_crowdtangle_profile, 'caption'
-
-    @ct_count_profile = crowdtangle['count']
-    @ct_dl_profile = download_link_of 'crowdtangle'
-    render partial: "hub_crowdtangle_profile" 
-  end
-
   def hub_crowdtangle_page
-    sleep 10
     params[:account_types] = 'facebook_page'
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle_page = crowdtangle['posts_by_date']
@@ -62,6 +50,18 @@ class HubController < ApplicationController
     @ct_count_page = crowdtangle['count']
     @ct_dl_page = download_link_of 'crowdtangle'
     render partial: "hub_crowdtangle_page" 
+  end
+
+  def hub_crowdtangle_profile
+    sleep 10
+    params[:account_types] = 'facebook_profile'
+    crowdtangle = Crowdtangle.count_result(params).as_json
+    @hub_crowdtangle_profile = crowdtangle['posts_by_date']
+    @hub_crowdtangle_profile = data_compact @hub_crowdtangle_profile, 'caption'
+
+    @ct_count_profile = crowdtangle['count']
+    @ct_dl_profile = download_link_of 'crowdtangle'
+    render partial: "hub_crowdtangle_profile" 
   end
 
   def hub_crowdtangle_group
