@@ -40,38 +40,43 @@ class HubController < ApplicationController
     render partial: "hub_crowdtangle" 
   end
 
+  ################ page, group, profile should be delay 60s each, in case it hit the API limit 
+  def hub_crowdtangle_profile
+    params[:account_types] = 'facebook_profile'
+    crowdtangle = Crowdtangle.count_result(params).as_json
+    @hub_crowdtangle_profile = crowdtangle['posts_by_date']
+    @hub_crowdtangle_profile = data_compact @hub_crowdtangle_profile, 'caption'
+
+    @ct_count_profile = crowdtangle['count']
+    @ct_dl_profile = download_link_of 'crowdtangle'
+    render partial: "hub_crowdtangle_profile" 
+  end
+
   def hub_crowdtangle_page
+    sleep 10
     params[:account_types] = 'facebook_page'
     crowdtangle = Crowdtangle.count_result(params).as_json
-    @hub_crowdtangle = crowdtangle['posts_by_date']
-    @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
+    @hub_crowdtangle_page = crowdtangle['posts_by_date']
+    @hub_crowdtangle_page = data_compact @hub_crowdtangle_page, 'caption'
 
-    @ct_count = crowdtangle['count']
-    @ct_dl = download_link_of 'crowdtangle'
+    @ct_count_page = crowdtangle['count']
+    @ct_dl_page = download_link_of 'crowdtangle'
     render partial: "hub_crowdtangle_page" 
   end
 
   def hub_crowdtangle_group
+    sleep 20
     params[:account_types] = 'facebook_group'
     crowdtangle = Crowdtangle.count_result(params).as_json
-    @hub_crowdtangle = crowdtangle['posts_by_date']
-    @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
+    @hub_crowdtangle_group = crowdtangle['posts_by_date']
+    @hub_crowdtangle_group = data_compact @hub_crowdtangle_group, 'caption'
 
-    @ct_count = crowdtangle['count']
-    @ct_dl = download_link_of 'crowdtangle'
+    @ct_count_group = crowdtangle['count']
+    @ct_dl_group = download_link_of 'crowdtangle'
     render partial: "hub_crowdtangle_group" 
   end
+  ################
 
-  def hub_crowdtangle_profile
-    params[:account_types] = 'facebook_profile'
-    crowdtangle = Crowdtangle.count_result(params).as_json
-    @hub_crowdtangle = crowdtangle['posts_by_date']
-    @hub_crowdtangle = data_compact @hub_crowdtangle, 'caption'
-
-    @ct_count = crowdtangle['count']
-    @ct_dl = download_link_of 'crowdtangle'
-    render partial: "hub_crowdtangle_profile" 
-  end
 
   def hub_pablo
     @hub_pablo = Pablo.count_result(params).as_json['posts_by_date'] 

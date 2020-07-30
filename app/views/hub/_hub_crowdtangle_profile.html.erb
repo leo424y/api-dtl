@@ -1,8 +1,8 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "📘CrowdTangle Realtime Search Result #{@ct_count || 0}", @ct_dl, title: 'CrowdTangle', target: '_blank' %></li>
+  <%= link_to "📘CrowdTangle Realtime Search Result (Profile) #{@ct_count_profile || 0}", @ct_dl_profile, title: 'CrowdTangle', target: '_blank' %></li>
 
 
-<% @hub_crowdtangle.each do |r|  %>
+<% @hub_crowdtangle_profile.each do |r|  %>
 <% date = r['date'].to_date.strftime('%F') %>
 
 <li class="list-group-item" date=<%= date %>>
