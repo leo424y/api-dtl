@@ -136,7 +136,7 @@ class HubController < ApplicationController
   def data_compact_host data, field
     items = []
     data.map do |x| 
-      uri = URI(URI.escape(x[field])).host
+      uri = x[field].split('/')[0..2].join('/')
       unless items.include? uri
         items << uri
         x
