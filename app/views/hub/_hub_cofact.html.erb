@@ -10,7 +10,7 @@
     <%= link_to '📙CF', "/hub?q=#{r['text']}", title: 'Cofacts' %>
     <%= date %>
     <% if (r['hyperlinks'] && r['hyperlinks'][0] && r['hyperlinks'][0]['url'])  %>
-    <%= link_to icon_url(URI.escape r['hyperlinks'][0]['url']), r['hyperlinks'][0]['url'], target: '_blank' %>
+    <%= link_to icon_url(r['hyperlinks'][0]['url']), r['hyperlinks'][0]['url'], target: '_blank' %>
     <% end %>
     <%= link_to "#{r['text']}", "https://cofacts.g0v.tw/article/#{r['id']}", target: '_blank' %>
     <%= " #{r['articleReplies'][0]['reply']['text'] if r['articleReplies'][0]}" %>

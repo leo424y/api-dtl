@@ -8,7 +8,7 @@
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '📗FB', "/hub?q=#{r['link']}", title: 'DTL Crowdtangle' %>
     <%= date %>
-    <%= link_to icon_url(URI.escape r['link']), r['link'], target: '_blank' %>
+    <%= link_to icon_url(r['link']), r['link'], target: '_blank' %>
     <%= link_to "#{r['platform_name']}", r['url'], target: '_blank' %> <%= "#{r['title']}" %>
   </span>
 </li>

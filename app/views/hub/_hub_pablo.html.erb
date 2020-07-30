@@ -8,7 +8,7 @@
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to('📕DT', "/hub?q=#{r['title']}", title: 'Doublethink') if r['title'] %>
     <%= date %>
-    <%= icon_url(URI.escape r['url']) %>
+    <%= icon_url(r['url']) %>
     <%= link_to "#{r['siteName']} #{r['creator']}", r['url'], target: '_blank' %><%= " #{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['content']}" %>
   </span>
 </li>

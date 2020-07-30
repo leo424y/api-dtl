@@ -8,7 +8,7 @@
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '🐦TT', "/hub?q=#{r['tweet']}", title: 'Twitter Search Result' %>
     <%= date %>
-    <%= link_to icon_url(URI.escape r['quote_url']), r['quote_url'], target: '_blank' %>
+    <%= link_to icon_url(r['quote_url']), r['quote_url'], target: '_blank' %>
     <%= link_to r['username'], r['link'], target: '_blank' %>
     <%= " #{r['tweet']}" %>
   </span>
