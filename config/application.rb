@@ -91,6 +91,19 @@ module Rumors
             end
           end
         end        
+
+        private 
+
+        def parse_content
+          # [{ 'article_id' => TfIdfSimilarity::Document(text), 'urls' => ["url"] }]
+          parsed_articles = JSON.parse(@articles.body)
+          parsed_articles['data']['ListArticles']['edges'].map do |article|
+            node = article['node']
+            content = Hash[node['id'], TfIdfSimilarity::Document.new(node['text'])]
+            content['urls'] = node['hyperlinks'].nil? ? nil : node["hyperlinks"].map { |link| URI.parse(URI.encode_www_form_component(link["url"])) }
+            content
+          end
+        end
       end
 
       module Utils
