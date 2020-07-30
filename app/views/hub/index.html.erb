@@ -14,11 +14,11 @@
   <%= render_async_cache hub_crowdtangle_page_path(params.to_enum.to_h) do %>
     <li class="list-group-item">CrowdTangle Facebook Page...</li>
   <% end %>
-  <%= render_async_cache hub_crowdtangle_profile_path(params.to_enum.to_h) do %>
-    <li class="list-group-item"> CrowdTangle Facebook Profile...</li>
-  <% end %>
   <%= render_async_cache hub_crowdtangle_group_path(params.to_enum.to_h) do %>
     <li class="list-group-item"> CrowdTangle Facebook Group...</li>
+  <% end %>
+  <%= render_async_cache hub_crowdtangle_profile_path(params.to_enum.to_h) do %>
+    <li class="list-group-item"> CrowdTangle Facebook Profile...</li>
   <% end %>
 
   <%= render_async_cache hub_fblinks_path(params.to_enum.to_h) do %><li class="list-group-item">FB...</li><% end %>
