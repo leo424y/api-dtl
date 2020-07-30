@@ -20,7 +20,6 @@ class Pablo < ApplicationRecord
 
   def self.count_result(params)
     response = Timeout.timeout(30) { Net::HTTP.get_response(pablo_uri(params)) }
-    p pablo_uri(params)
     body = JSON.parse(response.body)['body']
     count = body['totalRows']
     page_count = body['pageCount']
