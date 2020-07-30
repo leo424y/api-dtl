@@ -32,6 +32,11 @@ module Rumors
         # Monkey patch lower SIMILARITY and get more result
         # https://raw.githubusercontent.com/CarolHsu/rumors-api-client/73e47ab09dbcb011197b1c07787c360c8a46fa79/lib/rumors/api/client/base.rb
         SIMILARITY = 0.01  
+
+        def initialize(text)
+          @text = text.strip
+          @urls = URI.extract(@text).map { |url| URI.parse(URI.encode_www_form_component(url)) }
+        end
         
         def calculate_similarity(contents)
           # NOTE: https://github.com/jpmckinney/tf-idf-similarity
