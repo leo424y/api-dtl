@@ -20,6 +20,7 @@ class Pablo < ApplicationRecord
 
   def self.count_result(params)
     response = Timeout.timeout(30) { Net::HTTP.get_response(pablo_uri(params)) }
+    p pablo_uri(params)
     body = JSON.parse(response.body)['body']
     count = body['totalRows']
     page_count = body['pageCount']
@@ -60,15 +61,18 @@ class Pablo < ApplicationRecord
   end
 
   def self.pablo_uri(params)
-    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(tradsim params[:q])}&position=1&emotion=1&startTime=#{params[:start_date]}&endTime=#{params[:end_date]}&pageIndex=1&pageRows=100")
+    p = URI.encode_www_form(keyword: (tradsim params[:q]))
+    URI.parse("#{ENV['PABLO_API']}&#{p}&position=1&emotion=1&startTime=#{params[:start_date]}&endTime=#{params[:end_date]}&pageIndex=1&pageRows=100")
   end
 
   def self.pablo_uri_date(q, date)
-    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(tradsim q)}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=1&pageRows=100")
+    p = URI.encode_www_form(keyword: (tradsim params[:q]))
+    URI.parse("#{ENV['PABLO_API']}&#{p}}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=1&pageRows=100")
   end
 
   def self.pablo_date_page(q, date, page)
-    URI.parse("#{ENV['PABLO_API']}&keyword=#{URI.escape(tradsim q)}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=#{page}&pageRows=100")
+    p = URI.encode_www_form(keyword: (tradsim params[:q]))
+    URI.parse("#{ENV['PABLO_API']}&#{p}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=#{page}&pageRows=100")
   end
 
   def self.tradsim(q)

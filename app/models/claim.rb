@@ -2,7 +2,8 @@
 
 class Claim < ApplicationRecord
   def self.count_result(params)
-    claim_uri = URI "https://factchecktools.googleapis.com/v1alpha1/claims:search?key=#{ENV['CLAIM_KEY']}&languageCode=zh&query=#{URI.escape params[:q]}&pageSize=10000"
+    p = URI.encode_www_form(query: params[:q])
+    claim_uri = URI "https://factchecktools.googleapis.com/v1alpha1/claims:search?key=#{ENV['CLAIM_KEY']}&languageCode=zh&#{p}&pageSize=10000"
     response = Timeout.timeout(30) { Net::HTTP.get_response(claim_uri) }
     result = JSON.parse(response.body)['claims']
     count = result ? result.count : 0 
