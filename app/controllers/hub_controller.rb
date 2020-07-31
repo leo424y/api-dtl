@@ -53,7 +53,7 @@ class HubController < ApplicationController
   end
 
   def hub_crowdtangle_group
-    sleep 30
+    sleep 10
     params[:account_types] = 'facebook_group'
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle_group = crowdtangle['posts_by_date']
@@ -65,7 +65,7 @@ class HubController < ApplicationController
   end
 
   def hub_crowdtangle_profile
-    sleep 60
+    sleep 20
     params[:account_types] = 'facebook_profile'
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle_profile = crowdtangle['posts_by_date']
