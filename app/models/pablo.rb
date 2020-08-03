@@ -61,17 +61,17 @@ class Pablo < ApplicationRecord
 
   def self.pablo_uri(params)
     p = URI.encode_www_form(keyword: (tradsim params[:q]))
-    URI.parse("#{ENV['PABLO_API']}&#{p}&position=1&emotion=1&startTime=#{params[:start_date]}&endTime=#{params[:end_date]}&pageIndex=1&pageRows=100")
+    URI.parse("#{ENV['PABLO_API']}&#{p}&position=1&emotion=&startTime=#{params[:start_date]}&endTime=#{params[:end_date]}&pageIndex=1&pageRows=100")
   end
 
   def self.pablo_uri_date(q, date)
     p = URI.encode_www_form(keyword: (tradsim params[:q]))
-    URI.parse("#{ENV['PABLO_API']}&#{p}}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=1&pageRows=100")
+    URI.parse("#{ENV['PABLO_API']}&#{p}}&position=1&emotion=&startTime=#{date}&endTime=#{date}&pageIndex=1&pageRows=100")
   end
 
   def self.pablo_date_page(q, date, page)
     p = URI.encode_www_form(keyword: (tradsim params[:q]))
-    URI.parse("#{ENV['PABLO_API']}&#{p}&position=1&emotion=1&startTime=#{date}&endTime=#{date}&pageIndex=#{page}&pageRows=100")
+    URI.parse("#{ENV['PABLO_API']}&#{p}&position=1&emotion=&startTime=#{date}&endTime=#{date}&pageIndex=#{page}&pageRows=100")
   end
 
   def self.tradsim(q)
