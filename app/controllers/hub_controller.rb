@@ -69,7 +69,7 @@ class HubController < ApplicationController
     params[:account_types] = 'facebook_profile'
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle_profile = crowdtangle['posts_by_date']
-    @hub_crowdtangle_profile = data_compact @hub_crowdtangle_profile, 'caption'
+    # @hub_crowdtangle_profile = data_compact @hub_crowdtangle_profile, 'caption'
 
     @ct_count_profile = crowdtangle['count']
     @ct_dl_profile = download_link_of 'crowdtangle'
