@@ -1,0 +1,15 @@
+<li class="list-group-item" date="1999-01-01">
+  <%= link_to "Youtube Search Result #{@yt_count || 0}", @yt_dl, title: 'Youtube Search Result', target: '_blank' %></li>
+
+<% @hub_youtube.each do |r|  %>
+<% date = r['upload_date'].to_date.strftime('%F') %>
+
+<li class="list-group-item" date=<%= date %>>
+  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+    <%= link_to '🚩YT', "/hub?q=#{r['title']}", title: 'Youtube Search Result' %>
+    <%= date %>
+    <%= link_to r['uploader'], r['webpage_url'], target: '_blank' %>
+    <%= " #{r['title']} #{r['description']}" %>
+  </span>
+</li>
+<% end %>
