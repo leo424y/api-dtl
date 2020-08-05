@@ -1,7 +1,7 @@
 <li class="list-group-item" date="1999-01-01">
   <%= link_to "🐦Twitter Search Result #{@tt_count || 0}", @tt_dl, title: 'Twitter Search Result', target: '_blank' %></li>
 
-<% @hub_twint.take(10).each do |r|  %>
+<% @hub_twint.take(20).each do |r|  %>
 <% date = r['date'].to_date.strftime('%F') %>
 
 <li class="list-group-item" date=<%= date %>>
