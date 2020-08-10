@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get :hub_crowdtangle_page, controller: :hub
   get :hub_crowdtangle_group, controller: :hub
   get :hub_crowdtangle_profile, controller: :hub
+  get :hub_crowdtangle_reddit, controller: :hub
+  get :hub_crowdtangle_instagram, controller: :hub
   get :hub_pablo, controller: :hub
   get :hub_pablol, controller: :hub
   get :hub_media, controller: :hub

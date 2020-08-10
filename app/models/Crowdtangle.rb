@@ -9,7 +9,7 @@ class Crowdtangle < ApplicationRecord
     begin
       token = ENV['CT_TOCKEN']
       p = URI.encode_www_form(searchTerm: params[:q])
-      uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&#{p}&platforms=facebook&accountTypes=#{params[:account_types]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%F')}&sortBy=date&count=100&minSubscriberCount=50000")
+      uri = URI("https://api.crowdtangle.com/posts/search/?token=#{token}&#{p}&platforms=#{params[:platforms]}&accountTypes=#{params[:account_types]}&startDate=#{params[:start_date]}&endDate=#{(params[:end_date].to_date + 1.day).strftime('%F')}&sortBy=date&count=100&minSubscriberCount=50000")
       request = JSON.parse(Net::HTTP.get_response(uri).body)
 
       request['result']['posts'] 

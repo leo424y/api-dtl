@@ -1,0 +1,16 @@
+<li class="list-group-item" date="1999-01-01">
+  <%= link_to "📘CrowdTangle Realtime Search Result (Reddit) #{@ct_count_reddit || 0}", @ct_dl_reddit, title: 'CrowdTangle', target: '_blank' %></li>
+
+
+<% @hub_crowdtangle_reddit.each do |r|  %>
+<% date = r['date'].to_date.strftime('%F') %>
+
+<li class="list-group-item" date=<%= date %>>
+  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+    <%= link_to '📘RD', "/hub?q=#{r['message']}", title: 'Crowdtangle Reddit' %>
+    <%= date %>
+    <%= link_to(icon_url(r['link']), r['link'], target: '_blank') if r['link']  %>
+    <%= link_to "#{r['account']['name']}", r['postUrl'], target: '_blank' %><%= " #{r['message']}" %>
+  </span>
+</li>
+<% end %>

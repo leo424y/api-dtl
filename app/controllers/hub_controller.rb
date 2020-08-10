@@ -75,6 +75,30 @@ class HubController < ApplicationController
     @ct_dl_profile = download_link_of 'crowdtangle'
     render partial: "hub_crowdtangle_profile" 
   end
+
+  def hub_crowdtangle_instagram
+    sleep 30
+    params[:platforms] = 'instagram'
+    crowdtangle = Crowdtangle.count_result(params).as_json
+    @hub_crowdtangle_instagram = crowdtangle['posts_by_date']
+    # @hub_crowdtangle_profile = data_compact @hub_crowdtangle_profile, 'caption'
+
+    @ct_count_instagram = crowdtangle['count']
+    @ct_dl_instagram = download_link_of 'crowdtangle'
+    render partial: "hub_crowdtangle_instagram" 
+  end
+
+  def hub_crowdtangle_reddit
+    sleep 40
+    params[:platforms] = 'reddit'
+    crowdtangle = Crowdtangle.count_result(params).as_json
+    @hub_crowdtangle_reddit = crowdtangle['posts_by_date']
+    # @hub_crowdtangle_profile = data_compact @hub_crowdtangle_profile, 'caption'
+
+    @ct_count_reddit = crowdtangle['count']
+    @ct_dl_reddit = download_link_of 'crowdtangle'
+    render partial: "hub_crowdtangle_reddit" 
+  end
   ################
 
 

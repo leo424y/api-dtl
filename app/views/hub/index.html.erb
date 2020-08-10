@@ -20,7 +20,12 @@
   <%= render_async_cache hub_crowdtangle_profile_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
     <li class="list-group-item"> CrowdTangle Facebook Profile...</li>
   <% end %>
-
+  <%# render_async_cache hub_crowdtangle_instagram_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <%# <li class="list-group-item"> CrowdTangle Instagram...</li> %>
+  <%# end %>
+  <%# render_async_cache hub_crowdtangle_reddit_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <%# <li class="list-group-item"> CrowdTangle Reddit...</li> %>
+  <%# end %>
   <%= render_async_cache hub_fblinks_path(params.to_enum.to_h) do %><li class="list-group-item">FB...</li><% end %>
   <%= render_async_cache hub_domain_path(params.to_enum.to_h) do %><li class="list-group-item">Doublethink Site...</li>
   <% end %>
