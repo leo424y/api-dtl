@@ -42,6 +42,7 @@ class HubController < ApplicationController
 
   ################ page, group, profile should be delay 60s each, in case it hit the API limit 
   def hub_crowdtangle_page
+    params[:platforms] = 'facebook'
     params[:account_types] = 'facebook_page'
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle_page = crowdtangle['posts_by_date']
@@ -54,6 +55,7 @@ class HubController < ApplicationController
 
   def hub_crowdtangle_group
     sleep 10
+    params[:platforms] = 'facebook'
     params[:account_types] = 'facebook_group'
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle_group = crowdtangle['posts_by_date']
@@ -66,6 +68,7 @@ class HubController < ApplicationController
 
   def hub_crowdtangle_profile
     sleep 20
+    params[:platforms] = 'facebook'
     params[:account_types] = 'facebook_profile'
     crowdtangle = Crowdtangle.count_result(params).as_json
     @hub_crowdtangle_profile = crowdtangle['posts_by_date']
