@@ -51,3 +51,24 @@
   <input type="search" id="search" placeholder="關鍵字詞組" name="q" style="width: 100%" value="<%= params[:q] %>">
 </form>
 
+<script>
+	var s = 0;
+	var sw = '';
+	var sw1 = '';
+
+	var int1;
+	var timer = 0;
+
+	clearInterval(int1);
+	int1 = setInterval(function () {
+		sw = window.getSelection().toString().trim();
+		s = sw.length;
+		if (s > 0 && sw == sw1 && timer > 1) {
+			timer = -1000;
+			window.location = "https://api.<%= ENV['ALLOW_DOMAIN'] %>/hub?&q=" + sw;
+		} else {
+			timer = timer + 2;
+			sw1 = sw;
+		}
+	}, 2000);
+</script>
