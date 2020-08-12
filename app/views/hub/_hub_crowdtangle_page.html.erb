@@ -3,7 +3,7 @@
 
 
 <% @hub_crowdtangle_page.each do |r|  %>
-<% date = r['date'].to_date.strftime('%F') %>
+<% date = r['date'].to_datetime.strftime('%F %R') %>
 
 <li class="list-group-item" date=<%= date %>>
   <span class="d-inline-block text-truncate" style="max-width: 100%;">

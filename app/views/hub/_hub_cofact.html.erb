@@ -3,7 +3,7 @@
 
 
 <% @hub_cofact[0..2].each do |r|  %>
-<% date =  r['createdAt'].to_date.strftime('%F') %>
+<% date =  r['createdAt'].to_datetime.strftime('%F %R') %>
 
 <li class="list-group-item" date=<%= date %>>
   <span class="d-inline-block text-truncate" style="max-width: 100%;">

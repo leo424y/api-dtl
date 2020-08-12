@@ -1,7 +1,7 @@
 <li class="list-group-item" date="1999-01-01">
   <%= link_to("📔Doublethink Archive #{@da_count || 0}", @da_dl, title: 'Doublethink Archive', target: '_blank') %></li>
 <% @hub_pablol.each do |r|  %>
-<% date = r['pub_time'].to_date.strftime('%F') %>
+<% date = r['pub_time'].to_datetime.strftime('%F %R') %>
 
 <li class="list-group-item" date=<%= date %>>
   <span class="d-inline-block text-truncate" style="max-width: 100%;">

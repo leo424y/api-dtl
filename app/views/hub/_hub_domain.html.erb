@@ -2,7 +2,7 @@
   <%= link_to "📚Doublethink Google Search Engine Result #{@ds_count || 0}", @ds_dl, title: 'Doublethink Site Archive', target: '_blank' %></li>
 
 <% @hub_domain.each do |r|  %>
-<% date = r['ctime'].to_date.strftime('%F') %>
+<% date = r['ctime'].to_datetime.strftime('%F %R') %>
 
 <li class="list-group-item" date=<%= date %>>
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
