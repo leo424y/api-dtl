@@ -41,6 +41,12 @@ class HubController < ApplicationController
   end
 
   ################ page, group, profile should be delay 60s each, in case it hit the API limit 
+  def hub_crowdtanglego
+    @crowdtanglego = Crowdtanglego.count_result(params).as_json['result']
+    @ctgo_dl = download_link_of 'crowdtanglego'
+    render partial: "hub_crowdtanglego" 
+  end
+
   def hub_crowdtangle_page
     params[:platforms] = 'facebook'
     params[:account_types] = 'facebook_page'

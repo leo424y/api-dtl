@@ -1,0 +1,15 @@
+<li class="list-group-item" date="1999-01-01">
+  <%= link_to "📘CrowdTangle Historical #{@crowdtanglego.count || 0}", @ctgo_dl, title: 'CrowdTangle Historical', target: '_blank' %>
+  </li>
+<% @crowdtanglego.each do |r|  %>
+<% date = r['created'].to_datetime.strftime('%F %R') %>
+
+<li class="list-group-item" date=<%= date %>>
+  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+    <%= link_to '📘CH', "/hub?q=#{r['message']}", title: 'Crowdtangle Historical' %>
+    <%= date %>
+    <%= link_to(icon_url(r['link']), r['link'], target: '_blank') if r['link']  %>
+    <%= link_to "#{r['page_name']}", r['url'], target: '_blank' %><%= " #{r['message']}" %><%= " #{r['description']}" %>
+  </span>
+</li>
+<% end %>
