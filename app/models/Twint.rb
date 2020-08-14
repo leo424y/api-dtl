@@ -11,7 +11,7 @@ class Twint < ApplicationRecord
     result = Timeout.timeout(30) { 
       uri = URI("http://#{ENV['SERVERIP']}:9200/_search")
       req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
-      req.body = {"query":{"bool":{"must":[{"match":{"search":"#{params[:q]}"}},{"range":{"date":{"gte":"#{params[:start_date]} 00:00:00","lte":"#{params[:end_date]} 23:59:59"}}}],"must_not":[],"should":[]}},"from":0,"sort":[{"date": {"order": "asc"}}],"aggs":{}}.to_json
+      req.body = {"query":{"bool":{"must":[{"match":{"search":{"query":"#{params[:q]}","operator": "and"}}},{"range":{"date":{"gte":"#{params[:start_date]} 00:00:00","lte":"#{params[:end_date]} 23:59:59"}}}],"must_not":[],"should":[]}},"from":0,"sort":[{"date": {"order": "asc"}}],"aggs":{}}.to_json
       res = Net::HTTP.start(uri.hostname, uri.port) do |http|
         http.request(req)
       end
