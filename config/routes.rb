@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get :hub_cofact, controller: :hub
   get :hub_crowdtangle, controller: :hub
   get :hub_crowdtanglego, controller: :hub
+  get :hub_crowdtanglego_run, controller: :hub
   get :hub_crowdtangle_page, controller: :hub
   get :hub_crowdtangle_group, controller: :hub
   get :hub_crowdtangle_profile, controller: :hub

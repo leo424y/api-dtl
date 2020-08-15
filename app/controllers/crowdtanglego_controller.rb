@@ -7,7 +7,7 @@ class CrowdtanglegoController < ApplicationController
     default_date
     respond_to do |format|
       format.json { 
-        render json: download_link.merge(Crowdtanglego.count_result(params)) 
+        render json: download_link.merge(Crowdtanglego.count_result(params).as_json) 
       }
       format.csv do
         send_data(
