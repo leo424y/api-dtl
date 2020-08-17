@@ -5,7 +5,7 @@
 <% @hub_crowdtangle.each do |r|  %>
 <% date = r['date'].to_datetime.strftime('%F %R') %>
 
-<li class="list-group-item" date=<%= date %>>
+<li class="list-group-item" date="<%= date %>">
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to '📘CT', "/hub?q=#{r['description']}", title: 'Crowdtangle' %>
     <%= date %>

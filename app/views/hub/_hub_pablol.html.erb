@@ -3,7 +3,7 @@
 <% @hub_pablol.each do |r|  %>
 <% date = r['pub_time'].to_datetime.strftime('%F %R') %>
 
-<li class="list-group-item" date=<%= date %>>
+<li class="list-group-item" date="<%= date %>">
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
     <%= link_to('📔DA', "/hub?q=#{r['title']}", title: 'Doublethink Archive') if r['title'] %>
     <%= date %>
