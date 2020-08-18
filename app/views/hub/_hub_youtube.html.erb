@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "Youtube Search Result #{@yt_count || 0}", @yt_dl, title: 'Youtube Search Result', target: '_blank' %></li>
+  <%= link_to "🚩Youtube Search Result #{@yt_count || 0}", @yt_dl, title: 'Youtube Search Result', target: '_blank' %></li>
 
 <% @hub_youtube.each do |r|  %>
 <% date = r['upload_date'].to_datetime.strftime('%F %R') %>
