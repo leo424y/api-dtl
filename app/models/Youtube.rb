@@ -2,15 +2,17 @@
 
 class Youtube < ApplicationRecord
   def self.count_result(params)
-    result = Timeout.timeout(30) { 
-      JSON.parse(%x(youtube-dl --default-search "ytsearch999:" --skip-download -J #{params[:q]}))
+    p = URI.encode_www_form(q: params[:q])
+    uri = URI("https://f586d68900d0.ngrok.io/youtubes?#{p}")
+    result = Timeout.timeout(50) { 
+      JSON.parse(Net::HTTP.get_response(uri).body)
     } 
 
     {
       status: 'ok',
       params: params,
-      count: result['entries'] ? result['entries'].count : 0,
-      result: result['entries'].sort_by { |h| h['upload_date'] }
+      count: result ? result.count : 0,
+      result: result
     }
   rescue StandardError => e
     {
