@@ -19,7 +19,8 @@ class Pablo < ApplicationRecord
   end
 
   def self.count_result(params)
-    response = Timeout.timeout(30) { Net::HTTP.get_response(pablo_uri(params)) }
+    uri = pablo_uri(params)
+    response = Timeout.timeout(30) { Net::HTTP.get_response(uri) }
     body = JSON.parse(response.body)['body']
     count = body['totalRows']
     page_count = body['pageCount']
@@ -75,6 +76,7 @@ class Pablo < ApplicationRecord
   end
 
   def self.tradsim(q)
-    Tradsim::to_sim(q) + '|' + q
+    iparams = q.split(' ')
+    "(#{(iparams).join('+')})|(#{iparams.map{|x| Tradsim::to_sim(x)}.join('+')})"
   end
 end
