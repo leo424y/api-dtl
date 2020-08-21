@@ -15,7 +15,7 @@
   <% end %>
 
   <%= render_async hub_crowdtanglego_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
-    <li class="list-group-item">CrowdTangle Facebook Historical Data...</li>
+    <li class="list-group-item">CrowdTangle Facebook Historical Archive...</li>
   <% end %>
   <%= render_async_cache hub_crowdtangle_page_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
     <li class="list-group-item">CrowdTangle Facebook Page...</li>

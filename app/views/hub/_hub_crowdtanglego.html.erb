@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "📘CrowdTangle Historical #{@crowdtanglego.count || 0}", @ctgo_dl, title: 'CrowdTangle Historical', target: '_blank' %>
+  <%= link_to "📘CrowdTangle Historical Archive #{@crowdtanglego.count || 0}", @ctgo_dl, title: 'CrowdTangle Historical', target: '_blank' %>
   </li>
 <% @crowdtanglego.take(20).each do |r|  %>
 <% date = r['created'].to_datetime.strftime('%F %R') %>
