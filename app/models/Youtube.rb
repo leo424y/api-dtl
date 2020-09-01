@@ -3,7 +3,7 @@
 class Youtube < ApplicationRecord
   def self.count_result(params)
     p = URI.encode_www_form(q: params[:q])
-    uri = URI("https://f586d68900d0.ngrok.io/youtubes?#{p}")
+    uri = URI("https://ed30cab9967d.ngrok.io/youtubes?#{p}")
     result = Timeout.timeout(50) { 
       JSON.parse(Net::HTTP.get_response(uri).body)
     } 
