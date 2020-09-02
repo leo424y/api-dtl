@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :domain
     resources :twint
     resources :youtube
+    resources :youtuber
   end  
   resources :hub
   get :hub_wikipedia, controller: :hub
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
   get :hub_twint, controller: :hub
   get :hub_datacount, controller: :hub
   get :hub_youtube, controller: :hub
+  get :hub_youtuber, controller: :hub
 
   root 'hub#index'
 end

@@ -168,6 +168,13 @@ class HubController < ApplicationController
     render partial: "hub_youtube"
   end
 
+  def hub_youtuber
+    @hub_youtuber = Youtuber.count_result(params).as_json['result']
+    @ytr_dl = download_link_of 'youtuber'
+    @ytr_count = @hub_youtuber.count 
+    render partial: "hub_youtuber"
+  end
+
   def hub_fblinks
     fblink = count_record(set_filter(Fblink.all)).as_json
     @hub_fblink = fblink['posts_by_date']

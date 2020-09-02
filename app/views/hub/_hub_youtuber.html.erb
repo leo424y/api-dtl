@@ -1,0 +1,12 @@
+<li class="list-group-item" date="1999-01-01">
+  <%= link_to "⏯ Youtube Realtime Search Result #{@ytr_count || 0}", @ytr_dl, title: 'Youtube Search Result', target: '_blank' %></li>
+
+<% @hub_youtuber.each do |r|  %>
+
+<li class="list-group-item">
+  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+    <%= link_to '⏯YR', "/hub?q=#{r['title']}", title: 'Youtube Search Result' %>
+    <%= link_to r['title'], "https://#{r['url']}", target: '_blank' %>
+  </span>
+</li>
+<% end %>

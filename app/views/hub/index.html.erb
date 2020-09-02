@@ -45,6 +45,9 @@
   <%= render_async_cache hub_youtube_path(params.to_enum.to_h) do %>
   <li class="list-group-item">Youtube...</li>
   <% end %>
+  <%= render_async_cache hub_youtuber_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Youtube Realtime...</li>
+  <% end %>  
   <%= render_async_cache hub_wikipedia_path(params.to_enum.to_h) do %><li class="list-group-item">Wikipedia...</li>
   <% end %>
 </ul>
