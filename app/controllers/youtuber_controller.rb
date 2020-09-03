@@ -10,7 +10,7 @@ class YoutuberController < ApplicationController
       format.json { render json: download_link.merge(result) }
       format.csv do
         send_data(
-          a_to_csv(result['result'], 'title url views'),
+          a_to_csv(result['result'], 'title url views publishedAt channelTitle channelId tags description'),
           filename: name_file(controller_name, params)
         )
       end
