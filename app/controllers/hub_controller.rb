@@ -169,7 +169,7 @@ class HubController < ApplicationController
   end
 
   def hub_youtuber
-    @hub_youtuber = Youtuber.count_result(params).as_json['result']
+    @hub_youtuber = Youtuber.count_result(params).as_json['result'].reverse
     @ytr_dl = download_link_of 'youtuber'
     @ytr_count = @hub_youtuber.count 
     render partial: "hub_youtuber"
