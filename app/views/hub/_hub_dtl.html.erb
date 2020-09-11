@@ -1,12 +1,12 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "⏫ DTL Search Result #{@dtl_count || 0}", @dtl_dl, title: 'DTL Search Result', target: '_blank' %></li>
+  <%= link_to "⏫ Doublethink Database Search Result #{@dtl_count || 0}", @dtl_dl, title: 'Doublethink Database Search Result', target: '_blank' %></li>
 
 <% @hub_dtl.each do |r|  %>
 <% date = r['pubTime'].to_datetime.strftime('%F %R') %>
 
 <li class="list-group-item" date=<%= date %>>
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '⏫DT', "/hub?q=#{r['title']}", title: 'DTL Search Result' %>
+    <%= link_to '⏫DD', "/hub?q=#{r['title']}", title: 'Doublethink Database Search Result' %>
     <%= date %>
     <%= link_to "#{r['title']}", "#{r['url']}", target: '_blank' %>
     <%= "#{r['title']}#{r['description']}#{r['content']}" %>
