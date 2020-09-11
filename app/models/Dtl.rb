@@ -6,6 +6,8 @@ class Dtl < ApplicationRecord
     gql = <<~GQL
     query{
       allDtls(filter: {textContains: "#{params[:q]}"}, order: PUBLISHED){
+        source
+        uuid
         id
         url
         description
