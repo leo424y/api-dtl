@@ -1,7 +1,7 @@
 <li class="list-group-item" date="1999-01-01">
   <%= link_to "⏫ Doublethink Database Search Result #{@dtl_count || 0}", @dtl_dl, title: 'Doublethink Database Search Result', target: '_blank' %></li>
 
-<% @hub_dtl.each do |r|  %>
+<% @hub_dtl.take(20).each do |r|  %>
 <% date = r['pubTime'].to_datetime.strftime('%F %R') %>
 
 <li class="list-group-item" date=<%= date %>>
