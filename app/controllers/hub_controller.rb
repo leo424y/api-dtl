@@ -43,7 +43,7 @@ class HubController < ApplicationController
   ################ page, group, profile should be delay 60s each, in case it hit the API limit 
   def hub_crowdtanglego_run
     p = URI.encode_www_form(q: params[:q], start_date: params[:start_date], end_date: params[:end_date])
-    uri = URI("https://f586d68900d0.ngrok.io/facebooks?#{p}")
+    uri = URI("https://#{ENV['CTCSVHOST']}/facebooks?#{p}")
     get_ct_count = Net::HTTP.get_response(uri).body.to_i
     @ct_post_count = get_ct_count.is_a?(Numeric) ? get_ct_count : 0
     render partial: "hub_crowdtanglego_run" 
