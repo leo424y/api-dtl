@@ -14,6 +14,7 @@ class Dtl < ApplicationRecord
         content
         title
         pubTime
+        search
       }
     }
     GQL
