@@ -185,7 +185,7 @@ class HubController < ApplicationController
   end  
 
   def hub_dtl
-    @hub_dtl = Dtl.count_result(params).as_json['result'].reverse
+    @hub_dtl = Dtl.count_result(params).as_json['result']
     @dtl_dl = download_link_of 'dtl'
     @dtl_count = @hub_dtl.count 
     render partial: "hub_dtl"
