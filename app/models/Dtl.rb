@@ -14,14 +14,12 @@ class Dtl < ApplicationRecord
         content
         title
         pubTime
-        search
       }
     }
     GQL
     body = {
       query: gql,
     }
-
 
 
     # p = URI.encode_www_form(q: params[:q], start_date: params[:start_date], end_date: params[:end_date])
@@ -32,7 +30,6 @@ class Dtl < ApplicationRecord
         headers: {'Content-Type': 'application/json',}
       )
     } 
-
     result = result['data']['allDtls']
     {
       status: 'ok',
