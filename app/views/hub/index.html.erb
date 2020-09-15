@@ -7,9 +7,9 @@
   currValue.parentNode.appendChild(currValue);
 });", class: 'btn btn-default' %>
   <%# render_async hub_datacount_path, interval: 5000  %>
-  <%# render_async hub_dtl_path(params.to_enum.to_h) do %>
-    <%# <li class="list-group-item">Doublethink Database...</li> %>
-  <%# end %>
+  <%= render_async hub_dtl_path(params.to_enum.to_h) do %>
+    <li class="list-group-item">Doublethink Database...</li>
+  <% end %>
 
   <%= render_async_cache hub_claim_path(params.to_enum.to_h) do %>
   <li class="list-group-item">Google Factcheck...</li>
@@ -19,12 +19,12 @@
   <li class="list-group-item">Cofacts...</li>
   <% end %>
 
-  <%# render_async hub_crowdtanglego_run_path(params.to_enum.to_h) do %>
-  <%# end %>
+  <%= render_async hub_crowdtanglego_run_path(params.to_enum.to_h) do %>
+  <% end %>
 
-  <%# render_async hub_crowdtanglego_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
-    <%# <li class="list-group-item">CrowdTangle Facebook Historical Archive...</li> %>
-  <%# end %>
+  <%= render_async hub_crowdtanglego_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <li class="list-group-item">CrowdTangle Facebook Historical Archive...</li>
+  <% end %>
 
   <%# render_async_cache hub_crowdtangle_page_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
     <%# <li class="list-group-item">CrowdTangle Facebook Page...</li> %>
@@ -68,13 +68,13 @@
   <li class="list-group-item">Twitter...</li>
   <% end %>
 
-  <%# render_async_cache hub_youtube_path(params.to_enum.to_h) do %>
-    <%# <li class="list-group-item">Youtube...</li> %>
-  <%# end %>
+  <%= render_async_cache hub_youtube_path(params.to_enum.to_h) do %>
+    <li class="list-group-item">Youtube...</li>
+  <% end %>
 
-  <%# render_async_cache hub_youtuber_path(params.to_enum.to_h) do %>
-  <%# <li class="list-group-item">Youtube Realtime...</li> %>
-  <%# end %>  
+  <%= render_async_cache hub_youtuber_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Youtube Realtime...</li>
+  <% end %>  
 
   <%# render_async_cache hub_wikipedia_path(params.to_enum.to_h) do %>
   <%# <li class="list-group-item">Wikipedia...</li> %>
