@@ -11,7 +11,7 @@ ruby-2.7.1
 * System dependencies
 
 * Configuration
-api host
+    API host 
 
 * Database creation
 
