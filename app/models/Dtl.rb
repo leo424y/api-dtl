@@ -5,7 +5,7 @@ class Dtl < ApplicationRecord
     host = "http://a.doublethinklab.org/graphql?"
     gql = <<~GQL
     query{
-      allDtls(filter: {textContains: "#{params[:q]}"}, order: PUBLISHED){
+      allDtls(filter: {textContains: "#{params[:q]}", pubTimeContains: "#{params[:start_date]}xxx#{params[:end_date]}"}, order: PUBLISHED){
         source
         uuid
         id
@@ -20,7 +20,6 @@ class Dtl < ApplicationRecord
     body = {
       query: gql,
     }
-
 
     # p = URI.encode_www_form(q: params[:q], start_date: params[:start_date], end_date: params[:end_date])
     result = Timeout.timeout(50) { 
