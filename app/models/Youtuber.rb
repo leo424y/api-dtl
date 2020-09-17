@@ -7,13 +7,13 @@ class Youtuber < ApplicationRecord
     result = Timeout.timeout(50) { 
       JSON.parse(Net::HTTP.get_response(uri).body)
     } 
-    result.each do |r|
-      begin
-        yt_to_dtl r, params[:q]
-      rescue => exception
-        p exception
-      end
-    end
+    # result.each do |r|
+    #   begin
+    #     yt_to_dtl r, params[:q]
+    #   rescue => exception
+    #     p exception
+    #   end
+    # end
     {
       status: 'ok',
       params: params,
