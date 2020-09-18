@@ -1,4 +1,4 @@
 
 class AnimalsBase < ActiveRecord::Base
-  establish_connection(:animals)
+  # establish_connection(:animals)
 end

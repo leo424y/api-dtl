@@ -16,15 +16,15 @@ production:
     host: <%= ENV['DBHOST'] %>
     username: dtl-api-rails
     password: <%= ENV['DBPWD'] %>
-animals:
-  adapter: mysql2
-  encoding: utf8
-  socket: /var/run/mysqld/mysqld.sock
-  pool: 5
-  host: <%= ENV['PHOST'] %>
-  database: <%= ENV['PDB'] %>
-  username: <%= ENV['PU'] %>
-  password: <%= ENV['PPW'] %>
+# animals:
+#   adapter: mysql2
+#   encoding: utf8
+#   socket: /var/run/mysqld/mysqld.sock
+#   pool: 5
+#   host: <%= ENV['PHOST'] %>
+#   database: <%= ENV['PDB'] %>
+#   username: <%= ENV['PU'] %>
+#   password: <%= ENV['PPW'] %>
 medias:
   adapter: postgresql
   encoding: unicode
