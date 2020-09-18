@@ -8,7 +8,7 @@
 });", class: 'btn btn-default' %>
   <%# render_async hub_datacount_path, interval: 5000  %>
   <%= render_async hub_dtl_path(params.to_enum.to_h) do %>
-    <li class="list-group-item">Doublethink Database...(if 📘CrowdTangle Historical Realtime around 100, please reload in a few minutes, or please wait around 70 seconds)</li>
+    <li class="list-group-item">Doublethink Database...(if 📘CrowdTangle Historical Realtime return more then 100, please reload in a few minutes, or please wait around 70 seconds)</li>
   <% end %>
 
   <%= render_async_cache hub_claim_path(params.to_enum.to_h) do %>
