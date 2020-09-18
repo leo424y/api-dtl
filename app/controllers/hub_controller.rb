@@ -187,6 +187,7 @@ class HubController < ApplicationController
   end  
 
   def hub_dtl
+    sleep 60
     @hub_dtl = Dtl.count_result(params).as_json['result'].reverse
     @dtl_dl = download_link_of 'dtl'
     @dtl_count = @hub_dtl.count 
