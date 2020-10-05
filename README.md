@@ -23,5 +23,5 @@ ruby-2.7.1
 
 * Deployment instructions
 
-* ...
+
 # api-dtl
