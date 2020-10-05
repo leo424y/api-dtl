@@ -21,7 +21,13 @@ class ApplicationController < ActionController::Base
     Searchword.create(word: params[:q], start_date: params[:start_date], end_date: params[:end_date]) if params[:q] 
   end
 
-  def set_filter recored 
+  def fix_query_date
+    query_present = Searchword.where(word: params[:q], start_date: params[:start_date], end_date: params[:end_date])
+    (params[:start_date] = params[:end_date]) if query_present.count > 1
+    params
+  end
+
+  def set_filter recored
     recored = recored.filter_by_date params
     recored = recored.filter_by_list params if params[:list]
     recored = recored.filter_by_domain params if params[:domain]
@@ -41,19 +47,19 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
-  def api_result params, rows_hash, platform 
-    sort_by_param = case platform 
+
+  def api_result params, rows_hash, platform
+    sort_by_param = case platform
     when 'cofacts'
       'createdAt'
     when 'crowdtangle'
       'date'
     end
-    
-      {
-        params: params,
-        count: (rows_hash.is_a?(Array) ? rows_hash.count : rows_hash)
-      }.merge(posts_by_date: rows_hash.sort_by { |h| h[sort_by_param] }) 
+
+    {
+      params: params,
+      count: (rows_hash.is_a?(Array) ? rows_hash.count : rows_hash)
+    }.merge(posts_by_date: rows_hash.sort_by { |h| h[sort_by_param] })
   end
 
   def name_file model, params
