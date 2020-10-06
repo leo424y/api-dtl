@@ -4,16 +4,16 @@ class Youtuber < ApplicationRecord
   def self.count_result(params)
     p = URI.encode_www_form(q: params[:q])
     uri = URI("https://#{ENV['CTCSVHOST']}/youtubes?#{p}")
-    result = Timeout.timeout(50) { 
+    result = Timeout.timeout(50) {
       JSON.parse(Net::HTTP.get_response(uri).body)
-    } 
-    # result.each do |r|
-    #   begin
-    #     yt_to_dtl r, params[:q]
-    #   rescue => exception
-    #     p exception
-    #   end
-    # end
+    }
+    result.each do |r|
+      begin
+        yt_to_dtl r, params[:q]
+      rescue => exception
+        p exception
+      end
+    end
     {
       status: 'ok',
       params: params,
@@ -27,7 +27,7 @@ class Youtuber < ApplicationRecord
   end
 
 
-  def self.yt_to_dtl r, search   
+  def self.yt_to_dtl r, search
     host = "http://a.doublethinklab.org/graphql?"
     gql = <<~GQL
     mutation {
