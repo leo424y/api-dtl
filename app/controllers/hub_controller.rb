@@ -244,19 +244,19 @@ class HubController < ApplicationController
     gql = <<~GQL
     mutation {
       createDtl(input: {
-        source: "#{:source}"
-        url: "#{:url}"
-        channelId: "#{:channel_id}"
-        channelName: "#{:channel_name}"
-        creatorId: "#{:channel_id}"
-        creatorName: "#{:channel_name}"
-        link: "#{:link}"
-        domain: "#{:domain}"
-        title: "#{URI.encode_www_form_component :url}"
-        description: "#{:description}"
-        content: "#{:content}"
-        pubTime: "#{:pub_time}"
-        search: "#{:search}"
+        source: "#{source}"
+        url: "#{url}"
+        channelId: "#{channel_id}"
+        channelName: "#{channel_name}"
+        creatorId: "#{channel_id}"
+        creatorName: "#{channel_name}"
+        link: "#{link}"
+        domain: "#{domain}"
+        title: "#{URI.encode_www_form_component url}"
+        description: "#{URI.encode_www_form_component description}"
+        content: "#{URI.encode_www_form_component content}"
+        pubTime: "#{pub_time}"
+        search: "#{search}"
       }) {
         dtl {
           source
@@ -283,6 +283,7 @@ class HubController < ApplicationController
     body = {
       query: gql,
     }
+    p body
     HTTParty.post(
       host,
       body: body.to_json,
