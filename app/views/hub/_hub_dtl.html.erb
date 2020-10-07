@@ -2,7 +2,7 @@
   <%= link_to "⏫ Doublethink Database Search Result #{@dtl_count || 0} (Reload page in few minutes for more complete Facebook data)", @dtl_dl, title: 'Click to download all results from Doublethink Database', target: '_blank' %></li>
 
 <% @hub_dtl.take(500).each do |r|  %>
-<% date = r['pubTime'].to_datetime.strftime('%F %R') %>
+<% date = r['pubTime'].to_datetime.localtime %>
 
 <li class="list-group-item" date=<%= date %>>
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
