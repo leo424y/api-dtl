@@ -64,9 +64,9 @@
   <li class="list-group-item">Doublethink...</li>
   <% end %>
 
-  <%= render_async_cache hub_twint_path(params.to_enum.to_h) do %>
-  <li class="list-group-item">Twitter...</li>
-  <% end %>
+  <%# render_async_cache hub_twint_path(params.to_enum.to_h) do %>
+  <%# <li class="list-group-item">Twitter...</li> %>
+  <%# end %>
 
   <%= render_async_cache hub_youtube_path(params.to_enum.to_h) do %>
     <li class="list-group-item">Youtube...</li>
