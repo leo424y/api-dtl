@@ -181,9 +181,9 @@ class HubController < ApplicationController
   def hub_fblinks
     fblink = count_record(set_filter(Fblink.all)).as_json
     @hub_fblink = fblink['posts_by_date']
-    # @hub_fblink.each do |f|
-    #   fb_to_dtl f, params[:q]
-    # end
+    @hub_fblink.each do |f|
+      fb_to_dtl f, params[:q]
+    end
     @hub_fblink = data_compact @hub_fblink, 'link_domain'
     @fb_count = fblink['count']
     @fb_dl = download_link_of 'fblinks'
@@ -224,7 +224,7 @@ class HubController < ApplicationController
     end.compact
   end
 
-  def self.fb_to_dtl r, search
+  def fb_to_dtl r, search
     host = "http://a.doublethinklab.org/graphql?"
     gql = <<~GQL
     mutation {
