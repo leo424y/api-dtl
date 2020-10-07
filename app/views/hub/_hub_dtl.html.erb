@@ -6,7 +6,8 @@
 
 <li class="list-group-item" date=<%= date %>>
   <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '⏫DD', "/hub?q=#{r['title']}", title: 'Doublethink Database Search Result' %>
+    <%# link_to '⏫DD', "/hub?q=#{r['title']}", title: 'Doublethink Database Search Result' %>
+    <%= '⏫DD' %>
     <%= date %>
     <%= link_to icon_url(r['url']), r['url'], target: '_blank' %>
     <%= "#{r['title']}#{r['description']}#{r['content']}" %>
