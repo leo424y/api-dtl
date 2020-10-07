@@ -1,15 +1,16 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "⏯ Youtube Realtime Search Result #{@ytr_count || 0}", @ytr_dl, title: 'Youtube Search Result', target: '_blank' %></li>
-
-<% @hub_youtuber.take(20).each do |r|  %>
-<% date = r['publishedAt'].to_datetime.strftime('%F %R') %>
-
-<li class="list-group-item" date=<%= date %>>
-  <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '⏯YR', "/hub?q=#{r['title']}", title: 'Youtube Search Result' %>
-    <%= link_to date, "#{r['url']}", target: '_blank' %>
-    <%= link_to "#{r['channelTitle']}", "https://www.youtube.com/channel/#{r['channelId']}", target: '_blank' %>
-    <%= "(#{r['views']}) #{r['title']} #{r['tags']} #{r['description']}" %>
-  </span>
+  <%= link_to "⏯ Youtube Realtime Search Result", @ytr_dl, title: 'Download Youtube Search Result', target: '_blank' %>
 </li>
-<% end %>
+
+<%# @hub_youtuber.take(20).each do |r|  %>
+<%# date = r['publishedAt'].to_datetime.strftime('%F %R') %>
+
+<%# <li class="list-group-item" date=<%= date> %>
+  <%# <span class="d-inline-block text-truncate" style="max-width: 100%;"> %>
+    <%# link_to '⏯YR', "/hub?q=#{r['title']}", title: 'Youtube Search Result' %>
+    <%# link_to date, "#{r['url']}", target: '_blank' %>
+    <%# link_to "#{r['channelTitle']}", "https://www.youtube.com/channel/#{r['channelId']}", target: '_blank' %>
+    <%# "(#{r['views']}) #{r['title']} #{r['tags']} #{r['description']}" %>
+  <%# </span> %>
+<%# </li> %>
+<%# end %>

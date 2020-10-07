@@ -193,7 +193,14 @@ class HubController < ApplicationController
 
   def hub_youtube
     @hub_youtube = Youtube.count_result(params).as_json['result']
-    @hub_youtube.each do |p|
+    @yt_dl = download_link_of 'youtube'
+    @yt_count = @hub_youtube.count
+    render partial: "hub_youtube"
+  end
+
+  def hub_youtuber
+    @hub_youtuber = Youtuber.count_result(params).as_json['result']
+    @hub_youtuber.each do |p|
       to_dtl(
         source: 'dtlyt',
         url: p['url'],
@@ -206,13 +213,6 @@ class HubController < ApplicationController
         search: params[:q]
       )
     end
-    @yt_dl = download_link_of 'youtube'
-    @yt_count = @hub_youtube.count
-    render partial: "hub_youtube"
-  end
-
-  def hub_youtuber
-    @hub_youtuber = Youtuber.count_result(params).as_json['result']
     @ytr_dl = download_link_of 'youtuber'
     @ytr_count = @hub_youtuber.count
     render partial: "hub_youtuber"
@@ -320,7 +320,6 @@ class HubController < ApplicationController
     body = {
       query: gql,
     }
-    p body
     HTTParty.post(
       host,
       body: body.to_json,
