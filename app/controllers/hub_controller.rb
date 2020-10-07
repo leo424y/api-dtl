@@ -234,7 +234,7 @@ class HubController < ApplicationController
         channelId: "#{r['platform_id']}"
         channelName: "#{r['platform_name']}"
         link: "#{r['link']}"
-        domain: "#{r['link_domain']}"
+        domain: "facebook.com"
         title: "#{URI.encode_www_form_component r['title']}"
         description: ""
         content: ""
