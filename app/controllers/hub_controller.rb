@@ -125,12 +125,14 @@ class HubController < ApplicationController
 
   def hub_pablo
     @hub_pablo = Pablo.count_result(params).as_json['posts_by_date']
+
     @hub_pablo.each do |p|
       to_dtl(
         source: 'dtlmm',
         pub_time: p['pubTime'],
         title: p['title'],
         url: p['url'],
+        domain: URI(p['url']).host,
         channel_name: p['siteName'],
         creator_name: p['creator'],
         content: p['content'],
@@ -164,9 +166,19 @@ class HubController < ApplicationController
   def hub_domain
     ds = Domain.count_result(params).as_json
     @hub_domain = data_compact_host ds['result'], 'url'
-    @hub_domain.each do |d|
-      domain_to_dtl d, params[:q]
+
+    @hub_domain.each do |p|
+      to_dtl(
+        source: 'dtlserp',
+        pub_time: p['ctime'],
+        title: p['title'],
+        description: p['description'],
+        url: p['url'],
+        domain: URI(p['url']).host,
+        search: params[:q]
+      )
     end
+
     @ds_count = ds['count']
     @ds_dl = download_link_of 'domain'
     render partial: "hub_domain"
@@ -196,9 +208,21 @@ class HubController < ApplicationController
   def hub_fblinks
     fblink = count_record(set_filter(Fblink.all)).as_json
     @hub_fblink = fblink['posts_by_date']
-    @hub_fblink.each do |f|
-      fb_to_dtl f, params[:q]
+
+    @hub_fblink.each do |p|
+      to_dtl(
+        source: 'dtlfba',
+        url: p['url'],
+        channel_id: p['platform_id'],
+        channel_name: p['platform_name'],
+        link: p['link'],
+        domain: "facebook.com",
+        title: p['title'],
+        pub_time: p['date'],
+        search: params[:q]
+      )
     end
+
     @hub_fblink = data_compact @hub_fblink, 'link_domain'
     @fb_count = fblink['count']
     @fb_dl = download_link_of 'fblinks'
@@ -284,100 +308,6 @@ class HubController < ApplicationController
       query: gql,
     }
     p body
-    HTTParty.post(
-      host,
-      body: body.to_json,
-      headers: {'Content-Type': 'application/json',}
-    )
-  end
-
-  def fb_to_dtl r, search
-    host = "http://a.doublethinklab.org/graphql?"
-    gql = <<~GQL
-    mutation {
-      createDtl(input: {
-        source: "dtlfba"
-        url: "#{r['url']}"
-        channelId: "#{r['platform_id']}"
-        channelName: "#{r['platform_name']}"
-        link: "#{r['link']}"
-        domain: "facebook.com"
-        title: "#{URI.encode_www_form_component r['title']}"
-        description: ""
-        content: ""
-        pubTime: "#{r['date']}"
-        search: "#{search}"
-      }) {
-        dtl {
-          source
-          url
-          id
-          uuid
-          platformId
-          channelId
-          channelName
-          link
-          domain
-          title
-          description
-          content
-          pubTime
-          search
-        }
-        errors
-      }
-    }
-    GQL
-    body = {
-      query: gql,
-    }
-    HTTParty.post(
-      host,
-      body: body.to_json,
-      headers: {'Content-Type': 'application/json',}
-    )
-  end
-
-  def domain_to_dtl r, search
-    host = "http://a.doublethinklab.org/graphql?"
-    gql = <<~GQL
-    mutation {
-      createDtl(input: {
-        source: "dtlserp"
-        url: "#{r['url']}"
-        channelId: ""
-        channelName: ""
-        link: ""
-        domain: "#{URI(r['url']).host}"
-        title: "#{URI.encode_www_form_component r['title']}"
-        description: "#{URI.encode_www_form_component r['description']}"
-        content: ""
-        pubTime: "#{r['ctime']}"
-        search: "#{search}"
-      }) {
-        dtl {
-          source
-          url
-          id
-          uuid
-          platformId
-          channelId
-          channelName
-          link
-          domain
-          title
-          description
-          content
-          pubTime
-          search
-        }
-        errors
-      }
-    }
-    GQL
-    body = {
-      query: gql,
-    }
     HTTParty.post(
       host,
       body: body.to_json,
