@@ -2,16 +2,18 @@
   <%= link_to "📗Doublethink Facebook Archive #{@fb_count || 0}", @fb_dl, title: 'Doublethink Crowdtangle Archive', target: '_blank' %>
 </li>
 
-<%# <% @hub_fblink.each do |r|  %> %>
-<%# <% date = r['date'].to_datetime.strftime('%F %R') %> %>
+<%# @hub_fblink.each do |r|  %>
+<%# date = r['date'].to_datetime.strftime('%F %R') %>
 
-<%# <li class="list-group-item" date="<%= date %>"> %>
+<%# <li class="list-group-item" date="<%= date"> %>
   <%# <span class="d-inline-block text-truncate" style="max-width: 100%;"> %>
 
-    <%# <%= link_to '📗FB', "/hub?q=#{r['link']}", title: 'DTL Crowdtangle' %> %>
-    <%# <%= date %> %>
-    <%# <%= link_to icon_url(r['link']), r['link'], target: '_blank' %> %>
-    <%# <%= link_to "#{r['platform_name']}", r['url'], target: '_blank' %> <%= "#{r['title']}" %> %>
+    <%# link_to '📗FB', "/hub?q=#{r['link']}", title: 'DTL Crowdtangle' %>
+    <%# date %>
+    <%# link_to icon_url(r['link']), r['link'], target: '_blank' %>
+    <%# link_to "#{r['platform_name']}", r['url'], target: '_blank' <%= "#{r['title']}" %>
+
   <%# </span> %>
 <%# </li> %>
-<%# <% end %> %>
+
+<%# end %>
