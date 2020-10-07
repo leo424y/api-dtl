@@ -193,6 +193,19 @@ class HubController < ApplicationController
 
   def hub_youtube
     @hub_youtube = Youtube.count_result(params).as_json['result']
+    @hub_youtube.each do |p|
+      to_dtl(
+        source: 'dtlyt',
+        url: p['url'],
+        channel_id: p['channelId'],
+        channel_name: p['channelTitle'],
+        domain: "youtube.com",
+        title: p['title'],
+        description: p['description'],
+        pub_time: p['publishedAt'],
+        search: params[:q]
+      )
+    end
     @yt_dl = download_link_of 'youtube'
     @yt_count = @hub_youtube.count
     render partial: "hub_youtube"
