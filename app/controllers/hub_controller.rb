@@ -152,6 +152,9 @@ class HubController < ApplicationController
   def hub_domain
     ds = Domain.count_result(params).as_json
     @hub_domain = data_compact_host ds['result'], 'url'
+    @hub_domain.each do |d|
+      domain_to_dtl d, params[:q]
+    end
     @ds_count = ds['count']
     @ds_dl = download_link_of 'domain'
     render partial: "hub_domain"
@@ -271,4 +274,50 @@ class HubController < ApplicationController
     )
   end
 
+  def domain_to_dtl r, search
+    host = "http://a.doublethinklab.org/graphql?"
+    gql = <<~GQL
+    mutation {
+      createDtl(input: {
+        source: "dtlserp"
+        url: "#{r['url']}"
+        channelId: ""
+        channelName: ""
+        link: ""
+        domain: "#{URI(r['url']).host}"
+        title: "#{URI.encode_www_form_component r['title']}"
+        description: "#{URI.encode_www_form_component r['description']}"
+        content: ""
+        pubTime: "#{r['ctime']}"
+        search: "#{search}"
+      }) {
+        dtl {
+          source
+          url
+          id
+          uuid
+          platformId
+          channelId
+          channelName
+          link
+          domain
+          title
+          description
+          content
+          pubTime
+          search
+        }
+        errors
+      }
+    }
+    GQL
+    body = {
+      query: gql,
+    }
+    HTTParty.post(
+      host,
+      body: body.to_json,
+      headers: {'Content-Type': 'application/json',}
+    )
+  end
 end
