@@ -125,8 +125,20 @@ class HubController < ApplicationController
 
   def hub_pablo
     @hub_pablo = Pablo.count_result(params).as_json['posts_by_date']
-    @hub_pablo = data_compact @hub_pablo, 'siteName'
+    @hub_pablo.each do |p|
+      to_dtl(
+        source: 'dtlmm',
+        pub_time: p['pubTime'],
+        title: p['title'],
+        url: p['url'],
+        channel_name: p['siteName'],
+        creator_name: p['creator'],
+        content: p['content'],
+        search: params[:q]
+      )
+    end
 
+    @hub_pablo = data_compact @hub_pablo, 'siteName'
     @dt_count = @hub_pablo.count
     @dt_dl = download_link_of 'pablo'
     render partial: "hub_pablo"
@@ -225,6 +237,57 @@ class HubController < ApplicationController
         x
       end
     end.compact
+  end
+
+  def to_dtl(source: '', url: '', channel_id: '', channel_name: '', creator_id: '', creator_name: '', link: '', domain: '', title: '', description: '', content: '', pub_time: '', search: '')
+    host = "http://a.doublethinklab.org/graphql?"
+    gql = <<~GQL
+    mutation {
+      createDtl(input: {
+        source: "#{:source}"
+        url: "#{:url}"
+        channelId: "#{:channel_id}"
+        channelName: "#{:channel_name}"
+        creatorId: "#{:channel_id}"
+        creatorName: "#{:channel_name}"
+        link: "#{:link}"
+        domain: "#{:domain}"
+        title: "#{URI.encode_www_form_component :url}"
+        description: "#{:description}"
+        content: "#{:content}"
+        pubTime: "#{:pub_time}"
+        search: "#{:search}"
+      }) {
+        dtl {
+          source
+          url
+          id
+          uuid
+          platformId
+          channelId
+          channelName
+          creatorId
+          creatorName
+          link
+          domain
+          title
+          description
+          content
+          pubTime
+          search
+        }
+        errors
+      }
+    }
+    GQL
+    body = {
+      query: gql,
+    }
+    HTTParty.post(
+      host,
+      body: body.to_json,
+      headers: {'Content-Type': 'application/json',}
+    )
   end
 
   def fb_to_dtl r, search
