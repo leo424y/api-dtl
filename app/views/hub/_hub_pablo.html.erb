@@ -1,15 +1,17 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to("📕Doublethink Search #{@dt_count || 0}", @dt_dl, title: 'Doublethink Database', target: '_blank') %></li>
-
-<% @hub_pablo.each do |r|  %>
-<% date = r['pubTime'].to_datetime.strftime('%F %R') %>
-
-<li class="list-group-item" date="<%= date %>">
-  <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to('📕DT', "/hub?q=#{r['title']}", title: 'Doublethink') if r['title'] %>
-    <%= date %>
-    <%= icon_url(r['url']) %>
-    <%= link_to "#{r['siteName']} #{r['creator']}", r['url'], target: '_blank' %><%= " #{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['content']}" %>
-  </span>
+  <%= link_to("📕Doublethink Search #{@dt_count || 0}", @dt_dl, title: 'Doublethink Database', target: '_blank') %>
 </li>
-<% end %>
+
+<%# @hub_pablo.each do |r|  %>
+<%# date = r['pubTime'].to_datetime.strftime('%F %R') %>
+
+<%# <li class="list-group-item" date="date"> %>
+  <%# <span class="d-inline-block text-truncate" style="max-width: 100%;"> %>
+    <%# link_to('📕DT', "/hub?q=#{r['title']}", title: 'Doublethink') if r['title'] %>
+    <%# date %>
+    <%# icon_url(r['url']) %>
+    <%# link_to "#{r['siteName']} #{r['creator']}", r['url'], target: '_blank' %>
+    <%# " #{r['title']} #{ActionView::Base.full_sanitizer.sanitize r['content']}" %>
+  <%# </span> %>
+<%# </li> %>
+<%# end %>
