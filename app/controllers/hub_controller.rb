@@ -129,7 +129,7 @@ class HubController < ApplicationController
     @hub_pablo.each do |p|
       to_dtl(
         source: 'dtlmm',
-        pub_time: p['pubTime'],
+        pub_time: p['pubTime'].to_datetime - 8.hour,
         title: p['title'],
         url: p['url'],
         domain: URI(p['url']).host,
@@ -231,7 +231,7 @@ class HubController < ApplicationController
         link: p['link'],
         domain: "facebook.com",
         title: p['title'],
-        pub_time: p['date'],
+        pub_time: p['date'].to_datetime + 8.hour,
         search: params[:q]
       )
     end
