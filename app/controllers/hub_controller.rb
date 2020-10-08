@@ -231,7 +231,7 @@ class HubController < ApplicationController
         link: p['link'],
         domain: "facebook.com",
         title: p['title'],
-        pub_time: p['date'].to_datetime + 8.hour,
+        pub_time: p['date'].to_datetime,
         search: params[:q]
       )
     end
