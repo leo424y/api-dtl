@@ -292,7 +292,7 @@ class HubController < ApplicationController
         title: "#{URI.encode_www_form_component title}"
         description: "#{URI.encode_www_form_component description}"
         content: "#{URI.encode_www_form_component content}"
-        pubTime: "#{pub_time.to_datetime.utc}"
+        pubTime: "#{pub_time.to_datetime}"
         search: "#{search}"
       }) {
         dtl {
