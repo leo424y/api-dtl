@@ -1,5 +1,5 @@
 <li class="list-group-item" date="1999-01-01">
-  <%= link_to "⏯ Youtube Realtime Search Result", @ytr_dl, title: 'Download Youtube Search Result', target: '_blank' %>
+  <%= link_to "⏯ Youtube Realtime Search Result #{@ytr_count || 0}", @ytr_dl, title: 'Download Youtube Search Result', target: '_blank' %>
 </li>
 
 <%# @hub_youtuber.take(20).each do |r|  %>
