@@ -1,15 +1,15 @@
 <li class="list-group-item" date="1999-01-01">
   <%= link_to "📰Doublethink Taiwan Main Media #{@dm_count || 0}", @dm_dl, title: 'Doublethink Media', target: '_blank' %></li>
 
-<% @hub_media.each do |r|  %>
-<% date = r['updated'].to_datetime.strftime('%F %R') %>
+<%# @hub_media.each do |r|  %>
+<%# date = r['updated'].to_datetime.strftime('%F %R') %>
 
-<li class="list-group-item" date="<%= date %>">
-  <span class="d-inline-block text-truncate" style="max-width: 100%;">
-    <%= link_to '📰DM', "/hub?q=#{r['title']}", title: 'Doublethink Media' %>
-    <%= date %>
-    <%= link_to icon_url(r['url']), r['url'], target: '_blank' %>
-    <%= " #{r['title']}"%>
-  </span>
-</li>
-<% end %>
+<%# <li class="list-group-item" date=" date"> %>
+  <%# <span class="d-inline-block text-truncate" style="max-width: 100%;"> %>
+    <%# link_to '📰DM', "/hub?q=#{r['title']}", title: 'Doublethink Media' %>
+    <%# date %>
+    <%# link_to icon_url(r['url']), r['url'], target: '_blank' %>
+    <%# " #{r['title']}"%>
+  <%# </span> %>
+<%# </li> %>
+<%# end %>

@@ -157,6 +157,18 @@ class HubController < ApplicationController
 
   def hub_media
     media = Media.count_result(params).as_json
+
+    media['result'].each do |p|
+      to_dtl(
+        source: 'dtltwnews',
+        pub_time: p['date'],
+        title: p['title'],
+        url: p['url'],
+        domain: URI(p['url']).host,
+        search: params[:q]
+      )
+    end
+
     @hub_media = data_compact_host media['result'], 'url'
     @dm_count = media['count']
     @dm_dl = download_link_of 'media'
@@ -165,9 +177,8 @@ class HubController < ApplicationController
 
   def hub_domain
     ds = Domain.count_result(params).as_json
-    @hub_domain = data_compact_host ds['result'], 'url'
 
-    @hub_domain.each do |p|
+    ds['result'].each do |p|
       to_dtl(
         source: 'dtlserp',
         pub_time: p['ctime'],
@@ -179,6 +190,7 @@ class HubController < ApplicationController
       )
     end
 
+    @hub_domain = data_compact_host ds['result'], 'url'
     @ds_count = ds['count']
     @ds_dl = download_link_of 'domain'
     render partial: "hub_domain"
