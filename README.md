@@ -25,3 +25,7 @@ ruby-2.7.1
 
 
 # api-dtl
+
+
+# log
+- 10.12 change mm server
