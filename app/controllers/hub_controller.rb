@@ -5,10 +5,11 @@ class HubController < ApplicationController
   def index
     default_date
     log_search
-    respond_to do |format|
-      format.html
-      # format.json { render json: result }
-    end
+  end
+
+  def fetcher
+    default_date
+    log_search
   end
 
   def hub_wikipedia

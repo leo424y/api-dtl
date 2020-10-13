@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :dtl
   end  
   resources :hub
+  get :fetcher, controller: :hub
   get :hub_wikipedia, controller: :hub
   get :hub_claim, controller: :hub
   get :hub_cofact, controller: :hub

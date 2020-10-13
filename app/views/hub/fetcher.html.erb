@@ -1,0 +1,13 @@
+<% to_title params.values[0..-2].join(' - ') %>
+
+<ul class="list-group">
+  <%= render :partial => "hub_fetcher" %>
+</ul>
+<br>
+<br>
+<form class="form-inline searchbar">
+  <%= date_field_tag :start_date, params[:start_date] %>
+  <%= date_field_tag :end_date, params[:end_date] %>
+  <%= submit_tag "🔍", :name => nil %>
+  <input type="search" id="search" placeholder="關鍵字詞組" name="q" style="width: 100%" value="<%= params[:q] %>">
+</form>

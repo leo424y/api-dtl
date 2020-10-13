@@ -1,0 +1,68 @@
+  <%= render_async_cache hub_claim_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Google Factcheck...</li>
+  <% end %>
+
+  <%= render_async_cache hub_cofact_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Cofacts...</li>
+  <% end %>
+
+  <%= render_async hub_crowdtanglego_run_path(params.to_enum.to_h) do %>
+  <% end %>
+
+  <%# render_async hub_crowdtanglego_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <%# <li class="list-group-item">CrowdTangle Facebook Historical Archive...</li> %>
+  <%# end %>
+
+  <%# render_async_cache hub_crowdtangle_page_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <%# <li class="list-group-item">CrowdTangle Facebook Page...</li> %>
+  <%# end %>
+
+  <%# render_async_cache hub_crowdtangle_group_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <%# <li class="list-group-item"> CrowdTangle Facebook Group...</li> %>
+  <%# end %>
+
+  <%# render_async_cache hub_crowdtangle_profile_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <%# <li class="list-group-item"> CrowdTangle Facebook Profile...</li> %>
+  <%# end %>
+
+  <%# render_async_cache hub_crowdtangle_instagram_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <%# <li class="list-group-item"> CrowdTangle Instagram...</li> %>
+  <%# end %>
+  <%# render_async_cache hub_crowdtangle_reddit_path(params.to_enum.to_h), retry_count: 5, retry_delay: 10000 do %>
+    <%# <li class="list-group-item"> CrowdTangle Reddit...</li> %>
+  <%# end %>
+  <%= render_async_cache hub_fblinks_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">FB...</li>
+  <% end %>
+
+  <%= render_async_cache hub_domain_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Doublethink Site...</li>
+  <% end %>
+
+  <%= render_async_cache hub_media_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Doublethink Media...</li>
+  <% end %>
+
+  <%# render_async_cache hub_pablol_path(params.to_enum.to_h) do %>
+  <%# <li class="list-group-item">Doublethink Archive...</li> %>
+  <%# end %>
+
+  <%= render_async_cache hub_pablo_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Doublethink...</li>
+  <% end %>
+
+  <%# render_async_cache hub_twint_path(params.to_enum.to_h) do %>
+  <%# <li class="list-group-item">Twitter...</li> %>
+  <%# end %>
+
+  <%# render_async_cache hub_youtube_path(params.to_enum.to_h) do %>
+    <%# <li class="list-group-item">Youtube...</li> %>
+  <%# end %>
+
+  <%= render_async_cache hub_youtuber_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Youtube Realtime...</li>
+  <% end %>
+
+  <%# render_async_cache hub_wikipedia_path(params.to_enum.to_h) do %>
+  <%# <li class="list-group-item">Wikipedia...</li> %>
+  <%# end %>
