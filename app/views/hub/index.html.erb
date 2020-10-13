@@ -15,6 +15,15 @@
   <% end %>
 
   <%= render :partial => "hub_fetcher" %>
+
+  <b><li class="list-group-item">Factcheck References</li></b>
+  <%= render_async_cache hub_claim_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Google Factcheck...</li>
+  <% end %>
+
+  <%= render_async_cache hub_cofact_path(params.to_enum.to_h) do %>
+  <li class="list-group-item">Cofacts...</li>
+  <% end %>
 </ul>
 <br>
 <br>
