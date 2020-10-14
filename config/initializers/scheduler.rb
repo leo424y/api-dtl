@@ -14,15 +14,23 @@ if Rails.env != 'development'
     rescue => exception
       p exception
     end
-  end 
-end
+  end
 
-if Rails.env == 'development'
-  s.every '30m' do
+  s.every '10m' do
     begin
-      Gene.news_api_import 
+      Gene.news_api_import
     rescue => exception
       p exception
     end
-  end 
+  end
+end
+
+if Rails.env == 'development'
+  s.every '1m' do
+    begin
+      # Gene.news_api_import
+    rescue => exception
+      p exception
+    end
+  end
 end

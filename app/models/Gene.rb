@@ -9,17 +9,36 @@ class Gene < ApplicationRecord
         uri = URI("http://tag.analysis.tw/api/news_dump.php?media=#{media}")
         request = Net::HTTP.get_response(uri)
         rows_hash = JSON.parse(request.body)
-        rows_hash.each do |row_hash|
-            Gene.create({
-                media: media,
-                url: row_hash['url'], 
-                title: row_hash['title'], 
-                image: row_hash['image'],
-                tags: row_hash['tags'].join(' '), 
-                create_time: row_hash['create_time'],
-                description: row_hash['description'],
-          }) if (row_hash['create_time'].to_date == Date.today) && row_hash['title'].present?
-        end if rows_hash
+
+        rows_hash.each do |p|
+          pharse_result_url = URI "http://np.doublethinklab.org/apis?url=#{p['url']}"
+          request = Net::HTTP.get_response(pharse_result_url)
+          content = JSON.parse(request.body)['content']
+
+          Dtl.to_dtl(
+            source: 'dtlnewstw',
+            url: p['url'],
+            channel_id: p['media'],
+            domain: URI(p['url']).host,
+            title: p['title'],
+            description: p['description'],
+            content: content,
+            pub_time: p['create_time']
+          )
+        end
+
+        # rows_hash.each do |row_hash|
+        #     Gene.create({
+        #         media: media,
+        #         url: row_hash['url'], 
+        #         title: row_hash['title'], 
+        #         image: row_hash['image'],
+        #         tags: row_hash['tags'].join(' '), 
+        #         create_time: row_hash['create_time'],
+        #         description: row_hash['description'],
+        #   }) if (row_hash['create_time'].to_date == Date.today) && row_hash['title'].present?
+        # end if rows_hash
+
         rescue Net::ReadTimeout
          p media+" timeout"
         end

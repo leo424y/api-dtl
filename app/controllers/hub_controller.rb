@@ -160,7 +160,7 @@ class HubController < ApplicationController
     media = Media.count_result(params).as_json
 
     media['result'].each do |p|
-      to_dtl(
+      Dtl.to_dtl(
         source: 'dtltwnews',
         pub_time: p['date'],
         title: p['title'],
@@ -180,7 +180,7 @@ class HubController < ApplicationController
     ds = Domain.count_result(params).as_json
 
     ds['result'].each do |p|
-      to_dtl(
+      Dtl.to_dtl(
         source: 'dtlserp',
         pub_time: p['ctime'],
         title: p['title'],
@@ -214,7 +214,7 @@ class HubController < ApplicationController
   def hub_youtuber
     @hub_youtuber = Youtuber.count_result(params).as_json['result']
     @hub_youtuber.each do |p|
-      to_dtl(
+      Dtl.to_dtl(
         source: 'dtlyt',
         url: p['url'],
         channel_id: p['channelId'],
@@ -236,7 +236,7 @@ class HubController < ApplicationController
     @hub_fblink = fblink['posts_by_date']
 
     @hub_fblink.each do |p|
-      to_dtl(
+      Dtl.to_dtl(
         source: 'dtlfba',
         url: p['url'],
         channel_id: p['platform_id'],
@@ -287,56 +287,5 @@ class HubController < ApplicationController
         x
       end
     end.compact
-  end
-
-  def to_dtl(source: '', url: '', channel_id: '', channel_name: '', creator_id: '', creator_name: '', link: '', domain: '', title: '', description: '', content: '', pub_time: '', search: '')
-    host = "http://a.doublethinklab.org/graphql?"
-    gql = <<~GQL
-    mutation {
-      createDtl(input: {
-        source: "#{source}"
-        url: "#{url}"
-        channelId: "#{channel_id}"
-        channelName: "#{channel_name}"
-        creatorId: "#{channel_id}"
-        creatorName: "#{channel_name}"
-        link: "#{link}"
-        domain: "#{domain}"
-        title: "#{URI.encode_www_form_component title}"
-        description: "#{URI.encode_www_form_component description}"
-        content: "#{URI.encode_www_form_component content}"
-        pubTime: "#{pub_time.to_datetime}"
-        search: "#{search}"
-      }) {
-        dtl {
-          source
-          url
-          id
-          uuid
-          platformId
-          channelId
-          channelName
-          creatorId
-          creatorName
-          link
-          domain
-          title
-          description
-          content
-          pubTime
-          search
-        }
-        errors
-      }
-    }
-    GQL
-    body = {
-      query: gql,
-    }
-    HTTParty.post(
-      host,
-      body: body.to_json,
-      headers: {'Content-Type': 'application/json',}
-    )
   end
 end
