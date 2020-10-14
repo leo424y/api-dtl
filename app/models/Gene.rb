@@ -3,18 +3,20 @@ class Gene < ApplicationRecord
 
   def self.news_api_import
     require 'net/http'
-    medias = 'setn,chinatimes,nownews,tvbs,ltn,udn,upmedia,ebc,ctitv,cna,nius,inside,ftv,cnyes,nikkei,pts,yahoo,apple,epochtimes,storm,newtalk,tnl,cmmedia,rfi,bbc,womany'.split(',')
+    medias = 'yahoo,chinatimes,setn,nownews,tvbs,ltn,udn,upmedia,ebc,ctitv,cna,nius,inside,ftv,cnyes,nikkei,pts,yahoo,apple,epochtimes,storm,newtalk,tnl,cmmedia,rfi,bbc,womany'.split(',')
     medias.each do |media|
         begin
         uri = URI("http://tag.analysis.tw/api/news_dump.php?media=#{media}")
         request = Net::HTTP.get_response(uri)
         rows_hash = JSON.parse(request.body)
-
         rows_hash.each do |p|
-          pharse_result_url = URI "http://np.doublethinklab.org/apis?url=#{p['url']}"
-          request = Net::HTTP.get_response(pharse_result_url)
-          content = JSON.parse(request.body)['content']
-
+          begin
+            pharse_result_url =  URI "http://np.doublethinklab.org/apis?url=#{p['url']}"
+            request = Net::HTTP.get_response(pharse_result_url)
+            content = JSON.parse(request.body)['content']
+          rescue
+            content = ""
+          end
           Dtl.to_dtl(
             source: 'dtlnewstw',
             url: p['url'],
@@ -39,7 +41,7 @@ class Gene < ApplicationRecord
         #   }) if (row_hash['create_time'].to_date == Date.today) && row_hash['title'].present?
         # end if rows_hash
 
-        rescue Net::ReadTimeout
+        rescue
          p media+" timeout"
         end
     end
