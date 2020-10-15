@@ -20,7 +20,7 @@ class Gene < ApplicationRecord
           Dtl.to_dtl(
             source: 'dtlnewstw',
             url: p['url'],
-            channel_id: p['media'],
+            channel_id: media,
             domain: URI(p['url']).host,
             title: p['title'],
             description: p['description'],
