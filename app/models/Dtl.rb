@@ -56,7 +56,7 @@ class Dtl < ApplicationRecord
     host = "http://a.doublethinklab.org/graphql?"
     gql = <<~GQL
     query{
-      allDtls(filter: {textContains: "#{params[:q]}", pubTimeContains: "#{params[:start_date]}xxx#{params[:end_date]}"}, order: PUBLISHED){
+      allDtls(filter: {textContains: "#{params[:q]}", pubTimeStartDate: "#{params[:start_date]}", pubTimeEndDate: "#{params[:end_date]}"}, order: PUBLISHED){
         source
         uuid
         id
