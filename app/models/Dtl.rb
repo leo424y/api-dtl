@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Dtl < ApplicationRecord
-  def self.to_dtl(source: '', url: '', channel_id: '', channel_name: '', creator_id: '', creator_name: '', link: '', domain: '', title: '', description: '', content: '', pub_time: '', search: '')
+  def self.to_dtl(source: '', url: '', channel_id: '', channel_name: '', creator_id: '', creator_name: '', link: '', domain: '', title: '', description: '', content: '', pub_time: '', search: '', platform_id: '')
     host = "http://a.doublethinklab.org/graphql?"
     gql = <<~GQL
     mutation {
@@ -10,8 +10,8 @@ class Dtl < ApplicationRecord
         url: "#{url}"
         channelId: "#{channel_id}"
         channelName: "#{channel_name}"
-        creatorId: "#{channel_id}"
-        creatorName: "#{channel_name}"
+        creatorId: "#{creator_id}"
+        creatorName: "#{creator_name}"
         link: "#{link}"
         domain: "#{domain}"
         title: "#{URI.encode_www_form_component title}"
@@ -19,6 +19,7 @@ class Dtl < ApplicationRecord
         content: "#{URI.encode_www_form_component content}"
         pubTime: "#{pub_time.to_datetime}"
         search: "#{search}"
+        platformId: "#{platform_id}"
       }) {
         dtl {
           source
