@@ -20,6 +20,7 @@ class Twint < ApplicationRecord
     require 'securerandom'
     filename = SecureRandom.hex(10)
     script = %(twint -s ${q} --since "${date} 00:00:00" --limit 100 --json #{filename}.json)
+    sleep 10
     result = File.read("#{filename}.json").split("\n").map{|r| JSON.parse r }
     %(rm #{filename}.json)
     count = result ? result.count : 0
