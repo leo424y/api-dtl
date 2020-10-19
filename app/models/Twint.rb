@@ -19,10 +19,11 @@ class Twint < ApplicationRecord
     # }
     require 'securerandom'
     filename = SecureRandom.hex(10)
-    script = %(twint -s ${q} --since "${date} 00:00:00" --limit 100 --json #{filename}.json)
+    filepath = "/home/deploy/api-dtl/tmp/#{filename}.json"
+    script = %(twint -s ${q} --since "${date} 00:00:00" --limit 100 -o #{filepath} --json)
     sleep 10
-    result = File.read("#{filename}.json").split("\n").map{|r| JSON.parse r }
-    %(rm #{filename}.json)
+    result = File.read("#{filepath}.json").split("\n").map{|r| JSON.parse r }
+    %(rm #{filepath})
     count = result ? result.count : 0
     {
       status: 'ok',
