@@ -22,7 +22,7 @@ class Twint < ApplicationRecord
     filepath = "/home/deploy/api-dtl/tmp/#{filename}.json"
     script = %(twint -s ${q} --since "${date} 00:00:00" --limit 100 -o #{filepath} --json)
     sleep 10
-    result = File.read("#{filepath}.json").split("\n").map{|r| JSON.parse r }
+    result = File.read(filepath).split("\n").map{|r| JSON.parse r }
     %(rm #{filepath})
     count = result ? result.count : 0
     {
