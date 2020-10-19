@@ -17,9 +17,7 @@ class Twint < ApplicationRecord
     #   end
     #   JSON.parse(res.body)['hits']['hits']
     # }
-    require 'securerandom'
-    filename = SecureRandom.hex(3)
-    filepath = "tmp/#{filename}.json"
+    filepath = "twint_file.json"
     %(twint -s #{params[:q]} --since "#{params[:start_date]} 00:00:00" --limit 100 -o #{filepath} --json)
     sleep 10
     result = File.read(filepath).split("\n").map{|r| JSON.parse r }
