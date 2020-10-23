@@ -29,3 +29,4 @@ ruby-2.7.1
 
 # log
 - 10.12 change mm server
+- template test
