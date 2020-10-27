@@ -21,6 +21,7 @@ class Twint < ApplicationRecord
     # random_string = SecureRandom.hex
     # file_path = Rails.root.join("tmp/twitter/#{random_string}.json").to_s
     # %x(touch #{file_path})
+    # %(rm #{file_path})
     results = %x(twint -s #{params[:q]} --since "#{(Date.today - 3.day).strftime("%Y-%m-%d")} 00:00:00" --limit 100)
     sleep 10
     # results = File.readlines(file_path)
@@ -31,11 +32,10 @@ class Twint < ApplicationRecord
         url: "https://twitter.com/_/status/#{raw[0]}",
         creator_id: raw[4].delete('<>'),
         domain: 'twitter.com',
-        title: raw[5..-1].join(' '),
+        title: raw[5..].join(' '),
         pub_time: raw[1..2].join(' ').to_datetime - 14.hour
       )
     end
-    %(rm #{file_path})
 
     count = result ? result.count : 0
     {
