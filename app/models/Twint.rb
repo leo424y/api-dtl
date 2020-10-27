@@ -26,7 +26,7 @@ class Twint < ApplicationRecord
     sleep 10
     # results = File.readlines(file_path)
     results.each do |line|
-      raw = line.spit(' ')
+      raw = line.split(' ')
       Dtl.to_dtl(
         source: 'dtltts',
         url: "https://twitter.com/_/status/#{raw[0]}",
