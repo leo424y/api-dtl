@@ -17,19 +17,31 @@ class Twint < ApplicationRecord
     #   end
     #   JSON.parse(res.body)['hits']['hits']
     # }
-    require 'securerandom'
-    filename = SecureRandom.hex(10)
-    filepath = "tmp/#{filename}.json"
-    %(twint -s #{params[:q]} --since "#{params[:start_date]} 00:00:00" --limit 100 -o #{filepath} --json)
+    file_path = "tmp/twitter/#{user}.json"
+    %x(touch #{file_path})
+    %x(twint -s #{params[:q]} --since "#{(Date.today - 3.day).strftime("%Y-%m-%d")} 00:00:00" --limit 100 -o #{filepath} --json)
     sleep 10
-    result = File.read(filepath).split("\n").map{|r| JSON.parse r }
-    %(rm #{filepath})
+    results = File.readlines(file_path)
+    results.each do |line|
+      raw = JSON.parse line
+      Dtl.to_dtl(
+        source: 'dtltts',
+        url: raw['link'],
+        creator_id: raw['username'],
+        creator_name: raw['name'],
+        domain: 'twitter.com',
+        title: raw['tweet'],
+        link: raw['quote_url'],
+        pub_time: raw['created_at'].to_datetime
+      )
+    end
+    %(rm #{file_path})
+
     count = result ? result.count : 0
     {
       status: 'ok',
       params: params,
-      count: count,
-      result: result
+      count: count
     }
   rescue StandardError => e
     {
