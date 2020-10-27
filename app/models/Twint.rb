@@ -22,7 +22,7 @@ class Twint < ApplicationRecord
     # file_path = Rails.root.join("tmp/twitter/#{random_string}.json").to_s
     # %x(touch #{file_path})
     # %(rm #{file_path})
-    results = %x(twint -s #{params[:q]} --since "#{(Date.today - 3.day).strftime("%Y-%m-%d")} 00:00:00" --limit 100).split("\n")
+    results = %x(twint -s '#{params[:q]}' --since "#{(Date.today - 3.day).strftime("%Y-%m-%d")} 00:00:00" --limit 100).split("\n")
     sleep 10
     # results = File.readlines(file_path)
     results.each do |line|
