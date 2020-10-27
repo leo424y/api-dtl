@@ -32,7 +32,7 @@ class Twint < ApplicationRecord
         domain: 'twitter.com',
         title: raw['tweet'],
         link: raw['quote_url'],
-        pub_time: raw['created_at'].to_datetime
+        pub_time: raw['created_at'].to_datetime - 14.hour
       )
     end
     %(rm #{file_path})
