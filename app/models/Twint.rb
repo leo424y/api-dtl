@@ -17,7 +17,9 @@ class Twint < ApplicationRecord
     #   end
     #   JSON.parse(res.body)['hits']['hits']
     # }
-    file_path = "tmp/twitter/#{user}.json"
+    require 'securerandom'
+    random_string = SecureRandom.hex
+    file_path = "tmp/twitter/#{random_string}.json"
     %x(touch #{file_path})
     %x(twint -s #{params[:q]} --since "#{(Date.today - 3.day).strftime("%Y-%m-%d")} 00:00:00" --limit 100 -o #{filepath} --json)
     sleep 10
