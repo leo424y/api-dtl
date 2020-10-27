@@ -33,7 +33,7 @@ class Twint < ApplicationRecord
         creator_id: raw[4] ? raw[4].delete('<>') : '',
         domain: 'twitter.com',
         title: raw[5..] ? raw[5..].join(' '): '',
-        pub_time: raw[1..2]
+        pub_time: (raw[1] && raw[2]) ? raw[1..2].join(' ').to_datetime - 14.hour : ''
       )
     end
 
