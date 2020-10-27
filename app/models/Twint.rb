@@ -19,7 +19,7 @@ class Twint < ApplicationRecord
     # }
     require 'securerandom'
     random_string = SecureRandom.hex
-    file_path = "tmp/twitter/#{random_string}.json"
+    file_path = Rails.root.join("tmp/twitter/#{random_string}.json").to_s
     %x(touch #{file_path})
     %x(twint -s #{params[:q]} --since "#{(Date.today - 3.day).strftime("%Y-%m-%d")} 00:00:00" --limit 100 -o #{file_path} --json)
     sleep 10
