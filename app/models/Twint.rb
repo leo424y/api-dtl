@@ -22,10 +22,11 @@ class Twint < ApplicationRecord
     # file_path = Rails.root.join("tmp/twitter/#{random_string}.json").to_s
     # %x(touch #{file_path})
     # %(rm #{file_path})
-    results = %x(twint -s "#{params[:q]}" --since "#{(Date.today - 3.day).strftime("%Y-%m-%d")} 00:00:00" --limit 100).split("\n")
+    results = %x(/home/deploy/.local/bin/twint -s "#{params[:q]}" --since "#{(Date.today - 3.day).strftime("%Y-%m-%d")} 00:00:00" --limit 100).split("\n")
     sleep 10
     # results = File.readlines(file_path)
     results.each do |line|
+      begin
       raw = line.split(' ')
       Dtl.to_dtl(
         source: 'dtltts',
@@ -33,8 +34,11 @@ class Twint < ApplicationRecord
         creator_id: raw[4] ? raw[4].delete('<>') : '',
         domain: 'twitter.com',
         title: raw[5..] ? raw[5..].join(' '): '',
-        pub_time: (raw[1] && raw[2]) ? raw[1..2].join(' ').to_datetime - 14.hour : ''
+        pub_time: (raw[1] && raw[2]) ? raw[1..2].join(' ').to_datetime - 8.hour : ''
       )
+      rescue => exception
+        p exception
+      end
     end
 
     count = results ? results.count : 0
