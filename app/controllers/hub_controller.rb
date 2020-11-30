@@ -199,22 +199,11 @@ class HubController < ApplicationController
 
   def hub_twint
     @hub_twint = Twint.count_result(params).as_json['result']
-    @hub_twint.each do |p|
-      Dtl.to_dtl(
-        source: 'dtltt',
-        url: p['link'],
-        creator_id: p['user_id'],
-        creator_name: p['username'],
-        domain: 'twitter.com',
-        title: p['tweet'],
-        pub_time: p['created_at'].to_datetime-14.hours,
-        platform_id: p['conversation_id'],
-        link: p['quote_url'],
-        search: params[:q]
-      )
-    end
     @tt_dl = download_link_of 'twint'
     @tt_count = @hub_twint.count
+    p @hub_twint
+    p @hub_twint.count
+
     render partial: "hub_twint"
   end
 
