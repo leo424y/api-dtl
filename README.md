@@ -23,9 +23,13 @@ ruby-2.7.1
 
 * Deployment instructions
 
+`rails s`
+
+* Deploy
+
+`SERVER=35.194.129.109 cap production deploy`
 
 # api-dtl
 
 
 # log
-- 10.12 change mm server
