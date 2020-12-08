@@ -45,6 +45,9 @@ gem 'mysql2', '~> 0.4.4'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'guard-rspec', require: false
+  gem 'rspec-benchmark'
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 group :development do
@@ -62,6 +65,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'database_cleaner-active_record'
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'simplecov', require: false, group: :test
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
