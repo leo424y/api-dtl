@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get :hub_youtube, controller: :hub
   get :hub_youtuber, controller: :hub
   get :hub_dtl, controller: :hub
+  get 'count_domain', to: 'dtl#daily_update_by_domain'
 
   root 'hub#index'
 end

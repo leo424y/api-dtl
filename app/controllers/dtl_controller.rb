@@ -16,4 +16,10 @@ class DtlController < ApplicationController
       end
     end
   end
+
+  def daily_update_by_domain
+    uri = "https://#{ENV['CTCSVHOST']}/count_domain?domain=#{params[:domain]}"
+    %x(curl #{uri})
+    render plain: "run counter for #{params[:domain]} ok"
+  end
 end
